@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ваш Контроль — форма отзыва</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="#" aria-label="Ваш Контроль">
+        <span class="brand__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 4 40 10v12c0 10.6-6.5 17.8-16 22C14.5 39.8 8 32.6 8 22V10L24 4Z"/><path d="m17 24 5 5 10-12"/></svg>
+        </span>
+        <span class="brand__name">Ваш <b>Контроль</b></span>
+      </a>
+
+      <div class="auth-pill">
+        <span class="gos-logo">гос<br>услуги</span>
+        <span><b>Вы вошли через Госуслуги</b><small>Личность подтверждена</small></span>
+      </div>
+
+
+      <button class="menu-btn" type="button" aria-label="Открыть меню"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <main class="page">
+    <section class="intro">
+      <div>
+        <p class="kicker">Оценка займёт меньше 1 минуты</p>
+        <h1>Оставить отзыв о государственной услуге</h1>
+        
+      </div>
+      <div class="steps" aria-label="Этапы формы">
+        <span class="step is-active" data-step-indicator="search">1 <b>Поиск</b></span>
+        <span class="step" data-step-indicator="rating">2 <b>Оценка</b></span>
+        <span class="step" data-step-indicator="details">3 <b>Комментарий</b></span>
+        <span class="step" data-step-indicator="send">4 <b>Отправка</b></span>
+      </div>
+    </section>
+
+    <form id="reviewForm" class="review-form" novalidate>
+      <section class="card search-card" aria-labelledby="searchTitle">
+        <div class="card__head">
+          <div>
+            <h2 id="searchTitle">1. Найдите услугу и организацию</h2>
+            <p>Можно вводить обычные слова: «паспорт», «права», «Росреестр», «МФЦ Тоцкое», адрес или ведомство.</p>
+          </div>
+          
+        </div>
+
+        <div class="controls-row" aria-label="Тип поиска">
+          <label class="segmented"><input type="radio" name="searchMode" value="any" checked><span>Не знаю, помогите выбрать</span></label>
+          <label class="segmented"><input type="radio" name="searchMode" value="mfc"><span>Получал в МФЦ</span></label>
+          <label class="segmented"><input type="radio" name="searchMode" value="department"><span>Получал в ведомстве</span></label>
+        </div>
+
+        <div class="meta-grid">
+          <label class="field">
+            <span>Этап оценки</span>
+            <select id="stage">
+              <option value="service_received">Услуга получена</option>
+              <option value="application_submitted">Подано заявление</option>
+              <option value="service_not_received">Услуга не получена</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Тип получения услуги</span>
+            <select id="receiveType">
+              <option value="offline">Очное</option>
+              <option value="online">Онлайн</option>
+            </select>
+          </label>
+          <label class="field">
+            <span>Дата</span>
+            <input id="serviceDate" type="date" />
+          </label>
+          <label class="field field--region">
+            <span class="visually-hidden">Автоматически определённый регион</span>
+            <input id="regionInput" value="Оренбургская область" autocomplete="off" readonly />
+            <small id="regionHint" class="field-hint" hidden></small>
+          </label>
+        </div>
+        <p class="error" id="dateError" hidden>Проверьте дату получения услуги.</p>
+
+        <div class="search-box">
+          <label for="mainSearch">Поиск</label>
+          <div class="search-input-wrap">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
+            <input id="mainSearch" autocomplete="off" placeholder="Например: паспорт, МФЦ, Росреестр, выписка, права" />
+            <button id="clearSearch" type="button" aria-label="Очистить поиск">×</button>
+          </div>
+        </div>
+
+        <div class="quick-tags-wrap" aria-label="Быстрые примеры поиска">
+          <span class="quick-tags__title">Часто ищут</span>
+          <div class="quick-tags">
+            <button type="button" data-query="МФЦ Тоцкое выписка">МФЦ Тоцкое</button>
+            <button type="button" data-query="паспорт МВД">паспорт</button>
+            <button type="button" data-query="ЕГРН Росреестр">ЕГРН</button>
+            <button type="button" data-query="пособие СФР">пособие</button>
+            <button type="button" data-query="права ГИБДД">права</button>
+          </div>
+        </div>
+
+        <div class="search-results" id="searchResults" aria-live="polite"></div>
+
+        <div class="search-footer-action">
+          <button class="text-btn" id="reportCatalogProblem" type="button">Не нашёл в списке</button>
+        </div>
+
+        <div class="selected-box" id="selectedBox" hidden>
+          <div class="selected-box__item">
+            <span class="selected-box__badge" aria-hidden="true">Услуга</span>
+            <div class="selected-box__content">
+              <b id="selectedServiceName"></b>
+              <small id="selectedServiceMeta"></small>
+            </div>
+          </div>
+          <div class="selected-box__item">
+            <span class="selected-box__badge selected-box__badge--org" aria-hidden="true">Организация</span>
+            <div class="selected-box__content">
+              <b id="selectedOrgName"></b>
+              <small id="selectedOrgMeta"></small>
+            </div>
+          </div>
+          <button class="selected-box__edit" type="button" id="changeSelection">Изменить</button>
+        </div>
+        <p class="error" id="selectionError" hidden>Выберите услугу и организацию из списка. Так отзыв будет привязан правильно.</p>
+      </section>
+
+      <section class="card rating-card" aria-labelledby="ratingTitle">
+        <div class="card__head card__head--inline">
+          <div>
+            <h2 id="ratingTitle">2. Оцените качество услуги</h2>
+            
+          </div>
+          <div class="scale-note"><span>Очень плохо</span><span>Отлично</span></div>
+        </div>
+        <div class="ratings" id="ratings"></div>
+        <p class="error" id="ratingError" hidden>Поставьте оценку по каждому параметру.</p>
+      </section>
+
+      <section class="card details-card" aria-labelledby="detailsTitle">
+        <div class="card__head">
+          <div>
+            <h2 id="detailsTitle">3. Дополните отзыв</h2>
+            
+          </div>
+
+        </div>
+
+        <label class="field field--textarea">
+          <span>Комментарий <em>(необязательно)</em></span>
+          <textarea id="comment" maxlength="2000" placeholder="Напишите, что понравилось или что можно улучшить"></textarea>
+          <small><span id="commentCounter">0</span> / 2000</small>
+        </label>
+
+        <div class="details-grid">
+          <section class="mini-card">
+            <h3>Фотографии <span>(необязательно)</span></h3>
+            <p>До 5 файлов, максимум 5 МБ каждый</p>
+            <div class="photos" id="photosPreview"></div>
+            <label class="upload-zone" id="photoZone">
+              <input id="photos" type="file" accept="image/*" multiple />
+              <span>Добавить фото</span>
+            </label>
+            <p class="error" id="photoError" hidden>Можно добавить до 5 изображений по 5 МБ.</p>
+          </section>
+
+          <section class="mini-card">
+            <h3>Ссылка на видео <span>(необязательно)</span></h3>
+            <label class="field field--plain">
+              <input id="video" type="url" placeholder="YouTube, RuTube или другая ссылка" />
+            </label>
+            <p class="error" id="videoError" hidden>Проверьте ссылку на видео.</p>
+          </section>
+        </div>
+      </section>
+
+      <section class="notice-card" aria-labelledby="officialAnswerTitle">
+        <label class="check-row">
+          <input id="officialAnswer" type="checkbox" />
+          <span aria-hidden="true"></span>
+          <b id="officialAnswerTitle">Хочу получить официальный ответ</b>
+        </label>
+        <p>Если выбрать этот вариант, после модерации отзыв направят в организацию для рассмотрения. Статус и ответ можно посмотреть на сайте, а уведомление придёт на сайт или в мессенджер MAX.</p>
+        <a href="#" onclick="return false;">Подробнее о порядке рассмотрения</a>
+      </section>
+
+      <div class="form-actions">
+        <div class="action-buttons">
+          <button class="btn btn--secondary" type="button" id="saveDraft">Сохранить черновик</button>
+          <button class="btn btn--primary" type="submit">Отправить отзыв</button>
+        </div>
+        <div class="moderation" id="moderationNotice" hidden>
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 40 10v12c0 10.6-6.5 17.8-16 22C14.5 39.8 8 32.6 8 22V10L24 4Z"/><path d="m17 24 5 5 10-12"/></svg>
+          <span>Отзыв проверит модератор. После проверки он появится на портале.</span>
+        </div>
+      </div>
+    </form>
+  </main>
+
+  <dialog id="resultDialog" class="dialog">
+    <div class="dialog__content">
+      <button class="dialog__close" id="closeDialog" type="button" aria-label="Закрыть">×</button>
+      <span class="dialog__icon" aria-hidden="true">✓</span>
+      <h2>Отзыв отправлен</h2>
+      <p>Спасибо. Отзыв принят и отправлен на модерацию.</p>
+      <p class="dialog-status">Дальше вы сможете посмотреть статус отзыва на сайте. Если подключены уведомления, сообщение также придёт в мессенджер MAX.</p>
+      <pre id="payload" hidden></pre>
+      <div class="dialog__buttons">
+        <button class="btn btn--secondary" type="button" id="editAgain">Вернуться к форме</button>
+        <button class="btn btn--primary" type="button" id="resetForm">Очистить форму</button>
+      </div>
+    </div>
+  </dialog>
+
+  <dialog id="catalogDialog" class="dialog">
+    <div class="dialog__content dialog__content--small">
+      <button class="dialog__close" id="closeCatalogDialog" type="button" aria-label="Закрыть">×</button>
+      <h2>Не нашли услугу или организацию?</h2>
+      <p>Опишите, что вы искали. Сообщение поможет уточнить справочник услуг и организаций.</p>
+      <label class="field field--textarea">
+        <span>Что вы искали</span>
+        <textarea id="catalogProblemText" maxlength="500" placeholder="Например: МФЦ на улице..., услуга..., ведомство..."></textarea>
+      </label>
+      <button class="btn btn--primary" id="sendCatalogProblem" type="button">Отправить сообщение</button>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
