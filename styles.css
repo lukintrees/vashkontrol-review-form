@@ -1,4 +1,6 @@
 [hidden] { display: none !important; }
+
+/* Базовые переменные темы и общие правила страницы. */
 :root {
   --green: #76a82a;
   --green-dark: #527d12;
@@ -39,6 +41,7 @@ a { color: var(--green-dark); }
   border: 0;
 }
 
+/* Шапка с брендом и статусом авторизации через Госуслуги. */
 .topbar {
   position: sticky;
   top: 0;
@@ -128,6 +131,7 @@ a { color: var(--green-dark); }
   background: #42493f;
 }
 
+/* Основная сетка страницы: заголовок, индикатор шагов и карточки формы. */
 .page {
   width: min(1180px, calc(100% - 40px));
   margin: 0 auto;
@@ -244,6 +248,7 @@ h1 {
 }
 .text-btn:hover { text-decoration: underline; }
 
+/* Блок поиска: режим получения, служебные поля, строка поиска и быстрые примеры. */
 .controls-row {
   display: flex;
   flex-wrap: wrap;
@@ -373,6 +378,7 @@ h1 {
   color: var(--muted);
   font-size: 12px;
 }
+/* Списки выбора услуги и организации, включая результаты поиска. */
 .browse-tabs {
   display: inline-grid;
   grid-template-columns: 1fr 1fr;
@@ -466,6 +472,7 @@ h1 {
   color: var(--muted);
   line-height: 1.45;
 }
+/* Краткое подтверждение выбранной пары "услуга + организация". */
 .selected-box {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto;
@@ -530,6 +537,7 @@ h1 {
 }
 .selected-box__edit:hover { border-color: var(--green); }
 
+/* Обязательные оценки: пять параметров, звёзды и подсказки к вопросам. */
 .scale-note {
   width: min(360px, 42%);
   display: flex;
@@ -613,6 +621,7 @@ h1 {
 .star-btn.is-selected svg, .star-btn.is-preview svg { fill: currentColor; }
 .star-btn:hover, .star-btn:focus-visible { background: var(--green-soft); outline: none; }
 
+/* Необязательные детали отзыва: комментарий, фото и ссылка на видео. */
 .details-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -655,6 +664,7 @@ h1 {
   border-radius: 50%;
   background: rgba(255,255,255,0.92);
 }
+/* Официальный ответ и блок действий перед отправкой формы. */
 .notice-card {
   padding: 18px 20px;
   background: #f4f9ec;
@@ -709,6 +719,7 @@ h1 {
 .btn--secondary:hover { border-color: var(--green); }
 .error { color: var(--danger) !important; font-size: 13px; margin: 10px 0 0; }
 
+/* Модальные окна результата и сообщения о проблеме со справочником. */
 .dialog {
   width: min(720px, calc(100% - 32px));
   border: 0;
@@ -771,6 +782,7 @@ pre {
 }
 .toast.is-visible { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+/* Адаптация формы под планшеты и телефоны. */
 @media (max-width: 1100px) {
   .meta-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -886,4 +898,3 @@ body[data-theme="dark"] .brand__name b, body[data-theme="dark"] .kicker, body[da
 }
 body[data-theme="dark"] .rating-row.has-error { background: #261818; }
 body[data-theme="dark"] .result-row:hover, body[data-theme="dark"] .quick-tags button:hover, body[data-theme="dark"] .segmented input:checked + span { background: #202820; }
-

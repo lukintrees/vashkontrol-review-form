@@ -247,15 +247,18 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <style>
+    /* Локальное переопределение: строка организации выбирается целиком, без отдельной кнопки. */
     .result-row--org { cursor: pointer; grid-template-columns: 1fr !important; }
     .result-row--org .result-pick { display: none !important; }
   </style>
   <script src="script.js"></script>
   <script>
     (() => {
+      // Этот блок донастраивает базовый script.js под решённый сценарий: сначала организация, потом услуга.
       if (typeof state === "undefined") return;
 
       renderBrowseTabs = function () {
+        // Вкладка "Организации" должна быть первой, но вкладка "Услуги" остаётся доступной.
         return `
           <div class="browse-tabs" role="tablist" aria-label="Способ выбора">
             <button class="browse-tab ${state.browseMode === "organizations" ? "is-active" : ""}" type="button" data-browse-tab="organizations">Организации</button>
@@ -265,6 +268,7 @@
       };
 
       renderOrgRow = function (org, { serviceId = null, pickMode = "browse" } = {}) {
+        // Для организаций вся строка работает как кнопка, чтобы убрать лишнее действие "Выбрать".
         const buttonAttr = pickMode === "select"
           ? `data-service-id="${serviceId}" data-org-id="${org.id}"`
           : `data-pick-org="${org.id}"`;
@@ -285,6 +289,7 @@
       };
 
       renderServiceList = function () {
+        // В альтернативном сценарии услугу тоже можно выбрать нажатием по всей строке.
         const items = getVisibleServices();
         elements.results.innerHTML = `
           ${renderBrowseTabs()}
@@ -314,6 +319,7 @@
       };
 
       function preferOrganizations() {
+        // После смены режима поиска возвращаем пользователя к основному сценарию выбора организации.
         state.browseMode = "organizations";
         state.browseOrgId = null;
         state.browseServiceId = null;

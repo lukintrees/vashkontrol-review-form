@@ -1,3 +1,4 @@
+// Тестовый справочник услуг: в прототипе он заменяет данные, которые обычно приходят с сервера.
 const services = [
   {
     id: "passport-rf",
@@ -145,6 +146,7 @@ const services = [
   }
 ];
 
+// Тестовый справочник организаций. Поле services связывает организацию с доступными услугами.
 const organizations = [
   {
     id: "mfc-orenburg",
@@ -386,6 +388,7 @@ const organizations = [
   }
 ];
 
+// Обязательные параметры оценки: текст и шкалу нельзя менять без согласования продукта и юристов.
 const questions = [
   { id: "serviceTime", text: "Время предоставления государственной услуги", icon: "clock" },
   { id: "queueTime", text: "Время ожидания в очереди при получении услуги", icon: "queue" },
@@ -394,6 +397,7 @@ const questions = [
   { id: "comfort", text: "Комфортность условий в помещении, в котором предоставлена государственная услуга", icon: "comfort" }
 ];
 
+// SVG-иконки храним рядом с вопросами, чтобы не дублировать разметку в HTML.
 const icons = {
   clock: `<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg>`,
   queue: `<svg viewBox="0 0 24 24"><path d="M5 6h14M5 12h14M5 18h9"/><circle cx="18" cy="18" r="2"/></svg>`,
@@ -411,6 +415,7 @@ const questionHints = {
   comfort: "Оцените чистоту, удобство ожидания, навигацию и общие условия в помещении."
 };
 
+// Единое состояние формы: выбранная пара услуга+организация, режим просмотра, оценки и вложения.
 const state = {
   selectedServiceId: null,
   selectedOrgId: null,
@@ -425,6 +430,7 @@ const state = {
 const $ = (selector) => document.querySelector(selector);
 const $$ = (selector) => [...document.querySelectorAll(selector)];
 
+// Кэшируем элементы страницы один раз, чтобы функции ниже не искали их повторно.
 const elements = {
   form: $("#reviewForm"),
   search: $("#mainSearch"),
@@ -463,6 +469,7 @@ const elements = {
 init();
 
 function init() {
+  // Порядок важен: сначала готовим поля и восстановление, потом подписки и первичная отрисовка.
   configureDateInput();
   renderRatings();
   restoreDraft();
@@ -476,6 +483,7 @@ function init() {
 }
 
 function bindEvents() {
+  // Все обработчики собраны в одном месте, чтобы сценарий формы было проще проследить.
   elements.search.addEventListener("input", runSearch);
   elements.region.addEventListener("input", () => { state.browseOrgId = null; state.browseServiceId = null; runSearch(); });
   elements.receiveType.addEventListener("change", () => { runSearch(); updateSteps(); });
@@ -580,6 +588,7 @@ function bindEvents() {
 }
 
 function normalize(value) {
+  // Нормализация делает поиск терпимым к регистру, "ё/е" и лишней пунктуации.
   return String(value || "")
     .toLowerCase()
     .replaceAll("ё", "е")
@@ -593,6 +602,7 @@ function tokenize(value) {
 }
 
 function scoreText(queryTokens, haystackParts) {
+  // Чем больше совпадений с названием, адресом, категорией и синонимами, тем выше строка в выдаче.
   if (!queryTokens.length) return 0;
   const haystack = normalize(haystackParts.flat().filter(Boolean).join(" "));
   let score = 0;
@@ -633,6 +643,7 @@ function byPopularity(a, b) {
 }
 
 function getVisibleOrganizations(serviceId = null) {
+  // Фильтр соблюдает выбранный режим: МФЦ, ведомства или смешанная помощь без жёсткого ограничения.
   const mode = getSearchMode();
   return organizations
     .filter((org) => {
@@ -645,6 +656,7 @@ function getVisibleOrganizations(serviceId = null) {
 }
 
 function getVisibleServices(orgId = null) {
+  // Если организация уже выбрана, показываем только услуги, которые можно получить именно там.
   const org = orgId ? organizations.find((item) => item.id === orgId) : null;
   return services
     .filter((service) => {
@@ -655,6 +667,7 @@ function getVisibleServices(orgId = null) {
 }
 
 function buildPairs() {
+  // Строим пары "услуга + организация" для поисковой выдачи, чтобы отзыв сразу был привязан корректно.
   const query = elements.search.value;
   const region = elements.region.value;
   const queryTokens = tokenize(`${query} ${region}`);
@@ -674,6 +687,7 @@ function buildPairs() {
       const regionScore = scoreText(tokenize(region), [org.region, org.city, org.address]);
       let score = serviceScore + orgScore + regionScore;
 
+      // Небольшие веса помогают популярным и релевантным вариантам подняться выше без жёсткой сортировки.
       if (mode === "mfc" && org.type === "mfc") score += 18;
       if (mode === "department" && org.type === "department") score += 18;
       if (mode === "mfc" && org.type === "department") score -= 8;
@@ -697,6 +711,7 @@ function buildPairs() {
 }
 
 function renderBrowseTabs() {
+  // Базовый порядок вкладок переопределён в index.html: там организация идёт первой по решению сценария.
   return `
     <div class="browse-tabs" role="tablist" aria-label="Способ выбора">
       <button class="browse-tab ${state.browseMode === "services" ? "is-active" : ""}" type="button" data-browse-tab="services">Услуги</button>
@@ -706,6 +721,7 @@ function renderBrowseTabs() {
 }
 
 function bindBrowseTabs() {
+  // Вкладки переключают только режим просмотра; выбранную пару они не сбрасывают.
   elements.results.querySelectorAll("[data-browse-tab]").forEach((button) => {
     button.addEventListener("click", () => {
       state.browseMode = button.dataset.browseTab;
@@ -717,6 +733,7 @@ function bindBrowseTabs() {
 }
 
 function renderOrganizationList() {
+  // Стартовый сценарий: пользователь сначала выбирает организацию, затем услугу.
   const orgs = getVisibleOrganizations();
   elements.results.innerHTML = `
     ${renderBrowseTabs()}
@@ -736,6 +753,7 @@ function renderOrganizationList() {
 }
 
 function renderServiceList() {
+  // Альтернативный сценарий: пользователь начинает с услуги, а организацию выбирает следующим шагом.
   const items = getVisibleServices();
   elements.results.innerHTML = `
     ${renderBrowseTabs()}
@@ -860,6 +878,7 @@ function getOrganizationsForService(serviceId) {
 }
 
 function runSearch() {
+  // Центральная точка выбора: либо показываем списки для просмотра, либо поисковые пары по введённому тексту.
   if (state.selectedServiceId && state.selectedOrgId) {
     elements.results.innerHTML = "";
     return;
@@ -913,6 +932,7 @@ function runSearch() {
 }
 
 function bindSelectPairRows() {
+  // Любой клик по строке выбора фиксирует сразу обе обязательные сущности: услугу и организацию.
   elements.results.querySelectorAll("[data-service-id][data-org-id]").forEach((button) => {
     button.addEventListener("click", () => {
       state.selectedServiceId = button.dataset.serviceId;
@@ -929,6 +949,7 @@ function bindSelectPairRows() {
 }
 
 function updateSelectedBox() {
+  // Блок выбранной пары появляется только когда отзыв можно однозначно привязать к справочникам.
   const service = getSelectedService();
   const org = getSelectedOrg();
   const selected = Boolean(service && org);
@@ -959,6 +980,7 @@ function toggleHelp(id) {
 }
 
 function renderRatings() {
+  // Рисуем все пять обязательных рейтингов из массива questions, чтобы не держать их вручную в HTML.
   elements.ratings.innerHTML = questions.map((question) => `
     <div class="rating-row" data-question-id="${question.id}">
       <div class="rating-question">
@@ -992,6 +1014,7 @@ function previewStars(row, value) {
 }
 
 function renderRatingState() {
+  // Обновляем выбранные звёзды и атрибуты доступности для клавиатуры и программ чтения с экрана.
   $$(".rating-row").forEach((row) => {
     const rating = state.ratings[row.dataset.questionId] || 0;
     row.querySelectorAll(".star-btn").forEach((button) => {
@@ -1005,6 +1028,7 @@ function renderRatingState() {
 }
 
 function handleFiles(files) {
+  // В прототипе фото хранятся в памяти как строка с содержимым файла и не отправляются на сервер.
   elements.photoError.hidden = true;
   const images = files.filter((file) => file.type.startsWith("image/"));
   const tooBig = images.some((file) => file.size > 5 * 1024 * 1024);
@@ -1043,6 +1067,7 @@ function renderPhotos() {
 }
 
 function configureDateInput() {
+  // Ограничиваем дату тем же правилом, что и валидация: не будущее и не старше 3 лет.
   const today = new Date();
   const min = addYears(today, -3);
   elements.serviceDate.max = formatDate(today);
@@ -1064,6 +1089,7 @@ function formatDate(date) {
 }
 
 function validateServiceDate() {
+  // Проверка дублирует min/max, потому что браузеры по-разному показывают ошибки поля даты.
   const value = elements.serviceDate.value;
   if (!value) return true;
   const date = new Date(`${value}T00:00:00`);
@@ -1085,6 +1111,7 @@ function validateServiceDate() {
 }
 
 function validateForm() {
+  // Перед отправкой проверяем только обязательное: выбранную пару, дату, все оценки и корректность ссылки.
   let valid = true;
   if (!state.selectedServiceId || !state.selectedOrgId) {
     elements.selectionError.hidden = false;
@@ -1114,6 +1141,7 @@ function validateForm() {
 }
 
 function submitForm(event) {
+  // Реальной отправки нет: для статического прототипа показываем собранные данные в диалоге и пишем их в консоль.
   event.preventDefault();
   if (!validateForm()) return;
 
@@ -1125,12 +1153,14 @@ function submitForm(event) {
 }
 
 function saveDraft() {
+  // Черновик сохраняется локально в браузере, без передачи персональных данных наружу.
   const payload = buildPayload("draft");
   localStorage.setItem("vashkontrol-review-draft-practical", JSON.stringify({ payload, statePhotos: state.photos }));
   showToast("Черновик сохранён в браузере");
 }
 
 function restoreDraft() {
+  // При восстановлении не возвращаем выбранную пару: пользователь должен заново подтвердить услугу и организацию.
   try {
     const saved = JSON.parse(localStorage.getItem("vashkontrol-review-draft-practical") || "null");
     if (!saved?.payload) return;
@@ -1152,6 +1182,7 @@ function restoreDraft() {
 }
 
 function resetForm() {
+  // Полный сброс возвращает форму к начальному сценарию и очищает локальный черновик.
   state.selectedServiceId = null;
   state.selectedOrgId = null;
   state.browseMode = "services";
@@ -1177,6 +1208,7 @@ function resetForm() {
 }
 
 function sendCatalogProblem() {
+  // Сообщение о справочнике пока имитируется через console.log, как и основная отправка формы.
   const text = $("#catalogProblemText").value.trim();
   console.log("Сообщение о проблеме со справочником", {
     text,
@@ -1190,6 +1222,7 @@ function sendCatalogProblem() {
 }
 
 function buildPayload(status) {
+  // Собираем структуру, которую позже можно будет отправлять на сервер без смены логики интерфейса.
   const service = getSelectedService();
   const org = getSelectedOrg();
   return {
@@ -1211,6 +1244,7 @@ function buildPayload(status) {
 }
 
 function updateSteps() {
+  // Индикатор шагов отражает прогресс, но не добавляет отдельные обязательные экраны.
   const selected = Boolean(state.selectedServiceId && state.selectedOrgId);
   const ratingsDone = Object.values(state.ratings).every(Boolean);
   const detailsTouched = Boolean(elements.comment.value.trim() || state.photos.length || elements.video.value.trim() || elements.officialAnswer.checked);
@@ -1244,6 +1278,7 @@ function updateCommentCounter() {
 }
 
 function tryDetectRegion({ silent }) {
+  // Автозаполнение региона использует только данные браузера и не блокирует ручное редактирование.
   const detectedByBrowser = detectRegionByBrowserInfo();
   const nextRegion = detectedByBrowser || elements.region.value || "Оренбургская область";
   elements.region.value = nextRegion;
@@ -1252,6 +1287,7 @@ function tryDetectRegion({ silent }) {
 }
 
 function detectRegionByBrowserInfo() {
+  // По часовому поясу можно сделать только грубую подсказку; IP-геолокации в статическом прототипе нет.
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
   const map = {
     "Asia/Yekaterinburg": "Оренбургская область",
@@ -1266,6 +1302,7 @@ function detectRegionByBrowserInfo() {
 }
 
 function detectRegionByCoordinates(lat, lon) {
+  // Запасной вариант для координат: простые рамки регионов без внешних сервисов и без точного геокодинга.
   const boxes = [
     { region: "Оренбургская область", minLat: 50.4, maxLat: 54.0, minLon: 50.7, maxLon: 61.7 },
     { region: "Москва", minLat: 55.1, maxLat: 56.1, minLon: 36.8, maxLon: 38.3 },
@@ -1278,6 +1315,7 @@ function detectRegionByCoordinates(lat, lon) {
 }
 
 function isValidUrl(value) {
+  // Принимаем только обычные http/https-ссылки на видео, сама платформа здесь не ограничивается.
   try {
     const url = new URL(value);
     return ["http:", "https:"].includes(url.protocol);
@@ -1287,6 +1325,7 @@ function isValidUrl(value) {
 }
 
 function showToast(message) {
+  // Неблокирующее уведомление: оно не прерывает заполнение формы и само исчезает.
   elements.toast.textContent = message;
   elements.toast.classList.add("is-visible");
   window.clearTimeout(showToast.timer);
@@ -1294,6 +1333,7 @@ function showToast(message) {
 }
 
 function escapeHtml(value) {
+  // Экранируем пользовательские и справочные строки перед вставкой в шаблонную HTML-разметку.
   return String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
