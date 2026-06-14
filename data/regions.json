@@ -1,0 +1,3402 @@
+[
+  {
+    "id": "respublika-adygeya",
+    "type": "region",
+    "title": "Республика Адыгея",
+    "region": "Республика Адыгея",
+    "city": "",
+    "aliases": [
+      "республика адыгея"
+    ],
+    "popularity": 1000
+  },
+  {
+    "id": "respublika-adygeya-maykop",
+    "type": "city",
+    "title": "Майкоп",
+    "region": "Республика Адыгея",
+    "city": "Майкоп",
+    "aliases": [
+      "майкоп",
+      "майкоп республика адыгея"
+    ],
+    "popularity": 960
+  },
+  {
+    "id": "respublika-altay",
+    "type": "region",
+    "title": "Республика Алтай",
+    "region": "Республика Алтай",
+    "city": "",
+    "aliases": [
+      "республика алтай"
+    ],
+    "popularity": 997
+  },
+  {
+    "id": "respublika-altay-gorno-altaysk",
+    "type": "city",
+    "title": "Горно-Алтайск",
+    "region": "Республика Алтай",
+    "city": "Горно-Алтайск",
+    "aliases": [
+      "горно-алтайск",
+      "горно-алтайск республика алтай"
+    ],
+    "popularity": 957
+  },
+  {
+    "id": "respublika-bashkortostan",
+    "type": "region",
+    "title": "Республика Башкортостан",
+    "region": "Республика Башкортостан",
+    "city": "",
+    "aliases": [
+      "республика башкортостан"
+    ],
+    "popularity": 994
+  },
+  {
+    "id": "respublika-bashkortostan-ufa",
+    "type": "city",
+    "title": "Уфа",
+    "region": "Республика Башкортостан",
+    "city": "Уфа",
+    "aliases": [
+      "уфа",
+      "уфа республика башкортостан"
+    ],
+    "popularity": 954
+  },
+  {
+    "id": "respublika-bashkortostan-sterlitamak",
+    "type": "city",
+    "title": "Стерлитамак",
+    "region": "Республика Башкортостан",
+    "city": "Стерлитамак",
+    "aliases": [
+      "стерлитамак",
+      "стерлитамак республика башкортостан"
+    ],
+    "popularity": 953
+  },
+  {
+    "id": "respublika-bashkortostan-salavat",
+    "type": "city",
+    "title": "Салават",
+    "region": "Республика Башкортостан",
+    "city": "Салават",
+    "aliases": [
+      "салават",
+      "салават республика башкортостан"
+    ],
+    "popularity": 952
+  },
+  {
+    "id": "respublika-bashkortostan-neftekamsk",
+    "type": "city",
+    "title": "Нефтекамск",
+    "region": "Республика Башкортостан",
+    "city": "Нефтекамск",
+    "aliases": [
+      "нефтекамск",
+      "нефтекамск республика башкортостан"
+    ],
+    "popularity": 951
+  },
+  {
+    "id": "respublika-bashkortostan-oktyabrskiy",
+    "type": "city",
+    "title": "Октябрьский",
+    "region": "Республика Башкортостан",
+    "city": "Октябрьский",
+    "aliases": [
+      "октябрьский",
+      "октябрьский республика башкортостан"
+    ],
+    "popularity": 950
+  },
+  {
+    "id": "respublika-buryatiya",
+    "type": "region",
+    "title": "Республика Бурятия",
+    "region": "Республика Бурятия",
+    "city": "",
+    "aliases": [
+      "республика бурятия"
+    ],
+    "popularity": 991
+  },
+  {
+    "id": "respublika-buryatiya-ulan-ude",
+    "type": "city",
+    "title": "Улан-Удэ",
+    "region": "Республика Бурятия",
+    "city": "Улан-Удэ",
+    "aliases": [
+      "улан-удэ",
+      "улан-удэ республика бурятия"
+    ],
+    "popularity": 951
+  },
+  {
+    "id": "respublika-dagestan",
+    "type": "region",
+    "title": "Республика Дагестан",
+    "region": "Республика Дагестан",
+    "city": "",
+    "aliases": [
+      "республика дагестан"
+    ],
+    "popularity": 988
+  },
+  {
+    "id": "respublika-dagestan-mahachkala",
+    "type": "city",
+    "title": "Махачкала",
+    "region": "Республика Дагестан",
+    "city": "Махачкала",
+    "aliases": [
+      "махачкала",
+      "махачкала республика дагестан"
+    ],
+    "popularity": 948
+  },
+  {
+    "id": "respublika-dagestan-derbent",
+    "type": "city",
+    "title": "Дербент",
+    "region": "Республика Дагестан",
+    "city": "Дербент",
+    "aliases": [
+      "дербент",
+      "дербент республика дагестан"
+    ],
+    "popularity": 947
+  },
+  {
+    "id": "respublika-dagestan-hasavyurt",
+    "type": "city",
+    "title": "Хасавюрт",
+    "region": "Республика Дагестан",
+    "city": "Хасавюрт",
+    "aliases": [
+      "хасавюрт",
+      "хасавюрт республика дагестан"
+    ],
+    "popularity": 946
+  },
+  {
+    "id": "doneckaya-narodnaya-respublika",
+    "type": "region",
+    "title": "Донецкая Народная Республика",
+    "region": "Донецкая Народная Республика",
+    "city": "",
+    "aliases": [
+      "донецкая народная республика"
+    ],
+    "popularity": 985
+  },
+  {
+    "id": "doneckaya-narodnaya-respublika-doneck",
+    "type": "city",
+    "title": "Донецк",
+    "region": "Донецкая Народная Республика",
+    "city": "Донецк",
+    "aliases": [
+      "донецк",
+      "донецк донецкая народная республика"
+    ],
+    "popularity": 945
+  },
+  {
+    "id": "doneckaya-narodnaya-respublika-mariupol",
+    "type": "city",
+    "title": "Мариуполь",
+    "region": "Донецкая Народная Республика",
+    "city": "Мариуполь",
+    "aliases": [
+      "мариуполь",
+      "мариуполь донецкая народная республика"
+    ],
+    "popularity": 944
+  },
+  {
+    "id": "doneckaya-narodnaya-respublika-makeevka",
+    "type": "city",
+    "title": "Макеевка",
+    "region": "Донецкая Народная Республика",
+    "city": "Макеевка",
+    "aliases": [
+      "макеевка",
+      "макеевка донецкая народная республика"
+    ],
+    "popularity": 943
+  },
+  {
+    "id": "respublika-ingushetiya",
+    "type": "region",
+    "title": "Республика Ингушетия",
+    "region": "Республика Ингушетия",
+    "city": "",
+    "aliases": [
+      "республика ингушетия"
+    ],
+    "popularity": 982
+  },
+  {
+    "id": "respublika-ingushetiya-magas",
+    "type": "city",
+    "title": "Магас",
+    "region": "Республика Ингушетия",
+    "city": "Магас",
+    "aliases": [
+      "магас",
+      "магас республика ингушетия"
+    ],
+    "popularity": 942
+  },
+  {
+    "id": "respublika-ingushetiya-nazran",
+    "type": "city",
+    "title": "Назрань",
+    "region": "Республика Ингушетия",
+    "city": "Назрань",
+    "aliases": [
+      "назрань",
+      "назрань республика ингушетия"
+    ],
+    "popularity": 941
+  },
+  {
+    "id": "kabardino-balkarskaya-respublika",
+    "type": "region",
+    "title": "Кабардино-Балкарская Республика",
+    "region": "Кабардино-Балкарская Республика",
+    "city": "",
+    "aliases": [
+      "кабардино-балкарская республика"
+    ],
+    "popularity": 979
+  },
+  {
+    "id": "kabardino-balkarskaya-respublika-nalchik",
+    "type": "city",
+    "title": "Нальчик",
+    "region": "Кабардино-Балкарская Республика",
+    "city": "Нальчик",
+    "aliases": [
+      "нальчик",
+      "нальчик кабардино-балкарская республика"
+    ],
+    "popularity": 939
+  },
+  {
+    "id": "respublika-kalmykiya",
+    "type": "region",
+    "title": "Республика Калмыкия",
+    "region": "Республика Калмыкия",
+    "city": "",
+    "aliases": [
+      "республика калмыкия"
+    ],
+    "popularity": 976
+  },
+  {
+    "id": "respublika-kalmykiya-elista",
+    "type": "city",
+    "title": "Элиста",
+    "region": "Республика Калмыкия",
+    "city": "Элиста",
+    "aliases": [
+      "элиста",
+      "элиста республика калмыкия"
+    ],
+    "popularity": 936
+  },
+  {
+    "id": "karachaevo-cherkesskaya-respublika",
+    "type": "region",
+    "title": "Карачаево-Черкесская Республика",
+    "region": "Карачаево-Черкесская Республика",
+    "city": "",
+    "aliases": [
+      "карачаево-черкесская республика"
+    ],
+    "popularity": 973
+  },
+  {
+    "id": "karachaevo-cherkesskaya-respublika-cherkessk",
+    "type": "city",
+    "title": "Черкесск",
+    "region": "Карачаево-Черкесская Республика",
+    "city": "Черкесск",
+    "aliases": [
+      "черкесск",
+      "черкесск карачаево-черкесская республика"
+    ],
+    "popularity": 933
+  },
+  {
+    "id": "respublika-kareliya",
+    "type": "region",
+    "title": "Республика Карелия",
+    "region": "Республика Карелия",
+    "city": "",
+    "aliases": [
+      "республика карелия"
+    ],
+    "popularity": 970
+  },
+  {
+    "id": "respublika-kareliya-petrozavodsk",
+    "type": "city",
+    "title": "Петрозаводск",
+    "region": "Республика Карелия",
+    "city": "Петрозаводск",
+    "aliases": [
+      "петрозаводск",
+      "петрозаводск республика карелия"
+    ],
+    "popularity": 930
+  },
+  {
+    "id": "respublika-komi",
+    "type": "region",
+    "title": "Республика Коми",
+    "region": "Республика Коми",
+    "city": "",
+    "aliases": [
+      "республика коми"
+    ],
+    "popularity": 967
+  },
+  {
+    "id": "respublika-komi-syktyvkar",
+    "type": "city",
+    "title": "Сыктывкар",
+    "region": "Республика Коми",
+    "city": "Сыктывкар",
+    "aliases": [
+      "сыктывкар",
+      "сыктывкар республика коми"
+    ],
+    "popularity": 927
+  },
+  {
+    "id": "respublika-komi-uhta",
+    "type": "city",
+    "title": "Ухта",
+    "region": "Республика Коми",
+    "city": "Ухта",
+    "aliases": [
+      "ухта",
+      "ухта республика коми"
+    ],
+    "popularity": 926
+  },
+  {
+    "id": "respublika-komi-vorkuta",
+    "type": "city",
+    "title": "Воркута",
+    "region": "Республика Коми",
+    "city": "Воркута",
+    "aliases": [
+      "воркута",
+      "воркута республика коми"
+    ],
+    "popularity": 925
+  },
+  {
+    "id": "respublika-krym",
+    "type": "region",
+    "title": "Республика Крым",
+    "region": "Республика Крым",
+    "city": "",
+    "aliases": [
+      "республика крым"
+    ],
+    "popularity": 964
+  },
+  {
+    "id": "respublika-krym-simferopol",
+    "type": "city",
+    "title": "Симферополь",
+    "region": "Республика Крым",
+    "city": "Симферополь",
+    "aliases": [
+      "симферополь",
+      "симферополь республика крым"
+    ],
+    "popularity": 924
+  },
+  {
+    "id": "respublika-krym-kerch",
+    "type": "city",
+    "title": "Керчь",
+    "region": "Республика Крым",
+    "city": "Керчь",
+    "aliases": [
+      "керчь",
+      "керчь республика крым"
+    ],
+    "popularity": 923
+  },
+  {
+    "id": "respublika-krym-yalta",
+    "type": "city",
+    "title": "Ялта",
+    "region": "Республика Крым",
+    "city": "Ялта",
+    "aliases": [
+      "ялта",
+      "ялта республика крым"
+    ],
+    "popularity": 922
+  },
+  {
+    "id": "respublika-krym-evpatoriya",
+    "type": "city",
+    "title": "Евпатория",
+    "region": "Республика Крым",
+    "city": "Евпатория",
+    "aliases": [
+      "евпатория",
+      "евпатория республика крым"
+    ],
+    "popularity": 921
+  },
+  {
+    "id": "luganskaya-narodnaya-respublika",
+    "type": "region",
+    "title": "Луганская Народная Республика",
+    "region": "Луганская Народная Республика",
+    "city": "",
+    "aliases": [
+      "луганская народная республика"
+    ],
+    "popularity": 961
+  },
+  {
+    "id": "luganskaya-narodnaya-respublika-lugansk",
+    "type": "city",
+    "title": "Луганск",
+    "region": "Луганская Народная Республика",
+    "city": "Луганск",
+    "aliases": [
+      "луганск",
+      "луганск луганская народная республика"
+    ],
+    "popularity": 921
+  },
+  {
+    "id": "luganskaya-narodnaya-respublika-alchevsk",
+    "type": "city",
+    "title": "Алчевск",
+    "region": "Луганская Народная Республика",
+    "city": "Алчевск",
+    "aliases": [
+      "алчевск",
+      "алчевск луганская народная республика"
+    ],
+    "popularity": 920
+  },
+  {
+    "id": "respublika-mariy-el",
+    "type": "region",
+    "title": "Республика Марий Эл",
+    "region": "Республика Марий Эл",
+    "city": "",
+    "aliases": [
+      "республика марий эл"
+    ],
+    "popularity": 958
+  },
+  {
+    "id": "respublika-mariy-el-yoshkar-ola",
+    "type": "city",
+    "title": "Йошкар-Ола",
+    "region": "Республика Марий Эл",
+    "city": "Йошкар-Ола",
+    "aliases": [
+      "йошкар-ола",
+      "йошкар-ола республика марий эл"
+    ],
+    "popularity": 918
+  },
+  {
+    "id": "respublika-mordoviya",
+    "type": "region",
+    "title": "Республика Мордовия",
+    "region": "Республика Мордовия",
+    "city": "",
+    "aliases": [
+      "республика мордовия"
+    ],
+    "popularity": 955
+  },
+  {
+    "id": "respublika-mordoviya-saransk",
+    "type": "city",
+    "title": "Саранск",
+    "region": "Республика Мордовия",
+    "city": "Саранск",
+    "aliases": [
+      "саранск",
+      "саранск республика мордовия"
+    ],
+    "popularity": 915
+  },
+  {
+    "id": "respublika-saha-yakutiya",
+    "type": "region",
+    "title": "Республика Саха (Якутия)",
+    "region": "Республика Саха (Якутия)",
+    "city": "",
+    "aliases": [
+      "республика саха (якутия)"
+    ],
+    "popularity": 952
+  },
+  {
+    "id": "respublika-saha-yakutiya-yakutsk",
+    "type": "city",
+    "title": "Якутск",
+    "region": "Республика Саха (Якутия)",
+    "city": "Якутск",
+    "aliases": [
+      "якутск",
+      "якутск республика саха (якутия)"
+    ],
+    "popularity": 912
+  },
+  {
+    "id": "respublika-saha-yakutiya-neryungri",
+    "type": "city",
+    "title": "Нерюнгри",
+    "region": "Республика Саха (Якутия)",
+    "city": "Нерюнгри",
+    "aliases": [
+      "нерюнгри",
+      "нерюнгри республика саха (якутия)"
+    ],
+    "popularity": 911
+  },
+  {
+    "id": "respublika-severnaya-osetiya-alaniya",
+    "type": "region",
+    "title": "Республика Северная Осетия - Алания",
+    "region": "Республика Северная Осетия - Алания",
+    "city": "",
+    "aliases": [
+      "республика северная осетия - алания"
+    ],
+    "popularity": 949
+  },
+  {
+    "id": "respublika-severnaya-osetiya-alaniya-vladikavkaz",
+    "type": "city",
+    "title": "Владикавказ",
+    "region": "Республика Северная Осетия - Алания",
+    "city": "Владикавказ",
+    "aliases": [
+      "владикавказ",
+      "владикавказ республика северная осетия - алания"
+    ],
+    "popularity": 909
+  },
+  {
+    "id": "respublika-tatarstan",
+    "type": "region",
+    "title": "Республика Татарстан",
+    "region": "Республика Татарстан",
+    "city": "",
+    "aliases": [
+      "республика татарстан"
+    ],
+    "popularity": 946
+  },
+  {
+    "id": "respublika-tatarstan-kazan",
+    "type": "city",
+    "title": "Казань",
+    "region": "Республика Татарстан",
+    "city": "Казань",
+    "aliases": [
+      "казань",
+      "казань республика татарстан"
+    ],
+    "popularity": 906
+  },
+  {
+    "id": "respublika-tatarstan-naberezhnye-chelny",
+    "type": "city",
+    "title": "Набережные Челны",
+    "region": "Республика Татарстан",
+    "city": "Набережные Челны",
+    "aliases": [
+      "набережные челны",
+      "набережные челны республика татарстан"
+    ],
+    "popularity": 905
+  },
+  {
+    "id": "respublika-tatarstan-nizhnekamsk",
+    "type": "city",
+    "title": "Нижнекамск",
+    "region": "Республика Татарстан",
+    "city": "Нижнекамск",
+    "aliases": [
+      "нижнекамск",
+      "нижнекамск республика татарстан"
+    ],
+    "popularity": 904
+  },
+  {
+    "id": "respublika-tatarstan-almetevsk",
+    "type": "city",
+    "title": "Альметьевск",
+    "region": "Республика Татарстан",
+    "city": "Альметьевск",
+    "aliases": [
+      "альметьевск",
+      "альметьевск республика татарстан"
+    ],
+    "popularity": 903
+  },
+  {
+    "id": "respublika-tyva",
+    "type": "region",
+    "title": "Республика Тыва",
+    "region": "Республика Тыва",
+    "city": "",
+    "aliases": [
+      "республика тыва"
+    ],
+    "popularity": 943
+  },
+  {
+    "id": "respublika-tyva-kyzyl",
+    "type": "city",
+    "title": "Кызыл",
+    "region": "Республика Тыва",
+    "city": "Кызыл",
+    "aliases": [
+      "кызыл",
+      "кызыл республика тыва"
+    ],
+    "popularity": 903
+  },
+  {
+    "id": "udmurtskaya-respublika",
+    "type": "region",
+    "title": "Удмуртская Республика",
+    "region": "Удмуртская Республика",
+    "city": "",
+    "aliases": [
+      "удмуртская республика"
+    ],
+    "popularity": 940
+  },
+  {
+    "id": "udmurtskaya-respublika-izhevsk",
+    "type": "city",
+    "title": "Ижевск",
+    "region": "Удмуртская Республика",
+    "city": "Ижевск",
+    "aliases": [
+      "ижевск",
+      "ижевск удмуртская республика"
+    ],
+    "popularity": 900
+  },
+  {
+    "id": "udmurtskaya-respublika-sarapul",
+    "type": "city",
+    "title": "Сарапул",
+    "region": "Удмуртская Республика",
+    "city": "Сарапул",
+    "aliases": [
+      "сарапул",
+      "сарапул удмуртская республика"
+    ],
+    "popularity": 899
+  },
+  {
+    "id": "udmurtskaya-respublika-glazov",
+    "type": "city",
+    "title": "Глазов",
+    "region": "Удмуртская Республика",
+    "city": "Глазов",
+    "aliases": [
+      "глазов",
+      "глазов удмуртская республика"
+    ],
+    "popularity": 898
+  },
+  {
+    "id": "respublika-hakasiya",
+    "type": "region",
+    "title": "Республика Хакасия",
+    "region": "Республика Хакасия",
+    "city": "",
+    "aliases": [
+      "республика хакасия"
+    ],
+    "popularity": 937
+  },
+  {
+    "id": "respublika-hakasiya-abakan",
+    "type": "city",
+    "title": "Абакан",
+    "region": "Республика Хакасия",
+    "city": "Абакан",
+    "aliases": [
+      "абакан",
+      "абакан республика хакасия"
+    ],
+    "popularity": 897
+  },
+  {
+    "id": "chechenskaya-respublika",
+    "type": "region",
+    "title": "Чеченская Республика",
+    "region": "Чеченская Республика",
+    "city": "",
+    "aliases": [
+      "чеченская республика"
+    ],
+    "popularity": 934
+  },
+  {
+    "id": "chechenskaya-respublika-groznyy",
+    "type": "city",
+    "title": "Грозный",
+    "region": "Чеченская Республика",
+    "city": "Грозный",
+    "aliases": [
+      "грозный",
+      "грозный чеченская республика"
+    ],
+    "popularity": 894
+  },
+  {
+    "id": "chuvashskaya-respublika",
+    "type": "region",
+    "title": "Чувашская Республика",
+    "region": "Чувашская Республика",
+    "city": "",
+    "aliases": [
+      "чувашская республика"
+    ],
+    "popularity": 931
+  },
+  {
+    "id": "chuvashskaya-respublika-cheboksary",
+    "type": "city",
+    "title": "Чебоксары",
+    "region": "Чувашская Республика",
+    "city": "Чебоксары",
+    "aliases": [
+      "чебоксары",
+      "чебоксары чувашская республика"
+    ],
+    "popularity": 891
+  },
+  {
+    "id": "chuvashskaya-respublika-novocheboksarsk",
+    "type": "city",
+    "title": "Новочебоксарск",
+    "region": "Чувашская Республика",
+    "city": "Новочебоксарск",
+    "aliases": [
+      "новочебоксарск",
+      "новочебоксарск чувашская республика"
+    ],
+    "popularity": 890
+  },
+  {
+    "id": "altayskiy-kray",
+    "type": "region",
+    "title": "Алтайский край",
+    "region": "Алтайский край",
+    "city": "",
+    "aliases": [
+      "алтайский край"
+    ],
+    "popularity": 928
+  },
+  {
+    "id": "altayskiy-kray-barnaul",
+    "type": "city",
+    "title": "Барнаул",
+    "region": "Алтайский край",
+    "city": "Барнаул",
+    "aliases": [
+      "барнаул",
+      "барнаул алтайский край"
+    ],
+    "popularity": 888
+  },
+  {
+    "id": "altayskiy-kray-biysk",
+    "type": "city",
+    "title": "Бийск",
+    "region": "Алтайский край",
+    "city": "Бийск",
+    "aliases": [
+      "бийск",
+      "бийск алтайский край"
+    ],
+    "popularity": 887
+  },
+  {
+    "id": "altayskiy-kray-rubcovsk",
+    "type": "city",
+    "title": "Рубцовск",
+    "region": "Алтайский край",
+    "city": "Рубцовск",
+    "aliases": [
+      "рубцовск",
+      "рубцовск алтайский край"
+    ],
+    "popularity": 886
+  },
+  {
+    "id": "zabaykalskiy-kray",
+    "type": "region",
+    "title": "Забайкальский край",
+    "region": "Забайкальский край",
+    "city": "",
+    "aliases": [
+      "забайкальский край"
+    ],
+    "popularity": 925
+  },
+  {
+    "id": "zabaykalskiy-kray-chita",
+    "type": "city",
+    "title": "Чита",
+    "region": "Забайкальский край",
+    "city": "Чита",
+    "aliases": [
+      "чита",
+      "чита забайкальский край"
+    ],
+    "popularity": 885
+  },
+  {
+    "id": "kamchatskiy-kray",
+    "type": "region",
+    "title": "Камчатский край",
+    "region": "Камчатский край",
+    "city": "",
+    "aliases": [
+      "камчатский край"
+    ],
+    "popularity": 922
+  },
+  {
+    "id": "kamchatskiy-kray-petropavlovsk-kamchatskiy",
+    "type": "city",
+    "title": "Петропавловск-Камчатский",
+    "region": "Камчатский край",
+    "city": "Петропавловск-Камчатский",
+    "aliases": [
+      "петропавловск-камчатский",
+      "петропавловск-камчатский камчатский край"
+    ],
+    "popularity": 882
+  },
+  {
+    "id": "krasnodarskiy-kray",
+    "type": "region",
+    "title": "Краснодарский край",
+    "region": "Краснодарский край",
+    "city": "",
+    "aliases": [
+      "краснодарский край"
+    ],
+    "popularity": 919
+  },
+  {
+    "id": "krasnodarskiy-kray-krasnodar",
+    "type": "city",
+    "title": "Краснодар",
+    "region": "Краснодарский край",
+    "city": "Краснодар",
+    "aliases": [
+      "краснодар",
+      "краснодар краснодарский край"
+    ],
+    "popularity": 879
+  },
+  {
+    "id": "krasnodarskiy-kray-sochi",
+    "type": "city",
+    "title": "Сочи",
+    "region": "Краснодарский край",
+    "city": "Сочи",
+    "aliases": [
+      "сочи",
+      "сочи краснодарский край"
+    ],
+    "popularity": 878
+  },
+  {
+    "id": "krasnodarskiy-kray-novorossiysk",
+    "type": "city",
+    "title": "Новороссийск",
+    "region": "Краснодарский край",
+    "city": "Новороссийск",
+    "aliases": [
+      "новороссийск",
+      "новороссийск краснодарский край"
+    ],
+    "popularity": 877
+  },
+  {
+    "id": "krasnodarskiy-kray-armavir",
+    "type": "city",
+    "title": "Армавир",
+    "region": "Краснодарский край",
+    "city": "Армавир",
+    "aliases": [
+      "армавир",
+      "армавир краснодарский край"
+    ],
+    "popularity": 876
+  },
+  {
+    "id": "krasnoyarskiy-kray",
+    "type": "region",
+    "title": "Красноярский край",
+    "region": "Красноярский край",
+    "city": "",
+    "aliases": [
+      "красноярский край"
+    ],
+    "popularity": 916
+  },
+  {
+    "id": "krasnoyarskiy-kray-krasnoyarsk",
+    "type": "city",
+    "title": "Красноярск",
+    "region": "Красноярский край",
+    "city": "Красноярск",
+    "aliases": [
+      "красноярск",
+      "красноярск красноярский край"
+    ],
+    "popularity": 876
+  },
+  {
+    "id": "krasnoyarskiy-kray-norilsk",
+    "type": "city",
+    "title": "Норильск",
+    "region": "Красноярский край",
+    "city": "Норильск",
+    "aliases": [
+      "норильск",
+      "норильск красноярский край"
+    ],
+    "popularity": 875
+  },
+  {
+    "id": "krasnoyarskiy-kray-achinsk",
+    "type": "city",
+    "title": "Ачинск",
+    "region": "Красноярский край",
+    "city": "Ачинск",
+    "aliases": [
+      "ачинск",
+      "ачинск красноярский край"
+    ],
+    "popularity": 874
+  },
+  {
+    "id": "permskiy-kray",
+    "type": "region",
+    "title": "Пермский край",
+    "region": "Пермский край",
+    "city": "",
+    "aliases": [
+      "пермский край"
+    ],
+    "popularity": 913
+  },
+  {
+    "id": "permskiy-kray-perm",
+    "type": "city",
+    "title": "Пермь",
+    "region": "Пермский край",
+    "city": "Пермь",
+    "aliases": [
+      "пермь",
+      "пермь пермский край"
+    ],
+    "popularity": 873
+  },
+  {
+    "id": "permskiy-kray-berezniki",
+    "type": "city",
+    "title": "Березники",
+    "region": "Пермский край",
+    "city": "Березники",
+    "aliases": [
+      "березники",
+      "березники пермский край"
+    ],
+    "popularity": 872
+  },
+  {
+    "id": "permskiy-kray-solikamsk",
+    "type": "city",
+    "title": "Соликамск",
+    "region": "Пермский край",
+    "city": "Соликамск",
+    "aliases": [
+      "соликамск",
+      "соликамск пермский край"
+    ],
+    "popularity": 871
+  },
+  {
+    "id": "primorskiy-kray",
+    "type": "region",
+    "title": "Приморский край",
+    "region": "Приморский край",
+    "city": "",
+    "aliases": [
+      "приморский край"
+    ],
+    "popularity": 910
+  },
+  {
+    "id": "primorskiy-kray-vladivostok",
+    "type": "city",
+    "title": "Владивосток",
+    "region": "Приморский край",
+    "city": "Владивосток",
+    "aliases": [
+      "владивосток",
+      "владивосток приморский край"
+    ],
+    "popularity": 870
+  },
+  {
+    "id": "primorskiy-kray-ussuriysk",
+    "type": "city",
+    "title": "Уссурийск",
+    "region": "Приморский край",
+    "city": "Уссурийск",
+    "aliases": [
+      "уссурийск",
+      "уссурийск приморский край"
+    ],
+    "popularity": 869
+  },
+  {
+    "id": "primorskiy-kray-nahodka",
+    "type": "city",
+    "title": "Находка",
+    "region": "Приморский край",
+    "city": "Находка",
+    "aliases": [
+      "находка",
+      "находка приморский край"
+    ],
+    "popularity": 868
+  },
+  {
+    "id": "primorskiy-kray-artem",
+    "type": "city",
+    "title": "Артём",
+    "region": "Приморский край",
+    "city": "Артём",
+    "aliases": [
+      "артём",
+      "артём приморский край"
+    ],
+    "popularity": 867
+  },
+  {
+    "id": "stavropolskiy-kray",
+    "type": "region",
+    "title": "Ставропольский край",
+    "region": "Ставропольский край",
+    "city": "",
+    "aliases": [
+      "ставропольский край"
+    ],
+    "popularity": 907
+  },
+  {
+    "id": "stavropolskiy-kray-stavropol",
+    "type": "city",
+    "title": "Ставрополь",
+    "region": "Ставропольский край",
+    "city": "Ставрополь",
+    "aliases": [
+      "ставрополь",
+      "ставрополь ставропольский край"
+    ],
+    "popularity": 867
+  },
+  {
+    "id": "stavropolskiy-kray-pyatigorsk",
+    "type": "city",
+    "title": "Пятигорск",
+    "region": "Ставропольский край",
+    "city": "Пятигорск",
+    "aliases": [
+      "пятигорск",
+      "пятигорск ставропольский край"
+    ],
+    "popularity": 866
+  },
+  {
+    "id": "stavropolskiy-kray-kislovodsk",
+    "type": "city",
+    "title": "Кисловодск",
+    "region": "Ставропольский край",
+    "city": "Кисловодск",
+    "aliases": [
+      "кисловодск",
+      "кисловодск ставропольский край"
+    ],
+    "popularity": 865
+  },
+  {
+    "id": "stavropolskiy-kray-nevinnomyssk",
+    "type": "city",
+    "title": "Невинномысск",
+    "region": "Ставропольский край",
+    "city": "Невинномысск",
+    "aliases": [
+      "невинномысск",
+      "невинномысск ставропольский край"
+    ],
+    "popularity": 864
+  },
+  {
+    "id": "stavropolskiy-kray-essentuki",
+    "type": "city",
+    "title": "Ессентуки",
+    "region": "Ставропольский край",
+    "city": "Ессентуки",
+    "aliases": [
+      "ессентуки",
+      "ессентуки ставропольский край"
+    ],
+    "popularity": 863
+  },
+  {
+    "id": "habarovskiy-kray",
+    "type": "region",
+    "title": "Хабаровский край",
+    "region": "Хабаровский край",
+    "city": "",
+    "aliases": [
+      "хабаровский край"
+    ],
+    "popularity": 904
+  },
+  {
+    "id": "habarovskiy-kray-habarovsk",
+    "type": "city",
+    "title": "Хабаровск",
+    "region": "Хабаровский край",
+    "city": "Хабаровск",
+    "aliases": [
+      "хабаровск",
+      "хабаровск хабаровский край"
+    ],
+    "popularity": 864
+  },
+  {
+    "id": "habarovskiy-kray-komsomolsk-na-amure",
+    "type": "city",
+    "title": "Комсомольск-на-Амуре",
+    "region": "Хабаровский край",
+    "city": "Комсомольск-на-Амуре",
+    "aliases": [
+      "комсомольск-на-амуре",
+      "комсомольск-на-амуре хабаровский край"
+    ],
+    "popularity": 863
+  },
+  {
+    "id": "amurskaya-oblast",
+    "type": "region",
+    "title": "Амурская область",
+    "region": "Амурская область",
+    "city": "",
+    "aliases": [
+      "амурская область",
+      "амурская обл"
+    ],
+    "popularity": 901
+  },
+  {
+    "id": "amurskaya-oblast-blagoveschensk",
+    "type": "city",
+    "title": "Благовещенск",
+    "region": "Амурская область",
+    "city": "Благовещенск",
+    "aliases": [
+      "благовещенск",
+      "благовещенск амурская область"
+    ],
+    "popularity": 861
+  },
+  {
+    "id": "arhangelskaya-oblast",
+    "type": "region",
+    "title": "Архангельская область",
+    "region": "Архангельская область",
+    "city": "",
+    "aliases": [
+      "архангельская область",
+      "архангельская обл"
+    ],
+    "popularity": 898
+  },
+  {
+    "id": "arhangelskaya-oblast-arhangelsk",
+    "type": "city",
+    "title": "Архангельск",
+    "region": "Архангельская область",
+    "city": "Архангельск",
+    "aliases": [
+      "архангельск",
+      "архангельск архангельская область"
+    ],
+    "popularity": 858
+  },
+  {
+    "id": "arhangelskaya-oblast-severodvinsk",
+    "type": "city",
+    "title": "Северодвинск",
+    "region": "Архангельская область",
+    "city": "Северодвинск",
+    "aliases": [
+      "северодвинск",
+      "северодвинск архангельская область"
+    ],
+    "popularity": 857
+  },
+  {
+    "id": "astrahanskaya-oblast",
+    "type": "region",
+    "title": "Астраханская область",
+    "region": "Астраханская область",
+    "city": "",
+    "aliases": [
+      "астраханская область",
+      "астраханская обл"
+    ],
+    "popularity": 895
+  },
+  {
+    "id": "astrahanskaya-oblast-astrahan",
+    "type": "city",
+    "title": "Астрахань",
+    "region": "Астраханская область",
+    "city": "Астрахань",
+    "aliases": [
+      "астрахань",
+      "астрахань астраханская область"
+    ],
+    "popularity": 855
+  },
+  {
+    "id": "belgorodskaya-oblast",
+    "type": "region",
+    "title": "Белгородская область",
+    "region": "Белгородская область",
+    "city": "",
+    "aliases": [
+      "белгородская область",
+      "белгородская обл"
+    ],
+    "popularity": 892
+  },
+  {
+    "id": "belgorodskaya-oblast-belgorod",
+    "type": "city",
+    "title": "Белгород",
+    "region": "Белгородская область",
+    "city": "Белгород",
+    "aliases": [
+      "белгород",
+      "белгород белгородская область"
+    ],
+    "popularity": 852
+  },
+  {
+    "id": "belgorodskaya-oblast-staryy-oskol",
+    "type": "city",
+    "title": "Старый Оскол",
+    "region": "Белгородская область",
+    "city": "Старый Оскол",
+    "aliases": [
+      "старый оскол",
+      "старый оскол белгородская область"
+    ],
+    "popularity": 851
+  },
+  {
+    "id": "bryanskaya-oblast",
+    "type": "region",
+    "title": "Брянская область",
+    "region": "Брянская область",
+    "city": "",
+    "aliases": [
+      "брянская область",
+      "брянская обл"
+    ],
+    "popularity": 889
+  },
+  {
+    "id": "bryanskaya-oblast-bryansk",
+    "type": "city",
+    "title": "Брянск",
+    "region": "Брянская область",
+    "city": "Брянск",
+    "aliases": [
+      "брянск",
+      "брянск брянская область"
+    ],
+    "popularity": 849
+  },
+  {
+    "id": "vladimirskaya-oblast",
+    "type": "region",
+    "title": "Владимирская область",
+    "region": "Владимирская область",
+    "city": "",
+    "aliases": [
+      "владимирская область",
+      "владимирская обл"
+    ],
+    "popularity": 886
+  },
+  {
+    "id": "vladimirskaya-oblast-vladimir",
+    "type": "city",
+    "title": "Владимир",
+    "region": "Владимирская область",
+    "city": "Владимир",
+    "aliases": [
+      "владимир",
+      "владимир владимирская область"
+    ],
+    "popularity": 846
+  },
+  {
+    "id": "vladimirskaya-oblast-kovrov",
+    "type": "city",
+    "title": "Ковров",
+    "region": "Владимирская область",
+    "city": "Ковров",
+    "aliases": [
+      "ковров",
+      "ковров владимирская область"
+    ],
+    "popularity": 845
+  },
+  {
+    "id": "vladimirskaya-oblast-murom",
+    "type": "city",
+    "title": "Муром",
+    "region": "Владимирская область",
+    "city": "Муром",
+    "aliases": [
+      "муром",
+      "муром владимирская область"
+    ],
+    "popularity": 844
+  },
+  {
+    "id": "volgogradskaya-oblast",
+    "type": "region",
+    "title": "Волгоградская область",
+    "region": "Волгоградская область",
+    "city": "",
+    "aliases": [
+      "волгоградская область",
+      "волгоградская обл"
+    ],
+    "popularity": 883
+  },
+  {
+    "id": "volgogradskaya-oblast-volgograd",
+    "type": "city",
+    "title": "Волгоград",
+    "region": "Волгоградская область",
+    "city": "Волгоград",
+    "aliases": [
+      "волгоград",
+      "волгоград волгоградская область"
+    ],
+    "popularity": 843
+  },
+  {
+    "id": "volgogradskaya-oblast-volzhskiy",
+    "type": "city",
+    "title": "Волжский",
+    "region": "Волгоградская область",
+    "city": "Волжский",
+    "aliases": [
+      "волжский",
+      "волжский волгоградская область"
+    ],
+    "popularity": 842
+  },
+  {
+    "id": "vologodskaya-oblast",
+    "type": "region",
+    "title": "Вологодская область",
+    "region": "Вологодская область",
+    "city": "",
+    "aliases": [
+      "вологодская область",
+      "вологодская обл"
+    ],
+    "popularity": 880
+  },
+  {
+    "id": "vologodskaya-oblast-vologda",
+    "type": "city",
+    "title": "Вологда",
+    "region": "Вологодская область",
+    "city": "Вологда",
+    "aliases": [
+      "вологда",
+      "вологда вологодская область"
+    ],
+    "popularity": 840
+  },
+  {
+    "id": "vologodskaya-oblast-cherepovec",
+    "type": "city",
+    "title": "Череповец",
+    "region": "Вологодская область",
+    "city": "Череповец",
+    "aliases": [
+      "череповец",
+      "череповец вологодская область"
+    ],
+    "popularity": 839
+  },
+  {
+    "id": "voronezhskaya-oblast",
+    "type": "region",
+    "title": "Воронежская область",
+    "region": "Воронежская область",
+    "city": "",
+    "aliases": [
+      "воронежская область",
+      "воронежская обл"
+    ],
+    "popularity": 877
+  },
+  {
+    "id": "voronezhskaya-oblast-voronezh",
+    "type": "city",
+    "title": "Воронеж",
+    "region": "Воронежская область",
+    "city": "Воронеж",
+    "aliases": [
+      "воронеж",
+      "воронеж воронежская область"
+    ],
+    "popularity": 837
+  },
+  {
+    "id": "zaporozhskaya-oblast",
+    "type": "region",
+    "title": "Запорожская область",
+    "region": "Запорожская область",
+    "city": "",
+    "aliases": [
+      "запорожская область",
+      "запорожская обл"
+    ],
+    "popularity": 874
+  },
+  {
+    "id": "zaporozhskaya-oblast-melitopol",
+    "type": "city",
+    "title": "Мелитополь",
+    "region": "Запорожская область",
+    "city": "Мелитополь",
+    "aliases": [
+      "мелитополь",
+      "мелитополь запорожская область"
+    ],
+    "popularity": 834
+  },
+  {
+    "id": "zaporozhskaya-oblast-berdyansk",
+    "type": "city",
+    "title": "Бердянск",
+    "region": "Запорожская область",
+    "city": "Бердянск",
+    "aliases": [
+      "бердянск",
+      "бердянск запорожская область"
+    ],
+    "popularity": 833
+  },
+  {
+    "id": "ivanovskaya-oblast",
+    "type": "region",
+    "title": "Ивановская область",
+    "region": "Ивановская область",
+    "city": "",
+    "aliases": [
+      "ивановская область",
+      "ивановская обл"
+    ],
+    "popularity": 871
+  },
+  {
+    "id": "ivanovskaya-oblast-ivanovo",
+    "type": "city",
+    "title": "Иваново",
+    "region": "Ивановская область",
+    "city": "Иваново",
+    "aliases": [
+      "иваново",
+      "иваново ивановская область"
+    ],
+    "popularity": 831
+  },
+  {
+    "id": "irkutskaya-oblast",
+    "type": "region",
+    "title": "Иркутская область",
+    "region": "Иркутская область",
+    "city": "",
+    "aliases": [
+      "иркутская область",
+      "иркутская обл"
+    ],
+    "popularity": 868
+  },
+  {
+    "id": "irkutskaya-oblast-irkutsk",
+    "type": "city",
+    "title": "Иркутск",
+    "region": "Иркутская область",
+    "city": "Иркутск",
+    "aliases": [
+      "иркутск",
+      "иркутск иркутская область"
+    ],
+    "popularity": 828
+  },
+  {
+    "id": "irkutskaya-oblast-bratsk",
+    "type": "city",
+    "title": "Братск",
+    "region": "Иркутская область",
+    "city": "Братск",
+    "aliases": [
+      "братск",
+      "братск иркутская область"
+    ],
+    "popularity": 827
+  },
+  {
+    "id": "irkutskaya-oblast-angarsk",
+    "type": "city",
+    "title": "Ангарск",
+    "region": "Иркутская область",
+    "city": "Ангарск",
+    "aliases": [
+      "ангарск",
+      "ангарск иркутская область"
+    ],
+    "popularity": 826
+  },
+  {
+    "id": "kaliningradskaya-oblast",
+    "type": "region",
+    "title": "Калининградская область",
+    "region": "Калининградская область",
+    "city": "",
+    "aliases": [
+      "калининградская область",
+      "калининградская обл"
+    ],
+    "popularity": 865
+  },
+  {
+    "id": "kaliningradskaya-oblast-kaliningrad",
+    "type": "city",
+    "title": "Калининград",
+    "region": "Калининградская область",
+    "city": "Калининград",
+    "aliases": [
+      "калининград",
+      "калининград калининградская область"
+    ],
+    "popularity": 825
+  },
+  {
+    "id": "kaluzhskaya-oblast",
+    "type": "region",
+    "title": "Калужская область",
+    "region": "Калужская область",
+    "city": "",
+    "aliases": [
+      "калужская область",
+      "калужская обл"
+    ],
+    "popularity": 862
+  },
+  {
+    "id": "kaluzhskaya-oblast-kaluga",
+    "type": "city",
+    "title": "Калуга",
+    "region": "Калужская область",
+    "city": "Калуга",
+    "aliases": [
+      "калуга",
+      "калуга калужская область"
+    ],
+    "popularity": 822
+  },
+  {
+    "id": "kaluzhskaya-oblast-obninsk",
+    "type": "city",
+    "title": "Обнинск",
+    "region": "Калужская область",
+    "city": "Обнинск",
+    "aliases": [
+      "обнинск",
+      "обнинск калужская область"
+    ],
+    "popularity": 821
+  },
+  {
+    "id": "kemerovskaya-oblast-kuzbass",
+    "type": "region",
+    "title": "Кемеровская область - Кузбасс",
+    "region": "Кемеровская область - Кузбасс",
+    "city": "",
+    "aliases": [
+      "кемеровская область - кузбасс",
+      "кемеровская обл - кузбасс"
+    ],
+    "popularity": 859
+  },
+  {
+    "id": "kemerovskaya-oblast-kuzbass-kemerovo",
+    "type": "city",
+    "title": "Кемерово",
+    "region": "Кемеровская область - Кузбасс",
+    "city": "Кемерово",
+    "aliases": [
+      "кемерово",
+      "кемерово кемеровская область - кузбасс"
+    ],
+    "popularity": 819
+  },
+  {
+    "id": "kemerovskaya-oblast-kuzbass-novokuzneck",
+    "type": "city",
+    "title": "Новокузнецк",
+    "region": "Кемеровская область - Кузбасс",
+    "city": "Новокузнецк",
+    "aliases": [
+      "новокузнецк",
+      "новокузнецк кемеровская область - кузбасс"
+    ],
+    "popularity": 818
+  },
+  {
+    "id": "kemerovskaya-oblast-kuzbass-prokopevsk",
+    "type": "city",
+    "title": "Прокопьевск",
+    "region": "Кемеровская область - Кузбасс",
+    "city": "Прокопьевск",
+    "aliases": [
+      "прокопьевск",
+      "прокопьевск кемеровская область - кузбасс"
+    ],
+    "popularity": 817
+  },
+  {
+    "id": "kirovskaya-oblast",
+    "type": "region",
+    "title": "Кировская область",
+    "region": "Кировская область",
+    "city": "",
+    "aliases": [
+      "кировская область",
+      "кировская обл"
+    ],
+    "popularity": 856
+  },
+  {
+    "id": "kirovskaya-oblast-kirov",
+    "type": "city",
+    "title": "Киров",
+    "region": "Кировская область",
+    "city": "Киров",
+    "aliases": [
+      "киров",
+      "киров кировская область"
+    ],
+    "popularity": 816
+  },
+  {
+    "id": "kostromskaya-oblast",
+    "type": "region",
+    "title": "Костромская область",
+    "region": "Костромская область",
+    "city": "",
+    "aliases": [
+      "костромская область",
+      "костромская обл"
+    ],
+    "popularity": 853
+  },
+  {
+    "id": "kostromskaya-oblast-kostroma",
+    "type": "city",
+    "title": "Кострома",
+    "region": "Костромская область",
+    "city": "Кострома",
+    "aliases": [
+      "кострома",
+      "кострома костромская область"
+    ],
+    "popularity": 813
+  },
+  {
+    "id": "kurganskaya-oblast",
+    "type": "region",
+    "title": "Курганская область",
+    "region": "Курганская область",
+    "city": "",
+    "aliases": [
+      "курганская область",
+      "курганская обл"
+    ],
+    "popularity": 850
+  },
+  {
+    "id": "kurganskaya-oblast-kurgan",
+    "type": "city",
+    "title": "Курган",
+    "region": "Курганская область",
+    "city": "Курган",
+    "aliases": [
+      "курган",
+      "курган курганская область"
+    ],
+    "popularity": 810
+  },
+  {
+    "id": "kurskaya-oblast",
+    "type": "region",
+    "title": "Курская область",
+    "region": "Курская область",
+    "city": "",
+    "aliases": [
+      "курская область",
+      "курская обл"
+    ],
+    "popularity": 847
+  },
+  {
+    "id": "kurskaya-oblast-kursk",
+    "type": "city",
+    "title": "Курск",
+    "region": "Курская область",
+    "city": "Курск",
+    "aliases": [
+      "курск",
+      "курск курская область"
+    ],
+    "popularity": 807
+  },
+  {
+    "id": "leningradskaya-oblast",
+    "type": "region",
+    "title": "Ленинградская область",
+    "region": "Ленинградская область",
+    "city": "",
+    "aliases": [
+      "ленинградская область",
+      "ленинградская обл"
+    ],
+    "popularity": 844
+  },
+  {
+    "id": "leningradskaya-oblast-gatchina",
+    "type": "city",
+    "title": "Гатчина",
+    "region": "Ленинградская область",
+    "city": "Гатчина",
+    "aliases": [
+      "гатчина",
+      "гатчина ленинградская область"
+    ],
+    "popularity": 804
+  },
+  {
+    "id": "leningradskaya-oblast-vyborg",
+    "type": "city",
+    "title": "Выборг",
+    "region": "Ленинградская область",
+    "city": "Выборг",
+    "aliases": [
+      "выборг",
+      "выборг ленинградская область"
+    ],
+    "popularity": 803
+  },
+  {
+    "id": "leningradskaya-oblast-vsevolozhsk",
+    "type": "city",
+    "title": "Всеволожск",
+    "region": "Ленинградская область",
+    "city": "Всеволожск",
+    "aliases": [
+      "всеволожск",
+      "всеволожск ленинградская область"
+    ],
+    "popularity": 802
+  },
+  {
+    "id": "leningradskaya-oblast-kirishi",
+    "type": "city",
+    "title": "Кириши",
+    "region": "Ленинградская область",
+    "city": "Кириши",
+    "aliases": [
+      "кириши",
+      "кириши ленинградская область"
+    ],
+    "popularity": 801
+  },
+  {
+    "id": "lipeckaya-oblast",
+    "type": "region",
+    "title": "Липецкая область",
+    "region": "Липецкая область",
+    "city": "",
+    "aliases": [
+      "липецкая область",
+      "липецкая обл"
+    ],
+    "popularity": 841
+  },
+  {
+    "id": "lipeckaya-oblast-lipeck",
+    "type": "city",
+    "title": "Липецк",
+    "region": "Липецкая область",
+    "city": "Липецк",
+    "aliases": [
+      "липецк",
+      "липецк липецкая область"
+    ],
+    "popularity": 801
+  },
+  {
+    "id": "lipeckaya-oblast-elec",
+    "type": "city",
+    "title": "Елец",
+    "region": "Липецкая область",
+    "city": "Елец",
+    "aliases": [
+      "елец",
+      "елец липецкая область"
+    ],
+    "popularity": 800
+  },
+  {
+    "id": "magadanskaya-oblast",
+    "type": "region",
+    "title": "Магаданская область",
+    "region": "Магаданская область",
+    "city": "",
+    "aliases": [
+      "магаданская область",
+      "магаданская обл"
+    ],
+    "popularity": 838
+  },
+  {
+    "id": "magadanskaya-oblast-magadan",
+    "type": "city",
+    "title": "Магадан",
+    "region": "Магаданская область",
+    "city": "Магадан",
+    "aliases": [
+      "магадан",
+      "магадан магаданская область"
+    ],
+    "popularity": 798
+  },
+  {
+    "id": "moskovskaya-oblast",
+    "type": "region",
+    "title": "Московская область",
+    "region": "Московская область",
+    "city": "",
+    "aliases": [
+      "московская область",
+      "московская обл",
+      "подмосковье",
+      "мо",
+      "moscow oblast"
+    ],
+    "popularity": 980
+  },
+  {
+    "id": "moskovskaya-oblast-krasnogorsk",
+    "type": "city",
+    "title": "Красногорск",
+    "region": "Московская область",
+    "city": "Красногорск",
+    "aliases": [
+      "красногорск",
+      "красногорск московская область"
+    ],
+    "popularity": 940
+  },
+  {
+    "id": "moskovskaya-oblast-balashiha",
+    "type": "city",
+    "title": "Балашиха",
+    "region": "Московская область",
+    "city": "Балашиха",
+    "aliases": [
+      "балашиха",
+      "балашиха московская область"
+    ],
+    "popularity": 939
+  },
+  {
+    "id": "moskovskaya-oblast-himki",
+    "type": "city",
+    "title": "Химки",
+    "region": "Московская область",
+    "city": "Химки",
+    "aliases": [
+      "химки",
+      "химки московская область"
+    ],
+    "popularity": 938
+  },
+  {
+    "id": "moskovskaya-oblast-podolsk",
+    "type": "city",
+    "title": "Подольск",
+    "region": "Московская область",
+    "city": "Подольск",
+    "aliases": [
+      "подольск",
+      "подольск московская область"
+    ],
+    "popularity": 937
+  },
+  {
+    "id": "moskovskaya-oblast-mytischi",
+    "type": "city",
+    "title": "Мытищи",
+    "region": "Московская область",
+    "city": "Мытищи",
+    "aliases": [
+      "мытищи",
+      "мытищи московская область"
+    ],
+    "popularity": 936
+  },
+  {
+    "id": "moskovskaya-oblast-lyubercy",
+    "type": "city",
+    "title": "Люберцы",
+    "region": "Московская область",
+    "city": "Люберцы",
+    "aliases": [
+      "люберцы",
+      "люберцы московская область"
+    ],
+    "popularity": 935
+  },
+  {
+    "id": "moskovskaya-oblast-korolev",
+    "type": "city",
+    "title": "Королёв",
+    "region": "Московская область",
+    "city": "Королёв",
+    "aliases": [
+      "королёв",
+      "королёв московская область"
+    ],
+    "popularity": 934
+  },
+  {
+    "id": "moskovskaya-oblast-odincovo",
+    "type": "city",
+    "title": "Одинцово",
+    "region": "Московская область",
+    "city": "Одинцово",
+    "aliases": [
+      "одинцово",
+      "одинцово московская область"
+    ],
+    "popularity": 933
+  },
+  {
+    "id": "moskovskaya-oblast-domodedovo",
+    "type": "city",
+    "title": "Домодедово",
+    "region": "Московская область",
+    "city": "Домодедово",
+    "aliases": [
+      "домодедово",
+      "домодедово московская область"
+    ],
+    "popularity": 932
+  },
+  {
+    "id": "moskovskaya-oblast-elektrostal",
+    "type": "city",
+    "title": "Электросталь",
+    "region": "Московская область",
+    "city": "Электросталь",
+    "aliases": [
+      "электросталь",
+      "электросталь московская область"
+    ],
+    "popularity": 931
+  },
+  {
+    "id": "moskovskaya-oblast-kolomna",
+    "type": "city",
+    "title": "Коломна",
+    "region": "Московская область",
+    "city": "Коломна",
+    "aliases": [
+      "коломна",
+      "коломна московская область"
+    ],
+    "popularity": 930
+  },
+  {
+    "id": "moskovskaya-oblast-sergiev-posad",
+    "type": "city",
+    "title": "Сергиев Посад",
+    "region": "Московская область",
+    "city": "Сергиев Посад",
+    "aliases": [
+      "сергиев посад",
+      "сергиев посад московская область"
+    ],
+    "popularity": 929
+  },
+  {
+    "id": "moskovskaya-oblast-ramenskoe",
+    "type": "city",
+    "title": "Раменское",
+    "region": "Московская область",
+    "city": "Раменское",
+    "aliases": [
+      "раменское",
+      "раменское московская область"
+    ],
+    "popularity": 928
+  },
+  {
+    "id": "moskovskaya-oblast-schelkovo",
+    "type": "city",
+    "title": "Щёлково",
+    "region": "Московская область",
+    "city": "Щёлково",
+    "aliases": [
+      "щёлково",
+      "щёлково московская область"
+    ],
+    "popularity": 927
+  },
+  {
+    "id": "murmanskaya-oblast",
+    "type": "region",
+    "title": "Мурманская область",
+    "region": "Мурманская область",
+    "city": "",
+    "aliases": [
+      "мурманская область",
+      "мурманская обл"
+    ],
+    "popularity": 832
+  },
+  {
+    "id": "murmanskaya-oblast-murmansk",
+    "type": "city",
+    "title": "Мурманск",
+    "region": "Мурманская область",
+    "city": "Мурманск",
+    "aliases": [
+      "мурманск",
+      "мурманск мурманская область"
+    ],
+    "popularity": 792
+  },
+  {
+    "id": "murmanskaya-oblast-apatity",
+    "type": "city",
+    "title": "Апатиты",
+    "region": "Мурманская область",
+    "city": "Апатиты",
+    "aliases": [
+      "апатиты",
+      "апатиты мурманская область"
+    ],
+    "popularity": 791
+  },
+  {
+    "id": "nizhegorodskaya-oblast",
+    "type": "region",
+    "title": "Нижегородская область",
+    "region": "Нижегородская область",
+    "city": "",
+    "aliases": [
+      "нижегородская область",
+      "нижегородская обл"
+    ],
+    "popularity": 829
+  },
+  {
+    "id": "nizhegorodskaya-oblast-nizhniy-novgorod",
+    "type": "city",
+    "title": "Нижний Новгород",
+    "region": "Нижегородская область",
+    "city": "Нижний Новгород",
+    "aliases": [
+      "нижний новгород",
+      "нижний новгород нижегородская область"
+    ],
+    "popularity": 789
+  },
+  {
+    "id": "nizhegorodskaya-oblast-dzerzhinsk",
+    "type": "city",
+    "title": "Дзержинск",
+    "region": "Нижегородская область",
+    "city": "Дзержинск",
+    "aliases": [
+      "дзержинск",
+      "дзержинск нижегородская область"
+    ],
+    "popularity": 788
+  },
+  {
+    "id": "nizhegorodskaya-oblast-arzamas",
+    "type": "city",
+    "title": "Арзамас",
+    "region": "Нижегородская область",
+    "city": "Арзамас",
+    "aliases": [
+      "арзамас",
+      "арзамас нижегородская область"
+    ],
+    "popularity": 787
+  },
+  {
+    "id": "novgorodskaya-oblast",
+    "type": "region",
+    "title": "Новгородская область",
+    "region": "Новгородская область",
+    "city": "",
+    "aliases": [
+      "новгородская область",
+      "новгородская обл"
+    ],
+    "popularity": 826
+  },
+  {
+    "id": "novgorodskaya-oblast-velikiy-novgorod",
+    "type": "city",
+    "title": "Великий Новгород",
+    "region": "Новгородская область",
+    "city": "Великий Новгород",
+    "aliases": [
+      "великий новгород",
+      "великий новгород новгородская область"
+    ],
+    "popularity": 786
+  },
+  {
+    "id": "novosibirskaya-oblast",
+    "type": "region",
+    "title": "Новосибирская область",
+    "region": "Новосибирская область",
+    "city": "",
+    "aliases": [
+      "новосибирская область",
+      "новосибирская обл"
+    ],
+    "popularity": 823
+  },
+  {
+    "id": "novosibirskaya-oblast-novosibirsk",
+    "type": "city",
+    "title": "Новосибирск",
+    "region": "Новосибирская область",
+    "city": "Новосибирск",
+    "aliases": [
+      "новосибирск",
+      "новосибирск новосибирская область"
+    ],
+    "popularity": 783
+  },
+  {
+    "id": "novosibirskaya-oblast-berdsk",
+    "type": "city",
+    "title": "Бердск",
+    "region": "Новосибирская область",
+    "city": "Бердск",
+    "aliases": [
+      "бердск",
+      "бердск новосибирская область"
+    ],
+    "popularity": 782
+  },
+  {
+    "id": "omskaya-oblast",
+    "type": "region",
+    "title": "Омская область",
+    "region": "Омская область",
+    "city": "",
+    "aliases": [
+      "омская область",
+      "омская обл"
+    ],
+    "popularity": 820
+  },
+  {
+    "id": "omskaya-oblast-omsk",
+    "type": "city",
+    "title": "Омск",
+    "region": "Омская область",
+    "city": "Омск",
+    "aliases": [
+      "омск",
+      "омск омская область"
+    ],
+    "popularity": 780
+  },
+  {
+    "id": "orenburgskaya-oblast",
+    "type": "region",
+    "title": "Оренбургская область",
+    "region": "Оренбургская область",
+    "city": "",
+    "aliases": [
+      "оренбургская область",
+      "оренбургская обл"
+    ],
+    "popularity": 817
+  },
+  {
+    "id": "orenburgskaya-oblast-orenburg",
+    "type": "city",
+    "title": "Оренбург",
+    "region": "Оренбургская область",
+    "city": "Оренбург",
+    "aliases": [
+      "оренбург",
+      "оренбург оренбургская область"
+    ],
+    "popularity": 777
+  },
+  {
+    "id": "orenburgskaya-oblast-orsk",
+    "type": "city",
+    "title": "Орск",
+    "region": "Оренбургская область",
+    "city": "Орск",
+    "aliases": [
+      "орск",
+      "орск оренбургская область"
+    ],
+    "popularity": 776
+  },
+  {
+    "id": "orenburgskaya-oblast-buzuluk",
+    "type": "city",
+    "title": "Бузулук",
+    "region": "Оренбургская область",
+    "city": "Бузулук",
+    "aliases": [
+      "бузулук",
+      "бузулук оренбургская область"
+    ],
+    "popularity": 775
+  },
+  {
+    "id": "orenburgskaya-oblast-novotroick",
+    "type": "city",
+    "title": "Новотроицк",
+    "region": "Оренбургская область",
+    "city": "Новотроицк",
+    "aliases": [
+      "новотроицк",
+      "новотроицк оренбургская область"
+    ],
+    "popularity": 774
+  },
+  {
+    "id": "orenburgskaya-oblast-sol-ileck",
+    "type": "city",
+    "title": "Соль-Илецк",
+    "region": "Оренбургская область",
+    "city": "Соль-Илецк",
+    "aliases": [
+      "соль-илецк",
+      "соль-илецк оренбургская область"
+    ],
+    "popularity": 773
+  },
+  {
+    "id": "orenburgskaya-oblast-tockoe",
+    "type": "city",
+    "title": "Тоцкое",
+    "region": "Оренбургская область",
+    "city": "Тоцкое",
+    "aliases": [
+      "тоцкое",
+      "тоцкое оренбургская область"
+    ],
+    "popularity": 772
+  },
+  {
+    "id": "orenburgskaya-oblast-tockoe-vtoroe",
+    "type": "city",
+    "title": "Тоцкое Второе",
+    "region": "Оренбургская область",
+    "city": "Тоцкое Второе",
+    "aliases": [
+      "тоцкое второе",
+      "тоцкое второе оренбургская область"
+    ],
+    "popularity": 771
+  },
+  {
+    "id": "orlovskaya-oblast",
+    "type": "region",
+    "title": "Орловская область",
+    "region": "Орловская область",
+    "city": "",
+    "aliases": [
+      "орловская область",
+      "орловская обл"
+    ],
+    "popularity": 814
+  },
+  {
+    "id": "orlovskaya-oblast-orel",
+    "type": "city",
+    "title": "Орёл",
+    "region": "Орловская область",
+    "city": "Орёл",
+    "aliases": [
+      "орёл",
+      "орёл орловская область"
+    ],
+    "popularity": 774
+  },
+  {
+    "id": "penzenskaya-oblast",
+    "type": "region",
+    "title": "Пензенская область",
+    "region": "Пензенская область",
+    "city": "",
+    "aliases": [
+      "пензенская область",
+      "пензенская обл"
+    ],
+    "popularity": 811
+  },
+  {
+    "id": "penzenskaya-oblast-penza",
+    "type": "city",
+    "title": "Пенза",
+    "region": "Пензенская область",
+    "city": "Пенза",
+    "aliases": [
+      "пенза",
+      "пенза пензенская область"
+    ],
+    "popularity": 771
+  },
+  {
+    "id": "pskovskaya-oblast",
+    "type": "region",
+    "title": "Псковская область",
+    "region": "Псковская область",
+    "city": "",
+    "aliases": [
+      "псковская область",
+      "псковская обл"
+    ],
+    "popularity": 808
+  },
+  {
+    "id": "pskovskaya-oblast-pskov",
+    "type": "city",
+    "title": "Псков",
+    "region": "Псковская область",
+    "city": "Псков",
+    "aliases": [
+      "псков",
+      "псков псковская область"
+    ],
+    "popularity": 768
+  },
+  {
+    "id": "pskovskaya-oblast-velikie-luki",
+    "type": "city",
+    "title": "Великие Луки",
+    "region": "Псковская область",
+    "city": "Великие Луки",
+    "aliases": [
+      "великие луки",
+      "великие луки псковская область"
+    ],
+    "popularity": 767
+  },
+  {
+    "id": "rostovskaya-oblast",
+    "type": "region",
+    "title": "Ростовская область",
+    "region": "Ростовская область",
+    "city": "",
+    "aliases": [
+      "ростовская область",
+      "ростовская обл"
+    ],
+    "popularity": 805
+  },
+  {
+    "id": "rostovskaya-oblast-rostov-na-donu",
+    "type": "city",
+    "title": "Ростов-на-Дону",
+    "region": "Ростовская область",
+    "city": "Ростов-на-Дону",
+    "aliases": [
+      "ростов-на-дону",
+      "ростов-на-дону ростовская область"
+    ],
+    "popularity": 765
+  },
+  {
+    "id": "rostovskaya-oblast-taganrog",
+    "type": "city",
+    "title": "Таганрог",
+    "region": "Ростовская область",
+    "city": "Таганрог",
+    "aliases": [
+      "таганрог",
+      "таганрог ростовская область"
+    ],
+    "popularity": 764
+  },
+  {
+    "id": "rostovskaya-oblast-shahty",
+    "type": "city",
+    "title": "Шахты",
+    "region": "Ростовская область",
+    "city": "Шахты",
+    "aliases": [
+      "шахты",
+      "шахты ростовская область"
+    ],
+    "popularity": 763
+  },
+  {
+    "id": "rostovskaya-oblast-novocherkassk",
+    "type": "city",
+    "title": "Новочеркасск",
+    "region": "Ростовская область",
+    "city": "Новочеркасск",
+    "aliases": [
+      "новочеркасск",
+      "новочеркасск ростовская область"
+    ],
+    "popularity": 762
+  },
+  {
+    "id": "rostovskaya-oblast-volgodonsk",
+    "type": "city",
+    "title": "Волгодонск",
+    "region": "Ростовская область",
+    "city": "Волгодонск",
+    "aliases": [
+      "волгодонск",
+      "волгодонск ростовская область"
+    ],
+    "popularity": 761
+  },
+  {
+    "id": "rostovskaya-oblast-bataysk",
+    "type": "city",
+    "title": "Батайск",
+    "region": "Ростовская область",
+    "city": "Батайск",
+    "aliases": [
+      "батайск",
+      "батайск ростовская область"
+    ],
+    "popularity": 760
+  },
+  {
+    "id": "ryazanskaya-oblast",
+    "type": "region",
+    "title": "Рязанская область",
+    "region": "Рязанская область",
+    "city": "",
+    "aliases": [
+      "рязанская область",
+      "рязанская обл"
+    ],
+    "popularity": 802
+  },
+  {
+    "id": "ryazanskaya-oblast-ryazan",
+    "type": "city",
+    "title": "Рязань",
+    "region": "Рязанская область",
+    "city": "Рязань",
+    "aliases": [
+      "рязань",
+      "рязань рязанская область"
+    ],
+    "popularity": 762
+  },
+  {
+    "id": "samarskaya-oblast",
+    "type": "region",
+    "title": "Самарская область",
+    "region": "Самарская область",
+    "city": "",
+    "aliases": [
+      "самарская область",
+      "самарская обл"
+    ],
+    "popularity": 799
+  },
+  {
+    "id": "samarskaya-oblast-samara",
+    "type": "city",
+    "title": "Самара",
+    "region": "Самарская область",
+    "city": "Самара",
+    "aliases": [
+      "самара",
+      "самара самарская область"
+    ],
+    "popularity": 759
+  },
+  {
+    "id": "samarskaya-oblast-tolyatti",
+    "type": "city",
+    "title": "Тольятти",
+    "region": "Самарская область",
+    "city": "Тольятти",
+    "aliases": [
+      "тольятти",
+      "тольятти самарская область"
+    ],
+    "popularity": 758
+  },
+  {
+    "id": "samarskaya-oblast-syzran",
+    "type": "city",
+    "title": "Сызрань",
+    "region": "Самарская область",
+    "city": "Сызрань",
+    "aliases": [
+      "сызрань",
+      "сызрань самарская область"
+    ],
+    "popularity": 757
+  },
+  {
+    "id": "samarskaya-oblast-novokuybyshevsk",
+    "type": "city",
+    "title": "Новокуйбышевск",
+    "region": "Самарская область",
+    "city": "Новокуйбышевск",
+    "aliases": [
+      "новокуйбышевск",
+      "новокуйбышевск самарская область"
+    ],
+    "popularity": 756
+  },
+  {
+    "id": "saratovskaya-oblast",
+    "type": "region",
+    "title": "Саратовская область",
+    "region": "Саратовская область",
+    "city": "",
+    "aliases": [
+      "саратовская область",
+      "саратовская обл"
+    ],
+    "popularity": 796
+  },
+  {
+    "id": "saratovskaya-oblast-saratov",
+    "type": "city",
+    "title": "Саратов",
+    "region": "Саратовская область",
+    "city": "Саратов",
+    "aliases": [
+      "саратов",
+      "саратов саратовская область"
+    ],
+    "popularity": 756
+  },
+  {
+    "id": "saratovskaya-oblast-engels",
+    "type": "city",
+    "title": "Энгельс",
+    "region": "Саратовская область",
+    "city": "Энгельс",
+    "aliases": [
+      "энгельс",
+      "энгельс саратовская область"
+    ],
+    "popularity": 755
+  },
+  {
+    "id": "saratovskaya-oblast-balakovo",
+    "type": "city",
+    "title": "Балаково",
+    "region": "Саратовская область",
+    "city": "Балаково",
+    "aliases": [
+      "балаково",
+      "балаково саратовская область"
+    ],
+    "popularity": 754
+  },
+  {
+    "id": "sahalinskaya-oblast",
+    "type": "region",
+    "title": "Сахалинская область",
+    "region": "Сахалинская область",
+    "city": "",
+    "aliases": [
+      "сахалинская область",
+      "сахалинская обл"
+    ],
+    "popularity": 793
+  },
+  {
+    "id": "sahalinskaya-oblast-yuzhno-sahalinsk",
+    "type": "city",
+    "title": "Южно-Сахалинск",
+    "region": "Сахалинская область",
+    "city": "Южно-Сахалинск",
+    "aliases": [
+      "южно-сахалинск",
+      "южно-сахалинск сахалинская область"
+    ],
+    "popularity": 753
+  },
+  {
+    "id": "sverdlovskaya-oblast",
+    "type": "region",
+    "title": "Свердловская область",
+    "region": "Свердловская область",
+    "city": "",
+    "aliases": [
+      "свердловская область",
+      "свердловская обл"
+    ],
+    "popularity": 790
+  },
+  {
+    "id": "sverdlovskaya-oblast-ekaterinburg",
+    "type": "city",
+    "title": "Екатеринбург",
+    "region": "Свердловская область",
+    "city": "Екатеринбург",
+    "aliases": [
+      "екатеринбург",
+      "екатеринбург свердловская область"
+    ],
+    "popularity": 750
+  },
+  {
+    "id": "sverdlovskaya-oblast-nizhniy-tagil",
+    "type": "city",
+    "title": "Нижний Тагил",
+    "region": "Свердловская область",
+    "city": "Нижний Тагил",
+    "aliases": [
+      "нижний тагил",
+      "нижний тагил свердловская область"
+    ],
+    "popularity": 749
+  },
+  {
+    "id": "sverdlovskaya-oblast-kamensk-uralskiy",
+    "type": "city",
+    "title": "Каменск-Уральский",
+    "region": "Свердловская область",
+    "city": "Каменск-Уральский",
+    "aliases": [
+      "каменск-уральский",
+      "каменск-уральский свердловская область"
+    ],
+    "popularity": 748
+  },
+  {
+    "id": "sverdlovskaya-oblast-pervouralsk",
+    "type": "city",
+    "title": "Первоуральск",
+    "region": "Свердловская область",
+    "city": "Первоуральск",
+    "aliases": [
+      "первоуральск",
+      "первоуральск свердловская область"
+    ],
+    "popularity": 747
+  },
+  {
+    "id": "smolenskaya-oblast",
+    "type": "region",
+    "title": "Смоленская область",
+    "region": "Смоленская область",
+    "city": "",
+    "aliases": [
+      "смоленская область",
+      "смоленская обл"
+    ],
+    "popularity": 787
+  },
+  {
+    "id": "smolenskaya-oblast-smolensk",
+    "type": "city",
+    "title": "Смоленск",
+    "region": "Смоленская область",
+    "city": "Смоленск",
+    "aliases": [
+      "смоленск",
+      "смоленск смоленская область"
+    ],
+    "popularity": 747
+  },
+  {
+    "id": "tambovskaya-oblast",
+    "type": "region",
+    "title": "Тамбовская область",
+    "region": "Тамбовская область",
+    "city": "",
+    "aliases": [
+      "тамбовская область",
+      "тамбовская обл"
+    ],
+    "popularity": 784
+  },
+  {
+    "id": "tambovskaya-oblast-tambov",
+    "type": "city",
+    "title": "Тамбов",
+    "region": "Тамбовская область",
+    "city": "Тамбов",
+    "aliases": [
+      "тамбов",
+      "тамбов тамбовская область"
+    ],
+    "popularity": 744
+  },
+  {
+    "id": "tambovskaya-oblast-michurinsk",
+    "type": "city",
+    "title": "Мичуринск",
+    "region": "Тамбовская область",
+    "city": "Мичуринск",
+    "aliases": [
+      "мичуринск",
+      "мичуринск тамбовская область"
+    ],
+    "popularity": 743
+  },
+  {
+    "id": "tverskaya-oblast",
+    "type": "region",
+    "title": "Тверская область",
+    "region": "Тверская область",
+    "city": "",
+    "aliases": [
+      "тверская область",
+      "тверская обл"
+    ],
+    "popularity": 781
+  },
+  {
+    "id": "tverskaya-oblast-tver",
+    "type": "city",
+    "title": "Тверь",
+    "region": "Тверская область",
+    "city": "Тверь",
+    "aliases": [
+      "тверь",
+      "тверь тверская область"
+    ],
+    "popularity": 741
+  },
+  {
+    "id": "tverskaya-oblast-rzhev",
+    "type": "city",
+    "title": "Ржев",
+    "region": "Тверская область",
+    "city": "Ржев",
+    "aliases": [
+      "ржев",
+      "ржев тверская область"
+    ],
+    "popularity": 740
+  },
+  {
+    "id": "tomskaya-oblast",
+    "type": "region",
+    "title": "Томская область",
+    "region": "Томская область",
+    "city": "",
+    "aliases": [
+      "томская область",
+      "томская обл"
+    ],
+    "popularity": 778
+  },
+  {
+    "id": "tomskaya-oblast-tomsk",
+    "type": "city",
+    "title": "Томск",
+    "region": "Томская область",
+    "city": "Томск",
+    "aliases": [
+      "томск",
+      "томск томская область"
+    ],
+    "popularity": 738
+  },
+  {
+    "id": "tomskaya-oblast-seversk",
+    "type": "city",
+    "title": "Северск",
+    "region": "Томская область",
+    "city": "Северск",
+    "aliases": [
+      "северск",
+      "северск томская область"
+    ],
+    "popularity": 737
+  },
+  {
+    "id": "tulskaya-oblast",
+    "type": "region",
+    "title": "Тульская область",
+    "region": "Тульская область",
+    "city": "",
+    "aliases": [
+      "тульская область",
+      "тульская обл"
+    ],
+    "popularity": 775
+  },
+  {
+    "id": "tulskaya-oblast-tula",
+    "type": "city",
+    "title": "Тула",
+    "region": "Тульская область",
+    "city": "Тула",
+    "aliases": [
+      "тула",
+      "тула тульская область"
+    ],
+    "popularity": 735
+  },
+  {
+    "id": "tulskaya-oblast-novomoskovsk",
+    "type": "city",
+    "title": "Новомосковск",
+    "region": "Тульская область",
+    "city": "Новомосковск",
+    "aliases": [
+      "новомосковск",
+      "новомосковск тульская область"
+    ],
+    "popularity": 734
+  },
+  {
+    "id": "tyumenskaya-oblast",
+    "type": "region",
+    "title": "Тюменская область",
+    "region": "Тюменская область",
+    "city": "",
+    "aliases": [
+      "тюменская область",
+      "тюменская обл"
+    ],
+    "popularity": 772
+  },
+  {
+    "id": "tyumenskaya-oblast-tyumen",
+    "type": "city",
+    "title": "Тюмень",
+    "region": "Тюменская область",
+    "city": "Тюмень",
+    "aliases": [
+      "тюмень",
+      "тюмень тюменская область"
+    ],
+    "popularity": 732
+  },
+  {
+    "id": "tyumenskaya-oblast-tobolsk",
+    "type": "city",
+    "title": "Тобольск",
+    "region": "Тюменская область",
+    "city": "Тобольск",
+    "aliases": [
+      "тобольск",
+      "тобольск тюменская область"
+    ],
+    "popularity": 731
+  },
+  {
+    "id": "tyumenskaya-oblast-ishim",
+    "type": "city",
+    "title": "Ишим",
+    "region": "Тюменская область",
+    "city": "Ишим",
+    "aliases": [
+      "ишим",
+      "ишим тюменская область"
+    ],
+    "popularity": 730
+  },
+  {
+    "id": "ulyanovskaya-oblast",
+    "type": "region",
+    "title": "Ульяновская область",
+    "region": "Ульяновская область",
+    "city": "",
+    "aliases": [
+      "ульяновская область",
+      "ульяновская обл"
+    ],
+    "popularity": 769
+  },
+  {
+    "id": "ulyanovskaya-oblast-ulyanovsk",
+    "type": "city",
+    "title": "Ульяновск",
+    "region": "Ульяновская область",
+    "city": "Ульяновск",
+    "aliases": [
+      "ульяновск",
+      "ульяновск ульяновская область"
+    ],
+    "popularity": 729
+  },
+  {
+    "id": "ulyanovskaya-oblast-dimitrovgrad",
+    "type": "city",
+    "title": "Димитровград",
+    "region": "Ульяновская область",
+    "city": "Димитровград",
+    "aliases": [
+      "димитровград",
+      "димитровград ульяновская область"
+    ],
+    "popularity": 728
+  },
+  {
+    "id": "hersonskaya-oblast",
+    "type": "region",
+    "title": "Херсонская область",
+    "region": "Херсонская область",
+    "city": "",
+    "aliases": [
+      "херсонская область",
+      "херсонская обл"
+    ],
+    "popularity": 766
+  },
+  {
+    "id": "hersonskaya-oblast-herson",
+    "type": "city",
+    "title": "Херсон",
+    "region": "Херсонская область",
+    "city": "Херсон",
+    "aliases": [
+      "херсон",
+      "херсон херсонская область"
+    ],
+    "popularity": 726
+  },
+  {
+    "id": "hersonskaya-oblast-genichesk",
+    "type": "city",
+    "title": "Геническ",
+    "region": "Херсонская область",
+    "city": "Геническ",
+    "aliases": [
+      "геническ",
+      "геническ херсонская область"
+    ],
+    "popularity": 725
+  },
+  {
+    "id": "chelyabinskaya-oblast",
+    "type": "region",
+    "title": "Челябинская область",
+    "region": "Челябинская область",
+    "city": "",
+    "aliases": [
+      "челябинская область",
+      "челябинская обл"
+    ],
+    "popularity": 763
+  },
+  {
+    "id": "chelyabinskaya-oblast-chelyabinsk",
+    "type": "city",
+    "title": "Челябинск",
+    "region": "Челябинская область",
+    "city": "Челябинск",
+    "aliases": [
+      "челябинск",
+      "челябинск челябинская область"
+    ],
+    "popularity": 723
+  },
+  {
+    "id": "chelyabinskaya-oblast-magnitogorsk",
+    "type": "city",
+    "title": "Магнитогорск",
+    "region": "Челябинская область",
+    "city": "Магнитогорск",
+    "aliases": [
+      "магнитогорск",
+      "магнитогорск челябинская область"
+    ],
+    "popularity": 722
+  },
+  {
+    "id": "chelyabinskaya-oblast-miass",
+    "type": "city",
+    "title": "Миасс",
+    "region": "Челябинская область",
+    "city": "Миасс",
+    "aliases": [
+      "миасс",
+      "миасс челябинская область"
+    ],
+    "popularity": 721
+  },
+  {
+    "id": "chelyabinskaya-oblast-zlatoust",
+    "type": "city",
+    "title": "Златоуст",
+    "region": "Челябинская область",
+    "city": "Златоуст",
+    "aliases": [
+      "златоуст",
+      "златоуст челябинская область"
+    ],
+    "popularity": 720
+  },
+  {
+    "id": "chelyabinskaya-oblast-kopeysk",
+    "type": "city",
+    "title": "Копейск",
+    "region": "Челябинская область",
+    "city": "Копейск",
+    "aliases": [
+      "копейск",
+      "копейск челябинская область"
+    ],
+    "popularity": 719
+  },
+  {
+    "id": "yaroslavskaya-oblast",
+    "type": "region",
+    "title": "Ярославская область",
+    "region": "Ярославская область",
+    "city": "",
+    "aliases": [
+      "ярославская область",
+      "ярославская обл"
+    ],
+    "popularity": 760
+  },
+  {
+    "id": "yaroslavskaya-oblast-yaroslavl",
+    "type": "city",
+    "title": "Ярославль",
+    "region": "Ярославская область",
+    "city": "Ярославль",
+    "aliases": [
+      "ярославль",
+      "ярославль ярославская область"
+    ],
+    "popularity": 720
+  },
+  {
+    "id": "yaroslavskaya-oblast-rybinsk",
+    "type": "city",
+    "title": "Рыбинск",
+    "region": "Ярославская область",
+    "city": "Рыбинск",
+    "aliases": [
+      "рыбинск",
+      "рыбинск ярославская область"
+    ],
+    "popularity": 719
+  },
+  {
+    "id": "moskva",
+    "type": "region",
+    "title": "Москва",
+    "region": "Москва",
+    "city": "",
+    "aliases": [
+      "москва",
+      "мск",
+      "moscow"
+    ],
+    "popularity": 1000
+  },
+  {
+    "id": "sankt-peterburg",
+    "type": "region",
+    "title": "Санкт-Петербург",
+    "region": "Санкт-Петербург",
+    "city": "",
+    "aliases": [
+      "санкт-петербург",
+      "спб",
+      "питер",
+      "saint petersburg"
+    ],
+    "popularity": 754
+  },
+  {
+    "id": "sevastopol",
+    "type": "region",
+    "title": "Севастополь",
+    "region": "Севастополь",
+    "city": "",
+    "aliases": [
+      "севастополь"
+    ],
+    "popularity": 751
+  },
+  {
+    "id": "evreyskaya-avtonomnaya-oblast",
+    "type": "region",
+    "title": "Еврейская автономная область",
+    "region": "Еврейская автономная область",
+    "city": "",
+    "aliases": [
+      "еврейская автономная область",
+      "еврейская автономная обл"
+    ],
+    "popularity": 748
+  },
+  {
+    "id": "evreyskaya-avtonomnaya-oblast-birobidzhan",
+    "type": "city",
+    "title": "Биробиджан",
+    "region": "Еврейская автономная область",
+    "city": "Биробиджан",
+    "aliases": [
+      "биробиджан",
+      "биробиджан еврейская автономная область"
+    ],
+    "popularity": 708
+  },
+  {
+    "id": "neneckiy-avtonomnyy-okrug",
+    "type": "region",
+    "title": "Ненецкий автономный округ",
+    "region": "Ненецкий автономный округ",
+    "city": "",
+    "aliases": [
+      "ненецкий автономный округ"
+    ],
+    "popularity": 745
+  },
+  {
+    "id": "neneckiy-avtonomnyy-okrug-naryan-mar",
+    "type": "city",
+    "title": "Нарьян-Мар",
+    "region": "Ненецкий автономный округ",
+    "city": "Нарьян-Мар",
+    "aliases": [
+      "нарьян-мар",
+      "нарьян-мар ненецкий автономный округ"
+    ],
+    "popularity": 705
+  },
+  {
+    "id": "hanty-mansiyskiy-avtonomnyy-okrug-yugra",
+    "type": "region",
+    "title": "Ханты-Мансийский автономный округ - Югра",
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "city": "",
+    "aliases": [
+      "ханты-мансийский автономный округ - югра"
+    ],
+    "popularity": 742
+  },
+  {
+    "id": "hanty-mansiyskiy-avtonomnyy-okrug-yugra-hanty-mansiysk",
+    "type": "city",
+    "title": "Ханты-Мансийск",
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "city": "Ханты-Мансийск",
+    "aliases": [
+      "ханты-мансийск",
+      "ханты-мансийск ханты-мансийский автономный округ - югра"
+    ],
+    "popularity": 702
+  },
+  {
+    "id": "hanty-mansiyskiy-avtonomnyy-okrug-yugra-surgut",
+    "type": "city",
+    "title": "Сургут",
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "city": "Сургут",
+    "aliases": [
+      "сургут",
+      "сургут ханты-мансийский автономный округ - югра"
+    ],
+    "popularity": 701
+  },
+  {
+    "id": "hanty-mansiyskiy-avtonomnyy-okrug-yugra-nizhnevartovsk",
+    "type": "city",
+    "title": "Нижневартовск",
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "city": "Нижневартовск",
+    "aliases": [
+      "нижневартовск",
+      "нижневартовск ханты-мансийский автономный округ - югра"
+    ],
+    "popularity": 700
+  },
+  {
+    "id": "hanty-mansiyskiy-avtonomnyy-okrug-yugra-nefteyugansk",
+    "type": "city",
+    "title": "Нефтеюганск",
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "city": "Нефтеюганск",
+    "aliases": [
+      "нефтеюганск",
+      "нефтеюганск ханты-мансийский автономный округ - югра"
+    ],
+    "popularity": 699
+  },
+  {
+    "id": "hanty-mansiyskiy-avtonomnyy-okrug-yugra-nyagan",
+    "type": "city",
+    "title": "Нягань",
+    "region": "Ханты-Мансийский автономный округ - Югра",
+    "city": "Нягань",
+    "aliases": [
+      "нягань",
+      "нягань ханты-мансийский автономный округ - югра"
+    ],
+    "popularity": 698
+  },
+  {
+    "id": "chukotskiy-avtonomnyy-okrug",
+    "type": "region",
+    "title": "Чукотский автономный округ",
+    "region": "Чукотский автономный округ",
+    "city": "",
+    "aliases": [
+      "чукотский автономный округ"
+    ],
+    "popularity": 739
+  },
+  {
+    "id": "chukotskiy-avtonomnyy-okrug-anadyr",
+    "type": "city",
+    "title": "Анадырь",
+    "region": "Чукотский автономный округ",
+    "city": "Анадырь",
+    "aliases": [
+      "анадырь",
+      "анадырь чукотский автономный округ"
+    ],
+    "popularity": 699
+  },
+  {
+    "id": "yamalo-neneckiy-avtonomnyy-okrug",
+    "type": "region",
+    "title": "Ямало-Ненецкий автономный округ",
+    "region": "Ямало-Ненецкий автономный округ",
+    "city": "",
+    "aliases": [
+      "ямало-ненецкий автономный округ"
+    ],
+    "popularity": 736
+  },
+  {
+    "id": "yamalo-neneckiy-avtonomnyy-okrug-salehard",
+    "type": "city",
+    "title": "Салехард",
+    "region": "Ямало-Ненецкий автономный округ",
+    "city": "Салехард",
+    "aliases": [
+      "салехард",
+      "салехард ямало-ненецкий автономный округ"
+    ],
+    "popularity": 696
+  },
+  {
+    "id": "yamalo-neneckiy-avtonomnyy-okrug-novyy-urengoy",
+    "type": "city",
+    "title": "Новый Уренгой",
+    "region": "Ямало-Ненецкий автономный округ",
+    "city": "Новый Уренгой",
+    "aliases": [
+      "новый уренгой",
+      "новый уренгой ямало-ненецкий автономный округ"
+    ],
+    "popularity": 695
+  },
+  {
+    "id": "yamalo-neneckiy-avtonomnyy-okrug-noyabrsk",
+    "type": "city",
+    "title": "Ноябрьск",
+    "region": "Ямало-Ненецкий автономный округ",
+    "city": "Ноябрьск",
+    "aliases": [
+      "ноябрьск",
+      "ноябрьск ямало-ненецкий автономный округ"
+    ],
+    "popularity": 694
+  }
+]

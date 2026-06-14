@@ -1,0 +1,731 @@
+[
+  {
+    "id": "mfc-orenburg",
+    "type": "mfc",
+    "name": "ГАУ «МФЦ» Оренбургской области",
+    "agency": "Мои Документы",
+    "region": "Оренбургская область",
+    "city": "Оренбург",
+    "address": "Шарлыкское шоссе, 1/2",
+    "aliases": [
+      "мфц оренбург",
+      "мои документы оренбург",
+      "главный мфц",
+      "оренбургская область"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "vehicle-registration",
+      "criminal-record",
+      "egrn",
+      "inn",
+      "ip-registration",
+      "sfr-payment",
+      "snils",
+      "child-benefit",
+      "housing-subsidy",
+      "birth-record",
+      "marriage-record"
+    ],
+    "rating": 4.5,
+    "reviews": 2942,
+    "popularity": 1000
+  },
+  {
+    "id": "gosuslugi-online",
+    "type": "department",
+    "name": "Единый портал государственных услуг",
+    "agency": "Федеральный уровень",
+    "region": "Федеральный уровень",
+    "city": "",
+    "address": "",
+    "aliases": [
+      "госуслуги",
+      "онлайн",
+      "портал",
+      "интернет",
+      "электронная услуга"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "vehicle-registration",
+      "criminal-record",
+      "egrn",
+      "inn",
+      "ip-registration",
+      "sfr-payment",
+      "snils",
+      "child-benefit",
+      "housing-subsidy",
+      "birth-record",
+      "marriage-record"
+    ],
+    "rating": 4.1,
+    "reviews": 2240,
+    "popularity": 970,
+    "regionScope": "federal"
+  },
+  {
+    "id": "mfc-moscow-arbat",
+    "type": "mfc",
+    "name": "Центр госуслуг района Арбат",
+    "agency": "Мои Документы",
+    "region": "Москва",
+    "city": "Москва",
+    "address": "пер. Сивцев Вражек, 20",
+    "aliases": [
+      "мфц арбат",
+      "мои документы арбат",
+      "центр госуслуг арбат",
+      "арбат",
+      "москва"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "egrn",
+      "inn",
+      "sfr-payment",
+      "snils",
+      "birth-record",
+      "marriage-record"
+    ],
+    "rating": 4.6,
+    "reviews": 1840,
+    "popularity": 940
+  },
+  {
+    "id": "mfc-orsk",
+    "type": "mfc",
+    "name": "МФЦ города Орска",
+    "agency": "Мои Документы",
+    "region": "Оренбургская область",
+    "city": "Орск",
+    "address": "пр-т Ленина, 52",
+    "aliases": [
+      "мфц орск",
+      "мои документы орск",
+      "орск"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "vehicle-registration",
+      "egrn",
+      "inn",
+      "sfr-payment",
+      "snils",
+      "child-benefit",
+      "housing-subsidy",
+      "birth-record",
+      "marriage-record"
+    ],
+    "rating": 4.4,
+    "reviews": 1640,
+    "popularity": 930
+  },
+  {
+    "id": "mfc-moscow-tverskoy",
+    "type": "mfc",
+    "name": "Центр госуслуг Тверского района",
+    "agency": "Мои Документы",
+    "region": "Москва",
+    "city": "Москва",
+    "address": "Настасьинский пер., 7",
+    "aliases": [
+      "мфц тверской",
+      "мои документы тверской",
+      "центр госуслуг тверской",
+      "тверской",
+      "москва"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "egrn",
+      "inn",
+      "sfr-payment",
+      "snils",
+      "birth-record",
+      "marriage-record"
+    ],
+    "rating": 4.5,
+    "reviews": 1715,
+    "popularity": 920
+  },
+  {
+    "id": "rosreestr-moscow",
+    "type": "department",
+    "name": "Управление Росреестра по Москве",
+    "agency": "Росреестр",
+    "region": "Москва",
+    "city": "Москва",
+    "address": "ул. Большая Тульская, 15",
+    "aliases": [
+      "росреестр москва",
+      "егрн москва",
+      "недвижимость москва",
+      "кадастр москва"
+    ],
+    "services": [
+      "egrn",
+      "land-plot"
+    ],
+    "rating": 4.1,
+    "reviews": 1360,
+    "popularity": 900
+  },
+  {
+    "id": "mfc-krasnogorsk",
+    "type": "mfc",
+    "name": "МФЦ городского округа Красногорск",
+    "agency": "Мои Документы",
+    "region": "Московская область",
+    "city": "Красногорск",
+    "address": "ул. Ленина, 2",
+    "aliases": [
+      "мфц красногорск",
+      "мои документы красногорск",
+      "красногорск",
+      "московская область"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "egrn",
+      "inn",
+      "sfr-payment",
+      "snils",
+      "birth-record",
+      "marriage-record"
+    ],
+    "rating": 4.5,
+    "reviews": 1320,
+    "popularity": 900
+  },
+  {
+    "id": "mfc-buzuluk",
+    "type": "mfc",
+    "name": "МФЦ города Бузулука",
+    "agency": "Мои Документы",
+    "region": "Оренбургская область",
+    "city": "Бузулук",
+    "address": "ул. Ленина, 28",
+    "aliases": [
+      "мфц бузулук",
+      "мои документы бузулук",
+      "бузулук"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "egrn",
+      "inn",
+      "sfr-payment",
+      "snils",
+      "child-benefit",
+      "housing-subsidy",
+      "birth-record",
+      "marriage-record"
+    ],
+    "rating": 4.6,
+    "reviews": 1210,
+    "popularity": 890
+  },
+  {
+    "id": "uvm-moscow",
+    "type": "department",
+    "name": "УВМ ГУ МВД России по г. Москве",
+    "agency": "МВД",
+    "region": "Москва",
+    "city": "Москва",
+    "address": "ул. Краснопролетарская, 10",
+    "aliases": [
+      "увм москва",
+      "мвд москва",
+      "паспорт москва",
+      "загранпаспорт москва",
+      "регистрация москва"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "criminal-record"
+    ],
+    "rating": 4,
+    "reviews": 1280,
+    "popularity": 880
+  },
+  {
+    "id": "mfc-balashikha",
+    "type": "mfc",
+    "name": "МФЦ городского округа Балашиха",
+    "agency": "Мои Документы",
+    "region": "Московская область",
+    "city": "Балашиха",
+    "address": "ул. Советская, 4",
+    "aliases": [
+      "мфц балашиха",
+      "мои документы балашиха",
+      "балашиха",
+      "московская область"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "egrn",
+      "inn",
+      "sfr-payment",
+      "snils",
+      "birth-record",
+      "marriage-record"
+    ],
+    "rating": 4.4,
+    "reviews": 1265,
+    "popularity": 880
+  },
+  {
+    "id": "rosreestr-orb",
+    "type": "department",
+    "name": "Управление Росреестра по Оренбургской области",
+    "agency": "Росреестр",
+    "region": "Оренбургская область",
+    "city": "Оренбург",
+    "address": "ул. Пушкинская, 10",
+    "aliases": [
+      "росреестр",
+      "егрн",
+      "недвижимость",
+      "кадастр",
+      "земля",
+      "регистрация прав"
+    ],
+    "services": [
+      "egrn",
+      "land-plot"
+    ],
+    "rating": 4.2,
+    "reviews": 1184,
+    "popularity": 860
+  },
+  {
+    "id": "rosreestr-moscow-oblast",
+    "type": "department",
+    "name": "Управление Росреестра по Московской области",
+    "agency": "Росреестр",
+    "region": "Московская область",
+    "city": "Красногорск",
+    "address": "бульвар Строителей, 1",
+    "aliases": [
+      "росреестр московская область",
+      "росреестр подмосковье",
+      "егрн московская область",
+      "кадастр московская область"
+    ],
+    "services": [
+      "egrn",
+      "land-plot"
+    ],
+    "rating": 4.2,
+    "reviews": 1140,
+    "popularity": 860
+  },
+  {
+    "id": "fns-moscow",
+    "type": "department",
+    "name": "УФНС России по г. Москве",
+    "agency": "ФНС",
+    "region": "Москва",
+    "city": "Москва",
+    "address": "Хорошёвское шоссе, 12А",
+    "aliases": [
+      "фнс москва",
+      "налоговая москва",
+      "инн москва",
+      "ип москва"
+    ],
+    "services": [
+      "inn",
+      "ip-registration"
+    ],
+    "rating": 4.1,
+    "reviews": 1188,
+    "popularity": 850
+  },
+  {
+    "id": "sfr-orb",
+    "type": "department",
+    "name": "Отделение СФР по Оренбургской области",
+    "agency": "СФР",
+    "region": "Оренбургская область",
+    "city": "Оренбург",
+    "address": "ул. Мира, 18а",
+    "aliases": [
+      "сфр",
+      "социальный фонд",
+      "пенсионный фонд",
+      "фсс",
+      "пособие",
+      "выплата",
+      "пенсия",
+      "снилс"
+    ],
+    "services": [
+      "sfr-payment",
+      "snils"
+    ],
+    "rating": 4.3,
+    "reviews": 1306,
+    "popularity": 840
+  },
+  {
+    "id": "mfc-novotroitsk",
+    "type": "mfc",
+    "name": "МФЦ города Новотроицка",
+    "agency": "Мои Документы",
+    "region": "Оренбургская область",
+    "city": "Новотроицк",
+    "address": "ул. Советская, 80",
+    "aliases": [
+      "мфц новотроицк",
+      "мои документы новотроицк",
+      "новотроицк"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "egrn",
+      "inn",
+      "sfr-payment",
+      "snils",
+      "child-benefit",
+      "housing-subsidy"
+    ],
+    "rating": 4.3,
+    "reviews": 820,
+    "popularity": 830
+  },
+  {
+    "id": "uvm-moscow-oblast",
+    "type": "department",
+    "name": "УВМ ГУ МВД России по Московской области",
+    "agency": "МВД",
+    "region": "Московская область",
+    "city": "Красногорск",
+    "address": "Ильинское шоссе, 6",
+    "aliases": [
+      "увм московская область",
+      "мвд московская область",
+      "паспорт московская область",
+      "загранпаспорт московская область"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "criminal-record"
+    ],
+    "rating": 4,
+    "reviews": 980,
+    "popularity": 830
+  },
+  {
+    "id": "fns-moscow-oblast",
+    "type": "department",
+    "name": "УФНС России по Московской области",
+    "agency": "ФНС",
+    "region": "Московская область",
+    "city": "Красногорск",
+    "address": "ул. Речная, 8",
+    "aliases": [
+      "фнс московская область",
+      "налоговая московская область",
+      "инн московская область",
+      "ип московская область"
+    ],
+    "services": [
+      "inn",
+      "ip-registration"
+    ],
+    "rating": 4.1,
+    "reviews": 915,
+    "popularity": 810
+  },
+  {
+    "id": "fns56",
+    "type": "department",
+    "name": "УФНС России по Оренбургской области",
+    "agency": "ФНС",
+    "region": "Оренбургская область",
+    "city": "Оренбург",
+    "address": "ул. Чкалова, 1а",
+    "aliases": [
+      "фнс",
+      "налоговая",
+      "инн",
+      "налоги",
+      "ип"
+    ],
+    "services": [
+      "inn",
+      "ip-registration"
+    ],
+    "rating": 4.1,
+    "reviews": 965,
+    "popularity": 800
+  },
+  {
+    "id": "gibdd-orenburg",
+    "type": "department",
+    "name": "МРЭО ГИБДД УМВД России по Оренбургской области",
+    "agency": "ГИБДД",
+    "region": "Оренбургская область",
+    "city": "Оренбург",
+    "address": "ул. Транспортная, 12",
+    "aliases": [
+      "гибдд",
+      "мрэо",
+      "права",
+      "водительское удостоверение",
+      "замена прав",
+      "регистрация авто"
+    ],
+    "services": [
+      "driver-license",
+      "vehicle-registration"
+    ],
+    "rating": 3.9,
+    "reviews": 811,
+    "popularity": 780
+  },
+  {
+    "id": "mfc-soliletsk",
+    "type": "mfc",
+    "name": "МФЦ Соль-Илецкого городского округа",
+    "agency": "Мои Документы",
+    "region": "Оренбургская область",
+    "city": "Соль-Илецк",
+    "address": "ул. Цвиллинга, 66",
+    "aliases": [
+      "мфц соль-илецк",
+      "соль илецк",
+      "мои документы"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "egrn",
+      "inn",
+      "sfr-payment",
+      "snils",
+      "birth-record",
+      "marriage-record"
+    ],
+    "rating": 4.4,
+    "reviews": 540,
+    "popularity": 760
+  },
+  {
+    "id": "ovm-orenburg",
+    "type": "department",
+    "name": "Управление по вопросам миграции УМВД России по Оренбургской области",
+    "agency": "МВД",
+    "region": "Оренбургская область",
+    "city": "Оренбург",
+    "address": "ул. Володарского, 11",
+    "aliases": [
+      "мвд",
+      "овм",
+      "паспортный стол",
+      "паспорт",
+      "загранпаспорт",
+      "регистрация"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "criminal-record"
+    ],
+    "rating": 4,
+    "reviews": 730,
+    "popularity": 760
+  },
+  {
+    "id": "mfc-tockoe",
+    "type": "mfc",
+    "name": "ТОСП «МФЦ» Тоцкого района",
+    "agency": "Мои Документы",
+    "region": "Оренбургская область",
+    "city": "с. Тоцкое Второе",
+    "address": "ул. Центральная, 10",
+    "aliases": [
+      "мфц тоцкое",
+      "мои документы тоцкое",
+      "тосп",
+      "тоцкое второе",
+      "тоцкий район"
+    ],
+    "services": [
+      "village-book",
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "driver-license",
+      "egrn",
+      "inn",
+      "sfr-payment",
+      "snils",
+      "birth-record",
+      "marriage-record",
+      "child-benefit"
+    ],
+    "rating": 4.7,
+    "reviews": 328,
+    "popularity": 700
+  },
+  {
+    "id": "zags-orb",
+    "type": "department",
+    "name": "Комитет ЗАГС Оренбургской области",
+    "agency": "ЗАГС",
+    "region": "Оренбургская область",
+    "city": "Оренбург",
+    "address": "ул. Советская, 44",
+    "aliases": [
+      "загс",
+      "рождение",
+      "свидетельство",
+      "регистрация рождения",
+      "брак"
+    ],
+    "services": [
+      "birth-record",
+      "marriage-record"
+    ],
+    "rating": 4.6,
+    "reviews": 574,
+    "popularity": 700
+  },
+  {
+    "id": "social-ministry-orb",
+    "type": "department",
+    "name": "Министерство социального развития Оренбургской области",
+    "agency": "Социальная защита",
+    "region": "Оренбургская область",
+    "city": "Оренбург",
+    "address": "ул. Терешковой, 33",
+    "aliases": [
+      "соцзащита",
+      "социальная защита",
+      "пособие",
+      "субсидия",
+      "выплаты"
+    ],
+    "services": [
+      "child-benefit",
+      "housing-subsidy",
+      "sfr-payment"
+    ],
+    "rating": 4.2,
+    "reviews": 490,
+    "popularity": 680
+  },
+  {
+    "id": "adm-orenburg",
+    "type": "department",
+    "name": "Администрация города Оренбурга",
+    "agency": "Муниципальное ведомство",
+    "region": "Оренбургская область",
+    "city": "Оренбург",
+    "address": "ул. Советская, 60",
+    "aliases": [
+      "администрация оренбург",
+      "муниципалитет",
+      "строительство",
+      "земля"
+    ],
+    "services": [
+      "building-permit",
+      "land-plot",
+      "village-book"
+    ],
+    "rating": 4,
+    "reviews": 420,
+    "popularity": 620
+  },
+  {
+    "id": "adm-tockoe",
+    "type": "department",
+    "name": "Администрация Тоцкого района",
+    "agency": "Муниципальное ведомство",
+    "region": "Оренбургская область",
+    "city": "с. Тоцкое",
+    "address": "ул. Красная площадь, 1",
+    "aliases": [
+      "администрация",
+      "муниципалитет",
+      "тоцкий район",
+      "сельсовет",
+      "похозяйственная книга",
+      "земля"
+    ],
+    "services": [
+      "village-book",
+      "building-permit",
+      "land-plot"
+    ],
+    "rating": 4.1,
+    "reviews": 237,
+    "popularity": 540
+  },
+  {
+    "id": "ovm-tockoe",
+    "type": "department",
+    "name": "ОВМ ОМВД России по Тоцкому району",
+    "agency": "МВД",
+    "region": "Оренбургская область",
+    "city": "с. Тоцкое",
+    "address": "ул. Ленина, 6",
+    "aliases": [
+      "мвд",
+      "овм",
+      "паспортный стол",
+      "полиция",
+      "тоцкое",
+      "регистрация"
+    ],
+    "services": [
+      "passport-rf",
+      "foreign-passport",
+      "registration-home",
+      "criminal-record"
+    ],
+    "rating": 4,
+    "reviews": 153,
+    "popularity": 440
+  }
+]

@@ -74,46 +74,51 @@
               <option value="online">Онлайн</option>
             </select>
           </label>
-          <label class="field">
+          <label class="field field--date">
             <span>Дата</span>
-            <input id="serviceDate" type="date" />
+            <button id="serviceDateButton" class="date-field" type="button" aria-expanded="false" aria-controls="datePicker">
+              <span id="serviceDateText"></span>
+              <span class="date-field__icon" aria-hidden="true"></span>
+            </button>
+            <input id="serviceDate" type="hidden" />
+            <div id="datePicker" class="date-picker" hidden></div>
           </label>
-          <label class="field field--region">
+          <label class="field field--region region-combobox">
             <span>Регион</span>
-            <input id="regionInput" list="regionSuggestions" value="Оренбургская область" autocomplete="off" placeholder="Регион или город: Оренбург, Москва, Казань" />
-            <datalist id="regionSuggestions"></datalist>
+            <div class="combo">
+              <input
+                id="regionInput"
+                autocomplete="off"
+                placeholder="Регион или город: Москва, Красногорск, Оренбург"
+                role="combobox"
+                aria-expanded="false"
+                aria-controls="regionDropdown"
+              />
+              <button id="clearRegion" type="button" aria-label="Очистить регион">×</button>
+            </div>
+            <div id="regionDropdown" class="combo-dropdown" hidden></div>
             <small id="regionHint" class="field-hint" hidden></small>
           </label>
         </div>
         <p class="error" id="dateError" hidden>Проверьте дату получения услуги.</p>
 
+        <div class="search-tabs" id="searchTabs" role="tablist" aria-label="Раздел поиска">
+          <button class="search-tab is-active" type="button" role="tab" aria-selected="true" data-search-tab="organizations">Организации</button>
+          <button class="search-tab" type="button" role="tab" aria-selected="false" data-search-tab="services">Услуги</button>
+        </div>
+
         <div class="search-box">
           <label for="mainSearch">Поиск</label>
           <div class="search-input-wrap">
             <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m16.5 16.5 4 4"/></svg>
-            <input id="mainSearch" list="searchSuggestions" autocomplete="off" placeholder="Организация или услуга: МФЦ, паспорт, ЕГРН, Росреестр" />
+            <input id="mainSearch" autocomplete="off" placeholder="Введите организацию: МФЦ, Росреестр, МВД, адрес" />
             <button id="clearSearch" type="button" aria-label="Очистить поиск">×</button>
           </div>
-          <datalist id="searchSuggestions">
-            <option value="МФЦ"></option>
-            <option value="паспорт МВД"></option>
-            <option value="Росреестр ЕГРН"></option>
-            <option value="СФР пособие"></option>
-            <option value="ГИБДД права"></option>
-            <option value="ФНС ИНН"></option>
-            <option value="ЗАГС рождение"></option>
-          </datalist>
         </div>
 
         <div class="quick-tags-wrap" aria-label="Быстрые примеры поиска">
           <span class="quick-tags__title">Часто ищут</span>
-          <div class="quick-tags">
-            <button type="button" data-query="МФЦ">МФЦ</button>
-            <button type="button" data-query="паспорт МВД">паспорт</button>
-            <button type="button" data-query="ЕГРН Росреестр">ЕГРН</button>
-            <button type="button" data-query="пособие СФР">пособие</button>
-            <button type="button" data-query="права ГИБДД">права</button>
-          </div>
+          <div class="quick-tags" id="quickTags"></div>
         </div>
 
         <div class="search-results" id="searchResults" aria-live="polite"></div>
@@ -244,94 +249,6 @@
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-  <style>
-    /* Локальное переопределение: строка организации выбирается целиком, без отдельной кнопки. */
-    .result-row--org { cursor: pointer; grid-template-columns: 1fr !important; }
-    .result-row--org .result-pick { display: none !important; }
-  </style>
   <script src="script.js"></script>
-  <script>
-    (() => {
-      // Этот блок донастраивает базовый script.js под решённый сценарий: сначала организация, потом услуга.
-      if (typeof state === "undefined") return;
-
-      renderBrowseTabs = function () {
-        // Вкладка "Организации" должна быть первой, но вкладка "Услуги" остаётся доступной.
-        return `
-          <div class="browse-tabs" role="tablist" aria-label="Способ выбора">
-            <button class="browse-tab ${state.browseMode === "organizations" ? "is-active" : ""}" type="button" data-browse-tab="organizations">Организации</button>
-            <button class="browse-tab ${state.browseMode === "services" ? "is-active" : ""}" type="button" data-browse-tab="services">Услуги</button>
-          </div>
-        `;
-      };
-
-      renderOrgRow = function (org, { serviceId = null, pickMode = "browse" } = {}) {
-        // Для организаций вся строка работает как кнопка, чтобы убрать лишнее действие "Выбрать".
-        const buttonAttr = pickMode === "select"
-          ? `data-service-id="${serviceId}" data-org-id="${org.id}"`
-          : `data-pick-org="${org.id}"`;
-        const location = [org.city, org.address].filter(Boolean).join(", ") || org.region;
-        return `
-          <button class="result-row result-row--org" type="button" ${buttonAttr}>
-            <span>
-              <strong>${escapeHtml(org.name)}</strong>
-              <small>${escapeHtml(location)}</small>
-              <span class="result-tags">
-                <span class="tag tag--green">${org.type === "mfc" ? "МФЦ" : "Ведомство"}</span>
-                <span class="tag">${escapeHtml(org.region)}</span>
-                <span class="tag">${org.reviews} отзывов</span>
-              </span>
-            </span>
-          </button>
-        `;
-      };
-
-      renderServiceList = function () {
-        // В альтернативном сценарии услугу тоже можно выбрать нажатием по всей строке.
-        const items = getVisibleServices();
-        elements.results.innerHTML = `
-          ${renderBrowseTabs()}
-          <div class="results-head"><h3>${getServicesTitle()}</h3><p>Выберите услугу, затем организацию.</p></div>
-          <div class="browse-list">
-            ${items.map((service) => `
-              <button class="result-row result-row--org" type="button" data-pick-service="${service.id}">
-                <span>
-                  <strong>${escapeHtml(service.title)}</strong>
-                  <small>${escapeHtml(service.category)} · код услуги: ${escapeHtml(service.code)}</small>
-                  <span class="result-tags">
-                    <span class="tag tag--green">${getOrganizationsForService(service.id).length} организаций</span>
-                  </span>
-                </span>
-              </button>
-            `).join("")}
-          </div>
-        `;
-        bindBrowseTabs();
-        elements.results.querySelectorAll("[data-pick-service]").forEach((button) => {
-          button.addEventListener("click", () => {
-            state.browseServiceId = button.dataset.pickService;
-            state.browseOrgId = null;
-            runSearch();
-          });
-        });
-      };
-
-      function preferOrganizations() {
-        // После смены режима поиска возвращаем пользователя к основному сценарию выбора организации.
-        state.browseMode = "organizations";
-        state.browseOrgId = null;
-        state.browseServiceId = null;
-        runSearch();
-      }
-
-      document.querySelectorAll('input[name="searchMode"]').forEach((input) => {
-        input.addEventListener("change", preferOrganizations);
-      });
-      document.getElementById("changeSelection")?.addEventListener("click", preferOrganizations);
-
-      state.browseMode = "organizations";
-      runSearch();
-    })();
-  </script>
 </body>
 </html>

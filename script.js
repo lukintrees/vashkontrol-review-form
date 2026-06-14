@@ -1,489 +1,12 @@
-const DEFAULT_REGION = "Оренбургская область";
+const DEFAULT_REGION_TITLE = "";
 const IP_GEOLOCATION_URL = "https://ipwho.is/?lang=ru";
+const DRAFT_KEY = "vashkontrol-review-draft-practical";
 
-// Тестовый справочник услуг: в прототипе он заменяет данные, которые обычно приходят с сервера.
-const services = [
-  {
-    id: "passport-rf",
-    title: "Выдача или замена паспорта гражданина РФ",
-    code: "МВД-001",
-    category: "МВД",
-    popularity: 990,
-    synonyms: ["паспорт", "замена паспорта", "получить паспорт", "паспортный стол", "мвд", "овм"]
-  },
-  {
-    id: "foreign-passport",
-    title: "Оформление заграничного паспорта",
-    code: "МВД-002",
-    category: "МВД",
-    popularity: 940,
-    synonyms: ["загранпаспорт", "заграничный паспорт", "паспорт за границу", "мвд", "овм"]
-  },
-  {
-    id: "egrn",
-    title: "Государственный кадастровый учёт и регистрация прав",
-    code: "РР-001",
-    category: "Росреестр",
-    popularity: 920,
-    synonyms: ["росреестр", "егрн", "недвижимость", "кадастр", "земля", "квартира", "регистрация права", "выписка егрн"]
-  },
-  {
-    id: "sfr-payment",
-    title: "Назначение ежемесячной социальной выплаты",
-    code: "СФР-001",
-    category: "СФР",
-    popularity: 900,
-    synonyms: ["пособие", "выплата", "пенсия", "сфр", "социальный фонд", "маткапитал", "материнский капитал"]
-  },
-  {
-    id: "driver-license",
-    title: "Получение или замена водительского удостоверения",
-    code: "ГИБДД-001",
-    category: "ГИБДД",
-    popularity: 880,
-    synonyms: ["права", "водительские права", "водительское удостоверение", "гибдд", "замена прав"]
-  },
-  {
-    id: "registration-home",
-    title: "Регистрационный учёт по месту жительства или пребывания",
-    code: "МВД-003",
-    category: "МВД",
-    popularity: 850,
-    synonyms: ["регистрация", "прописка", "временная регистрация", "место жительства", "место пребывания"]
-  },
-  {
-    id: "snils",
-    title: "Регистрация в системе индивидуального учёта и выдача СНИЛС",
-    code: "СФР-002",
-    category: "СФР",
-    popularity: 815,
-    synonyms: ["снилс", "страховой номер", "социальный фонд", "сфр", "пенсионный"]
-  },
-  {
-    id: "inn",
-    title: "Постановка физического лица на учёт в налоговом органе",
-    code: "ФНС-001",
-    category: "ФНС",
-    popularity: 790,
-    synonyms: ["инн", "налоговая", "фнс", "учет в налоговой", "свидетельство инн"]
-  },
-  {
-    id: "vehicle-registration",
-    title: "Регистрация транспортного средства",
-    code: "ГИБДД-002",
-    category: "ГИБДД",
-    popularity: 770,
-    synonyms: ["регистрация автомобиля", "поставить на учет", "машина", "авто", "гибдд", "мрэо"]
-  },
-  {
-    id: "criminal-record",
-    title: "Получение справки об отсутствии судимости",
-    code: "МВД-004",
-    category: "МВД",
-    popularity: 730,
-    synonyms: ["справка о судимости", "отсутствие судимости", "судимость", "мвд"]
-  },
-  {
-    id: "birth-record",
-    title: "Государственная регистрация рождения",
-    code: "ЗАГС-001",
-    category: "ЗАГС",
-    popularity: 700,
-    synonyms: ["загс", "рождение", "свидетельство о рождении", "ребенок", "регистрация рождения"]
-  },
-  {
-    id: "marriage-record",
-    title: "Государственная регистрация заключения брака",
-    code: "ЗАГС-002",
-    category: "ЗАГС",
-    popularity: 680,
-    synonyms: ["загс", "брак", "свадьба", "регистрация брака", "женитьба"]
-  },
-  {
-    id: "child-benefit",
-    title: "Назначение пособия на ребёнка",
-    code: "СОЦ-001",
-    category: "Социальная защита",
-    popularity: 650,
-    synonyms: ["детское пособие", "ребенок", "выплата", "соцзащита", "семья", "пособие"]
-  },
-  {
-    id: "housing-subsidy",
-    title: "Предоставление субсидии на оплату жилого помещения и коммунальных услуг",
-    code: "СОЦ-002",
-    category: "Социальная защита",
-    popularity: 610,
-    synonyms: ["субсидия", "жкх", "коммунальные", "кварплата", "соцзащита"]
-  },
-  {
-    id: "ip-registration",
-    title: "Государственная регистрация индивидуального предпринимателя",
-    code: "ФНС-002",
-    category: "ФНС",
-    popularity: 560,
-    synonyms: ["ип", "предприниматель", "регистрация ип", "бизнес", "фнс", "налоговая"]
-  },
-  {
-    id: "village-book",
-    title: "Выдача выписки из похозяйственной книги",
-    code: "001",
-    category: "Муниципальная услуга",
-    popularity: 520,
-    synonyms: ["выписка", "похозяйственная книга", "справка из администрации", "муниципальная справка"]
-  },
-  {
-    id: "building-permit",
-    title: "Выдача разрешения на строительство",
-    code: "МУН-002",
-    category: "Муниципальная услуга",
-    popularity: 430,
-    synonyms: ["строительство", "разрешение", "дом", "администрация", "муниципальная услуга"]
-  },
-  {
-    id: "land-plot",
-    title: "Предоставление земельного участка",
-    code: "МУН-003",
-    category: "Муниципальная услуга",
-    popularity: 390,
-    synonyms: ["земля", "земельный участок", "администрация", "муниципальная услуга", "участок"]
-  }
-];
-
-// Статический справочник локаций для поля региона. Полный реестр МФЦ и ведомств обычно приходит с сервера.
-const russianLocations = [
-  { region: "Федеральный уровень", cities: [] },
-  { region: "Республика Адыгея", cities: ["Майкоп"] },
-  { region: "Республика Алтай", cities: ["Горно-Алтайск"] },
-  { region: "Республика Башкортостан", cities: ["Уфа", "Стерлитамак", "Салават", "Нефтекамск", "Октябрьский"] },
-  { region: "Республика Бурятия", cities: ["Улан-Удэ"] },
-  { region: "Республика Дагестан", cities: ["Махачкала", "Дербент", "Хасавюрт"] },
-  { region: "Донецкая Народная Республика", cities: ["Донецк", "Мариуполь", "Макеевка"] },
-  { region: "Республика Ингушетия", cities: ["Магас", "Назрань"] },
-  { region: "Кабардино-Балкарская Республика", cities: ["Нальчик"] },
-  { region: "Республика Калмыкия", cities: ["Элиста"] },
-  { region: "Карачаево-Черкесская Республика", cities: ["Черкесск"] },
-  { region: "Республика Карелия", cities: ["Петрозаводск"] },
-  { region: "Республика Коми", cities: ["Сыктывкар", "Ухта", "Воркута"] },
-  { region: "Республика Крым", cities: ["Симферополь", "Керчь", "Ялта", "Евпатория"] },
-  { region: "Луганская Народная Республика", cities: ["Луганск", "Алчевск"] },
-  { region: "Республика Марий Эл", cities: ["Йошкар-Ола"] },
-  { region: "Республика Мордовия", cities: ["Саранск"] },
-  { region: "Республика Саха (Якутия)", cities: ["Якутск", "Нерюнгри"] },
-  { region: "Республика Северная Осетия - Алания", cities: ["Владикавказ"] },
-  { region: "Республика Татарстан", cities: ["Казань", "Набережные Челны", "Нижнекамск", "Альметьевск"] },
-  { region: "Республика Тыва", cities: ["Кызыл"] },
-  { region: "Удмуртская Республика", cities: ["Ижевск", "Сарапул", "Глазов"] },
-  { region: "Республика Хакасия", cities: ["Абакан"] },
-  { region: "Чеченская Республика", cities: ["Грозный"] },
-  { region: "Чувашская Республика", cities: ["Чебоксары", "Новочебоксарск"] },
-  { region: "Алтайский край", cities: ["Барнаул", "Бийск", "Рубцовск"] },
-  { region: "Забайкальский край", cities: ["Чита"] },
-  { region: "Камчатский край", cities: ["Петропавловск-Камчатский"] },
-  { region: "Краснодарский край", cities: ["Краснодар", "Сочи", "Новороссийск", "Армавир"] },
-  { region: "Красноярский край", cities: ["Красноярск", "Норильск", "Ачинск"] },
-  { region: "Пермский край", cities: ["Пермь", "Березники", "Соликамск"] },
-  { region: "Приморский край", cities: ["Владивосток", "Уссурийск", "Находка", "Артём"] },
-  { region: "Ставропольский край", cities: ["Ставрополь", "Пятигорск", "Кисловодск", "Невинномысск", "Ессентуки"] },
-  { region: "Хабаровский край", cities: ["Хабаровск", "Комсомольск-на-Амуре"] },
-  { region: "Амурская область", cities: ["Благовещенск"] },
-  { region: "Архангельская область", cities: ["Архангельск", "Северодвинск"] },
-  { region: "Астраханская область", cities: ["Астрахань"] },
-  { region: "Белгородская область", cities: ["Белгород", "Старый Оскол"] },
-  { region: "Брянская область", cities: ["Брянск"] },
-  { region: "Владимирская область", cities: ["Владимир", "Ковров", "Муром"] },
-  { region: "Волгоградская область", cities: ["Волгоград", "Волжский"] },
-  { region: "Вологодская область", cities: ["Вологда", "Череповец"] },
-  { region: "Воронежская область", cities: ["Воронеж"] },
-  { region: "Запорожская область", cities: ["Мелитополь", "Бердянск"] },
-  { region: "Ивановская область", cities: ["Иваново"] },
-  { region: "Иркутская область", cities: ["Иркутск", "Братск", "Ангарск"] },
-  { region: "Калининградская область", cities: ["Калининград"] },
-  { region: "Калужская область", cities: ["Калуга", "Обнинск"] },
-  { region: "Кемеровская область - Кузбасс", cities: ["Кемерово", "Новокузнецк", "Прокопьевск"] },
-  { region: "Кировская область", cities: ["Киров"] },
-  { region: "Костромская область", cities: ["Кострома"] },
-  { region: "Курганская область", cities: ["Курган"] },
-  { region: "Курская область", cities: ["Курск"] },
-  { region: "Ленинградская область", cities: ["Гатчина", "Выборг", "Всеволожск", "Кириши"] },
-  { region: "Липецкая область", cities: ["Липецк", "Елец"] },
-  { region: "Магаданская область", cities: ["Магадан"] },
-  { region: "Московская область", cities: ["Красногорск", "Балашиха", "Химки", "Подольск", "Мытищи", "Люберцы", "Королёв", "Одинцово", "Домодедово", "Электросталь", "Коломна", "Сергиев Посад", "Раменское", "Щёлково"] },
-  { region: "Мурманская область", cities: ["Мурманск", "Апатиты"] },
-  { region: "Нижегородская область", cities: ["Нижний Новгород", "Дзержинск", "Арзамас"] },
-  { region: "Новгородская область", cities: ["Великий Новгород"] },
-  { region: "Новосибирская область", cities: ["Новосибирск", "Бердск"] },
-  { region: "Омская область", cities: ["Омск"] },
-  { region: "Оренбургская область", cities: ["Оренбург", "Орск", "Бузулук", "Новотроицк", "Соль-Илецк", "Тоцкое", "Тоцкое Второе"] },
-  { region: "Орловская область", cities: ["Орёл"] },
-  { region: "Пензенская область", cities: ["Пенза"] },
-  { region: "Псковская область", cities: ["Псков", "Великие Луки"] },
-  { region: "Ростовская область", cities: ["Ростов-на-Дону", "Таганрог", "Шахты", "Новочеркасск", "Волгодонск", "Батайск"] },
-  { region: "Рязанская область", cities: ["Рязань"] },
-  { region: "Самарская область", cities: ["Самара", "Тольятти", "Сызрань", "Новокуйбышевск"] },
-  { region: "Саратовская область", cities: ["Саратов", "Энгельс", "Балаково"] },
-  { region: "Сахалинская область", cities: ["Южно-Сахалинск"] },
-  { region: "Свердловская область", cities: ["Екатеринбург", "Нижний Тагил", "Каменск-Уральский", "Первоуральск"] },
-  { region: "Смоленская область", cities: ["Смоленск"] },
-  { region: "Тамбовская область", cities: ["Тамбов", "Мичуринск"] },
-  { region: "Тверская область", cities: ["Тверь", "Ржев"] },
-  { region: "Томская область", cities: ["Томск", "Северск"] },
-  { region: "Тульская область", cities: ["Тула", "Новомосковск"] },
-  { region: "Тюменская область", cities: ["Тюмень", "Тобольск", "Ишим"] },
-  { region: "Ульяновская область", cities: ["Ульяновск", "Димитровград"] },
-  { region: "Херсонская область", cities: ["Херсон", "Геническ"] },
-  { region: "Челябинская область", cities: ["Челябинск", "Магнитогорск", "Миасс", "Златоуст", "Копейск"] },
-  { region: "Ярославская область", cities: ["Ярославль", "Рыбинск"] },
-  { region: "Москва", cities: [] },
-  { region: "Санкт-Петербург", cities: [] },
-  { region: "Севастополь", cities: [] },
-  { region: "Еврейская автономная область", cities: ["Биробиджан"] },
-  { region: "Ненецкий автономный округ", cities: ["Нарьян-Мар"] },
-  { region: "Ханты-Мансийский автономный округ - Югра", cities: ["Ханты-Мансийск", "Сургут", "Нижневартовск", "Нефтеюганск", "Нягань"] },
-  { region: "Чукотский автономный округ", cities: ["Анадырь"] },
-  { region: "Ямало-Ненецкий автономный округ", cities: ["Салехард", "Новый Уренгой", "Ноябрьск"] }
-];
-
-// Тестовый справочник организаций. Поле services связывает организацию с доступными услугами.
-const organizations = [
-  {
-    id: "mfc-orenburg",
-    type: "mfc",
-    name: "ГАУ «МФЦ» Оренбургской области",
-    agency: "Мои Документы",
-    region: "Оренбургская область",
-    city: "Оренбург",
-    address: "Шарлыкское шоссе, 1/2",
-    aliases: ["мфц оренбург", "мои документы оренбург", "главный мфц", "оренбургская область"],
-    services: ["passport-rf", "foreign-passport", "registration-home", "driver-license", "vehicle-registration", "criminal-record", "egrn", "inn", "ip-registration", "sfr-payment", "snils", "child-benefit", "housing-subsidy", "birth-record", "marriage-record"],
-    rating: 4.5,
-    reviews: 2942,
-    popularity: 1000
-  },
-  {
-    id: "mfc-orsk",
-    type: "mfc",
-    name: "МФЦ города Орска",
-    agency: "Мои Документы",
-    region: "Оренбургская область",
-    city: "Орск",
-    address: "пр-т Ленина, 52",
-    aliases: ["мфц орск", "мои документы орск", "орск"],
-    services: ["passport-rf", "foreign-passport", "registration-home", "driver-license", "vehicle-registration", "egrn", "inn", "sfr-payment", "snils", "child-benefit", "housing-subsidy", "birth-record", "marriage-record"],
-    rating: 4.4,
-    reviews: 1640,
-    popularity: 930
-  },
-  {
-    id: "mfc-buzuluk",
-    type: "mfc",
-    name: "МФЦ города Бузулука",
-    agency: "Мои Документы",
-    region: "Оренбургская область",
-    city: "Бузулук",
-    address: "ул. Ленина, 28",
-    aliases: ["мфц бузулук", "мои документы бузулук", "бузулук"],
-    services: ["passport-rf", "foreign-passport", "registration-home", "driver-license", "egrn", "inn", "sfr-payment", "snils", "child-benefit", "housing-subsidy", "birth-record", "marriage-record"],
-    rating: 4.6,
-    reviews: 1210,
-    popularity: 890
-  },
-  {
-    id: "mfc-novotroitsk",
-    type: "mfc",
-    name: "МФЦ города Новотроицка",
-    agency: "Мои Документы",
-    region: "Оренбургская область",
-    city: "Новотроицк",
-    address: "ул. Советская, 80",
-    aliases: ["мфц новотроицк", "мои документы новотроицк", "новотроицк"],
-    services: ["passport-rf", "foreign-passport", "registration-home", "driver-license", "egrn", "inn", "sfr-payment", "snils", "child-benefit", "housing-subsidy"],
-    rating: 4.3,
-    reviews: 820,
-    popularity: 830
-  },
-  {
-    id: "mfc-soliletsk",
-    type: "mfc",
-    name: "МФЦ Соль-Илецкого городского округа",
-    agency: "Мои Документы",
-    region: "Оренбургская область",
-    city: "Соль-Илецк",
-    address: "ул. Цвиллинга, 66",
-    aliases: ["мфц соль-илецк", "соль илецк", "мои документы"],
-    services: ["passport-rf", "foreign-passport", "registration-home", "driver-license", "egrn", "inn", "sfr-payment", "snils", "birth-record", "marriage-record"],
-    rating: 4.4,
-    reviews: 540,
-    popularity: 760
-  },
-  {
-    id: "mfc-tockoe",
-    type: "mfc",
-    name: "ТОСП «МФЦ» Тоцкого района",
-    agency: "Мои Документы",
-    region: "Оренбургская область",
-    city: "с. Тоцкое Второе",
-    address: "ул. Центральная, 10",
-    aliases: ["мфц тоцкое", "мои документы тоцкое", "тосп", "тоцкое второе", "тоцкий район"],
-    services: ["village-book", "passport-rf", "foreign-passport", "registration-home", "driver-license", "egrn", "inn", "sfr-payment", "snils", "birth-record", "marriage-record", "child-benefit"],
-    rating: 4.7,
-    reviews: 328,
-    popularity: 700
-  },
-  {
-    id: "rosreestr-orb",
-    type: "department",
-    name: "Управление Росреестра по Оренбургской области",
-    agency: "Росреестр",
-    region: "Оренбургская область",
-    city: "Оренбург",
-    address: "ул. Пушкинская, 10",
-    aliases: ["росреестр", "егрн", "недвижимость", "кадастр", "земля", "регистрация прав"],
-    services: ["egrn", "land-plot"],
-    rating: 4.2,
-    reviews: 1184,
-    popularity: 860
-  },
-  {
-    id: "sfr-orb",
-    type: "department",
-    name: "Отделение СФР по Оренбургской области",
-    agency: "СФР",
-    region: "Оренбургская область",
-    city: "Оренбург",
-    address: "ул. Мира, 18а",
-    aliases: ["сфр", "социальный фонд", "пенсионный фонд", "фсс", "пособие", "выплата", "пенсия", "снилс"],
-    services: ["sfr-payment", "snils"],
-    rating: 4.3,
-    reviews: 1306,
-    popularity: 840
-  },
-  {
-    id: "fns56",
-    type: "department",
-    name: "УФНС России по Оренбургской области",
-    agency: "ФНС",
-    region: "Оренбургская область",
-    city: "Оренбург",
-    address: "ул. Чкалова, 1а",
-    aliases: ["фнс", "налоговая", "инн", "налоги", "ип"],
-    services: ["inn", "ip-registration"],
-    rating: 4.1,
-    reviews: 965,
-    popularity: 800
-  },
-  {
-    id: "gibdd-orenburg",
-    type: "department",
-    name: "МРЭО ГИБДД УМВД России по Оренбургской области",
-    agency: "ГИБДД",
-    region: "Оренбургская область",
-    city: "Оренбург",
-    address: "ул. Транспортная, 12",
-    aliases: ["гибдд", "мрэо", "права", "водительское удостоверение", "замена прав", "регистрация авто"],
-    services: ["driver-license", "vehicle-registration"],
-    rating: 3.9,
-    reviews: 811,
-    popularity: 780
-  },
-  {
-    id: "ovm-orenburg",
-    type: "department",
-    name: "Управление по вопросам миграции УМВД России по Оренбургской области",
-    agency: "МВД",
-    region: "Оренбургская область",
-    city: "Оренбург",
-    address: "ул. Володарского, 11",
-    aliases: ["мвд", "овм", "паспортный стол", "паспорт", "загранпаспорт", "регистрация"],
-    services: ["passport-rf", "foreign-passport", "registration-home", "criminal-record"],
-    rating: 4.0,
-    reviews: 730,
-    popularity: 760
-  },
-  {
-    id: "zags-orb",
-    type: "department",
-    name: "Комитет ЗАГС Оренбургской области",
-    agency: "ЗАГС",
-    region: "Оренбургская область",
-    city: "Оренбург",
-    address: "ул. Советская, 44",
-    aliases: ["загс", "рождение", "свидетельство", "регистрация рождения", "брак"],
-    services: ["birth-record", "marriage-record"],
-    rating: 4.6,
-    reviews: 574,
-    popularity: 700
-  },
-  {
-    id: "social-ministry-orb",
-    type: "department",
-    name: "Министерство социального развития Оренбургской области",
-    agency: "Социальная защита",
-    region: "Оренбургская область",
-    city: "Оренбург",
-    address: "ул. Терешковой, 33",
-    aliases: ["соцзащита", "социальная защита", "пособие", "субсидия", "выплаты"],
-    services: ["child-benefit", "housing-subsidy", "sfr-payment"],
-    rating: 4.2,
-    reviews: 490,
-    popularity: 680
-  },
-  {
-    id: "adm-orenburg",
-    type: "department",
-    name: "Администрация города Оренбурга",
-    agency: "Муниципальное ведомство",
-    region: "Оренбургская область",
-    city: "Оренбург",
-    address: "ул. Советская, 60",
-    aliases: ["администрация оренбург", "муниципалитет", "строительство", "земля"],
-    services: ["building-permit", "land-plot", "village-book"],
-    rating: 4.0,
-    reviews: 420,
-    popularity: 620
-  },
-  {
-    id: "adm-tockoe",
-    type: "department",
-    name: "Администрация Тоцкого района",
-    agency: "Муниципальное ведомство",
-    region: "Оренбургская область",
-    city: "с. Тоцкое",
-    address: "ул. Красная площадь, 1",
-    aliases: ["администрация", "муниципалитет", "тоцкий район", "сельсовет", "похозяйственная книга", "земля"],
-    services: ["village-book", "building-permit", "land-plot"],
-    rating: 4.1,
-    reviews: 237,
-    popularity: 540
-  },
-  {
-    id: "ovm-tockoe",
-    type: "department",
-    name: "ОВМ ОМВД России по Тоцкому району",
-    agency: "МВД",
-    region: "Оренбургская область",
-    city: "с. Тоцкое",
-    address: "ул. Ленина, 6",
-    aliases: ["мвд", "овм", "паспортный стол", "полиция", "тоцкое", "регистрация"],
-    services: ["passport-rf", "foreign-passport", "registration-home", "criminal-record"],
-    rating: 4.0,
-    reviews: 153,
-    popularity: 440
-  },
-  {
-    id: "gosuslugi-online",
-    type: "department",
-    name: "Единый портал государственных услуг",
-    agency: "Федеральный уровень",
-    region: "Федеральный уровень",
-    city: "",
-    address: "",
-    aliases: ["госуслуги", "онлайн", "портал", "интернет", "электронная услуга"],
-    services: ["passport-rf", "foreign-passport", "registration-home", "driver-license", "vehicle-registration", "criminal-record", "egrn", "inn", "ip-registration", "sfr-payment", "snils", "child-benefit", "housing-subsidy", "birth-record", "marriage-record"],
-    rating: 4.1,
-    reviews: 2240,
-    popularity: 970
-  }
-];
+const catalog = {
+  regions: [],
+  services: [],
+  organizations: []
+};
 
 // Обязательные параметры оценки: текст и шкалу нельзя менять без согласования продукта и юристов.
 const questions = [
@@ -512,65 +35,74 @@ const questionHints = {
   comfort: "Оцените чистоту, удобство ожидания, навигацию и общие условия в помещении."
 };
 
-// Единое состояние формы: выбранная пара услуга+организация, режим просмотра, оценки и вложения.
-const state = {
-  selectedServiceId: null,
-  selectedOrgId: null,
-  browseMode: "organizations",
-  browseOrgId: null,
-  browseServiceId: null,
-  regionTouched: false,
-  ratings: Object.fromEntries(questions.map((item) => [item.id, 0])),
-  photos: [],
-  openHelpId: null
+const quickTagsByTab = {
+  organizations: ["МФЦ", "Росреестр", "МВД", "СФР", "ФНС", "ЗАГС"],
+  services: ["паспорт", "загранпаспорт", "ЕГРН", "пособие", "права", "ИНН"]
 };
 
-const $ = (selector) => document.querySelector(selector);
-const $$ = (selector) => [...document.querySelectorAll(selector)];
-
-const GENERIC_LOCATION_WORDS = new Set([
-  "город", "область", "области", "край", "республика", "автономная", "автономный",
-  "округ", "уровень", "федеральный", "г", "с", "поселок", "посёлок"
-]);
-
 const IP_LOCATION_ALIASES = {
-  "moscow": "Москва",
-  "moskva": "Москва",
+  moscow: "Москва",
+  moskva: "Москва",
   "moscow oblast": "Московская область",
   "moskovskaya oblast": "Московская область",
   "saint petersburg": "Санкт-Петербург",
   "st petersburg": "Санкт-Петербург",
   "sankt peterburg": "Санкт-Петербург",
-  "orenburg": "Оренбург",
+  orenburg: "Оренбург",
   "orenburg oblast": "Оренбургская область",
-  "samara": "Самара",
+  samara: "Самара",
   "samara oblast": "Самарская область",
-  "kazan": "Казань",
-  "tatarstan": "Республика Татарстан",
+  kazan: "Казань",
+  tatarstan: "Республика Татарстан",
   "republic of tatarstan": "Республика Татарстан",
-  "novosibirsk": "Новосибирск",
+  novosibirsk: "Новосибирск",
   "novosibirsk oblast": "Новосибирская область",
-  "yekaterinburg": "Екатеринбург",
+  yekaterinburg: "Екатеринбург",
   "sverdlovsk oblast": "Свердловская область",
   "nizhny novgorod": "Нижний Новгород",
-  "krasnodar": "Краснодар",
+  krasnodar: "Краснодар",
   "krasnodar krai": "Краснодарский край"
 };
 
-let regionOptionsCache = null;
-let locationPhrasesCache = null;
-let locationTokenCache = null;
+const state = {
+  searchTab: "organizations",
+  selectedRegion: null,
+  selectedServiceId: null,
+  selectedOrgId: null,
+  pendingOrgId: null,
+  pendingServiceId: null,
+  ratings: Object.fromEntries(questions.map((item) => [item.id, 0])),
+  photos: [],
+  openHelpId: null,
+  regionHighlightIndex: -1,
+  regionMatches: [],
+  regionTouched: false,
+  serviceDate: "",
+  dateMin: "",
+  dateMax: "",
+  datePickerMonth: null,
+  catalogsReady: false
+};
+
+const $ = (selector) => document.querySelector(selector);
+const $$ = (selector) => [...document.querySelectorAll(selector)];
 
 // Кэшируем элементы страницы один раз, чтобы функции ниже не искали их повторно.
 const elements = {
   form: $("#reviewForm"),
   search: $("#mainSearch"),
   clearSearch: $("#clearSearch"),
+  searchTabs: $("#searchTabs"),
+  quickTags: $("#quickTags"),
   region: $("#regionInput"),
-  regionSuggestions: $("#regionSuggestions"),
+  clearRegion: $("#clearRegion"),
+  regionDropdown: $("#regionDropdown"),
   regionHint: $("#regionHint"),
   receiveType: $("#receiveType"),
   serviceDate: $("#serviceDate"),
+  serviceDateButton: $("#serviceDateButton"),
+  serviceDateText: $("#serviceDateText"),
+  datePicker: $("#datePicker"),
   dateError: $("#dateError"),
   stage: $("#stage"),
   results: $("#searchResults"),
@@ -600,14 +132,24 @@ const elements = {
 
 init();
 
-function init() {
-  // Порядок важен: сначала готовим поля и восстановление, потом подписки и первичная отрисовка.
-  populateRegionSuggestions();
+async function init() {
   configureDateInput();
   renderRatings();
-  restoreDraft();
+  renderQuickTags();
   bindEvents();
-  tryDetectRegion({ silent: true });
+  renderCatalogLoading();
+
+  try {
+    await loadCatalogs();
+    state.catalogsReady = true;
+  } catch (error) {
+    console.error("Не удалось загрузить справочник", error);
+    renderCatalogError();
+    return;
+  }
+
+  restoreDraft();
+  if (!state.selectedRegion) tryDetectRegion({ silent: true });
   runSearch();
   updateSelectedBox();
   updateSteps();
@@ -615,50 +157,130 @@ function init() {
   updateOfficialAnswerVisibility();
 }
 
+async function loadCatalogs() {
+  const [regionsResponse, servicesResponse, organizationsResponse] = await Promise.all([
+    fetch("./data/regions.json"),
+    fetch("./data/services.json"),
+    fetch("./data/organizations.json")
+  ]);
+
+  if (!regionsResponse.ok || !servicesResponse.ok || !organizationsResponse.ok) {
+    throw new Error("Catalog request failed");
+  }
+
+  catalog.regions = await regionsResponse.json();
+  catalog.services = await servicesResponse.json();
+  catalog.organizations = await organizationsResponse.json();
+}
+
 function bindEvents() {
-  // Все обработчики собраны в одном месте, чтобы сценарий формы было проще проследить.
-  elements.search.addEventListener("input", runSearch);
-  elements.region.addEventListener("input", () => {
-    state.regionTouched = true;
-    state.browseOrgId = null;
-    state.browseServiceId = null;
-    if (elements.regionHint) elements.regionHint.hidden = true;
+  elements.search.addEventListener("input", () => {
+    state.pendingOrgId = null;
+    state.pendingServiceId = null;
     runSearch();
   });
-  elements.receiveType.addEventListener("change", () => { runSearch(); updateSteps(); });
-  elements.serviceDate.addEventListener("change", () => { elements.dateError.hidden = true; updateSteps(); });
-  elements.stage.addEventListener("change", updateSteps);
+
   elements.clearSearch.addEventListener("click", () => {
     elements.search.value = "";
-    elements.search.focus();
-    state.browseOrgId = null;
-    state.browseServiceId = null;
+    state.pendingOrgId = null;
+    state.pendingServiceId = null;
     runSearch();
+    elements.search.focus();
+  });
+
+  elements.searchTabs.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-search-tab]");
+    if (!button) return;
+    setSearchTab(button.dataset.searchTab);
+  });
+
+  elements.quickTags.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-query]");
+    if (!button) return;
+    elements.search.value = button.dataset.query;
+    state.pendingOrgId = null;
+    state.pendingServiceId = null;
+    runSearch();
+    elements.search.focus();
+  });
+
+  elements.region.addEventListener("input", () => {
+    state.regionTouched = true;
+    state.selectedRegion = null;
+    state.pendingOrgId = null;
+    state.pendingServiceId = null;
+    renderRegionDropdown(elements.region.value);
+    updateRegionHint();
+    runSearch();
+  });
+
+  elements.region.addEventListener("focus", () => renderRegionDropdown(elements.region.value));
+  elements.region.addEventListener("keydown", handleRegionKeydown);
+  elements.regionDropdown.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-region-id]");
+    if (!button) return;
+    const region = findRegionById(button.dataset.regionId);
+    if (region) selectRegion(region);
+  });
+
+  elements.clearRegion.addEventListener("click", () => {
+    state.regionTouched = true;
+    state.selectedRegion = null;
+    state.pendingOrgId = null;
+    state.pendingServiceId = null;
+    elements.region.value = "";
+    closeRegionDropdown();
+    updateRegionHint();
+    runSearch();
+    elements.region.focus();
+  });
+
+  elements.receiveType.addEventListener("change", () => {
+    dropUnavailableSelection();
+    runSearch();
+    updateSteps();
+  });
+
+  elements.serviceDateButton.addEventListener("click", () => toggleDatePicker());
+  elements.datePicker.addEventListener("click", handleDatePickerClick);
+
+  elements.serviceDateButton.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeDatePicker();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      closeRegionDropdown();
+      closeDatePicker();
+    }
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!event.target.closest(".region-combobox")) closeRegionDropdown();
+    if (!event.target.closest(".field--date")) closeDatePicker();
   });
 
   $$('input[name="searchMode"]').forEach((input) => input.addEventListener("change", () => {
-    state.browseMode = "organizations";
-    state.browseOrgId = null;
-    state.browseServiceId = null;
+    state.pendingOrgId = null;
+    state.pendingServiceId = null;
+    dropUnavailableSelection();
     runSearch();
   }));
 
-  $$("[data-query]").forEach((button) => button.addEventListener("click", () => {
-    elements.search.value = button.dataset.query;
-    state.browseOrgId = null;
-    state.browseServiceId = null;
-    runSearch();
-    elements.search.focus();
-  }));
+  elements.results.addEventListener("click", handleResultsClick);
 
   $("#changeSelection").addEventListener("click", () => {
     state.selectedServiceId = null;
     state.selectedOrgId = null;
-    state.browseMode = "organizations";
-    state.browseOrgId = null;
-    state.browseServiceId = null;
+    state.pendingOrgId = null;
+    state.pendingServiceId = null;
+    state.searchTab = "organizations";
+    elements.search.value = "";
+    elements.selectionError.hidden = true;
+    updateSearchTabUi();
     updateSelectedBox();
     runSearch();
+    updateSteps();
     elements.search.focus();
   });
 
@@ -726,145 +348,7 @@ function bindEvents() {
   $("#sendCatalogProblem").addEventListener("click", sendCatalogProblem);
 }
 
-function getRegionOptions() {
-  if (regionOptionsCache) return regionOptionsCache;
-
-  const seen = new Set();
-  const options = [];
-  const addOption = (value, region, city = "") => {
-    const key = normalize(value);
-    if (!key || seen.has(key)) return;
-    seen.add(key);
-    options.push({ value, region, city });
-  };
-
-  russianLocations.forEach(({ region, cities }) => {
-    addOption(region, region);
-    cities.forEach((city) => addOption(`${city}, ${region}`, region, city));
-  });
-
-  regionOptionsCache = options.sort((a, b) => a.value.localeCompare(b.value, "ru"));
-  return regionOptionsCache;
-}
-
-function populateRegionSuggestions() {
-  if (!elements.regionSuggestions) return;
-  elements.regionSuggestions.innerHTML = getRegionOptions()
-    .map(({ value }) => `<option value="${escapeHtml(value)}"></option>`)
-    .join("");
-}
-
-function getKnownLocationPhrases() {
-  if (locationPhrasesCache) return locationPhrasesCache;
-
-  const phrases = new Set();
-  russianLocations.forEach(({ region, cities }) => {
-    phrases.add(normalize(region));
-    cities.forEach((city) => phrases.add(normalize(city)));
-  });
-
-  locationPhrasesCache = [...phrases]
-    .filter((phrase) => phrase && !GENERIC_LOCATION_WORDS.has(phrase))
-    .sort((a, b) => b.length - a.length);
-  return locationPhrasesCache;
-}
-
-function getKnownLocationTokens() {
-  if (locationTokenCache) return locationTokenCache;
-  locationTokenCache = new Set(
-    getKnownLocationPhrases()
-      .flatMap((phrase) => phrase.split(" "))
-      .filter((token) => token && !GENERIC_LOCATION_WORDS.has(token))
-  );
-  return locationTokenCache;
-}
-
-function stripLocationFromQuery(value) {
-  let result = normalize(value);
-  getKnownLocationPhrases().forEach((phrase) => {
-    result = result.replace(new RegExp(`(^|\\s)${escapeRegExp(phrase)}(?=\\s|$)`, "g"), " ");
-  });
-  const locationTokens = getKnownLocationTokens();
-  return result
-    .split(" ")
-    .filter((token) => token && !GENERIC_LOCATION_WORDS.has(token) && !locationTokens.has(token))
-    .join(" ");
-}
-
-function getMainSearchTokens() {
-  return tokenize(stripLocationFromQuery(elements.search.value));
-}
-
-function getLocationContext(value = elements.region.value) {
-  const input = value.trim();
-  const match = findLocationByValue(input);
-  const tokens = tokenize(match ? [match.city, match.region].filter(Boolean).join(" ") : input)
-    .filter((token) => !GENERIC_LOCATION_WORDS.has(token));
-  return {
-    value: match?.value || input,
-    region: match?.region || "",
-    city: match?.city || "",
-    tokens
-  };
-}
-
-function findLocationByValue(value) {
-  const normalized = normalize(value);
-  if (!normalized) return null;
-
-  const options = getRegionOptions();
-  return options.find((option) => normalize(option.value) === normalized)
-    || options.find((option) => option.city && normalize(option.city) === normalized)
-    || options.find((option) => normalize(option.region) === normalized)
-    || null;
-}
-
-function findLocationByParts(city, region) {
-  const normalizedCity = normalize(localizeIpLocationPart(city));
-  const normalizedRegion = normalize(localizeIpLocationPart(region));
-  const options = getRegionOptions();
-
-  if (normalizedCity && normalizedRegion) {
-    const exactCity = options.find((option) =>
-      option.city && normalize(option.city) === normalizedCity && normalize(option.region) === normalizedRegion
-    );
-    if (exactCity) return exactCity;
-  }
-
-  if (normalizedRegion) {
-    const exactRegion = options.find((option) => !option.city && normalize(option.region) === normalizedRegion);
-    if (exactRegion) return exactRegion;
-  }
-
-  if (normalizedCity) {
-    return options.find((option) => option.city && normalize(option.city) === normalizedCity)
-      || options.find((option) => !option.city && normalize(option.region) === normalizedCity)
-      || null;
-  }
-
-  return null;
-}
-
-function localizeIpLocationPart(value) {
-  const key = normalize(value);
-  return IP_LOCATION_ALIASES[key] || value || "";
-}
-
-function locationScoreForOrg(org, location = getLocationContext()) {
-  if (!location.tokens.length) return 0;
-  let score = scoreText(location.tokens, [org.region, org.city, org.address]);
-  if (location.region && normalize(org.region) === normalize(location.region)) score += 35;
-  if (location.city && normalize(org.city) === normalize(location.city)) score += 30;
-  if (org.region === "Федеральный уровень") score += 2;
-  return score;
-}
-
-function escapeRegExp(value) {
-  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-}
-
 function normalize(value) {
-  // Нормализация делает поиск терпимым к регистру, "ё/е" и лишней пунктуации.
   return String(value || "")
     .toLowerCase()
     .replaceAll("ё", "е")
@@ -878,13 +362,13 @@ function tokenize(value) {
 }
 
 function scoreText(queryTokens, haystackParts) {
-  // Чем больше совпадений с названием, адресом, категорией и синонимами, тем выше строка в выдаче.
   if (!queryTokens.length) return 0;
   const haystack = normalize(haystackParts.flat().filter(Boolean).join(" "));
+  const words = haystack.split(" ");
   let score = 0;
   queryTokens.forEach((token) => {
     if (haystack.includes(token)) score += token.length > 3 ? 8 : 4;
-    if (haystack.split(" ").some((word) => word.startsWith(token))) score += 5;
+    if (words.some((word) => word.startsWith(token))) score += 5;
   });
   return score;
 }
@@ -893,49 +377,231 @@ function getSearchMode() {
   return $('input[name="searchMode"]:checked')?.value || "any";
 }
 
-function getModeLabel() {
-  const mode = getSearchMode();
-  if (mode === "mfc") return "МФЦ";
-  if (mode === "department") return "ведомств";
-  return "";
-}
-
-function getServicesTitle() {
-  const mode = getSearchMode();
-  if (mode === "mfc") return "Популярные услуги МФЦ";
-  if (mode === "department") return "Популярные услуги ведомств";
-  return "Популярные услуги";
-}
-
-function getOrganizationsTitle() {
-  const mode = getSearchMode();
-  if (mode === "mfc") return "МФЦ";
-  if (mode === "department") return "Ведомства";
-  return "Организации";
-}
-
 function byPopularity(a, b) {
-  return (b.popularity || 0) - (a.popularity || 0) || (b.reviews || 0) - (a.reviews || 0) || a.name?.localeCompare(b.name || "", "ru") || 0;
+  return (b.popularity || 0) - (a.popularity || 0) || (b.reviews || 0) - (a.reviews || 0) || getItemTitle(a).localeCompare(getItemTitle(b), "ru");
+}
+
+function getItemTitle(item) {
+  return item.name || item.title || "";
+}
+
+function setSearchTab(tab) {
+  if (!["organizations", "services"].includes(tab) || state.searchTab === tab) return;
+  state.searchTab = tab;
+  state.pendingOrgId = null;
+  state.pendingServiceId = null;
+  elements.search.value = "";
+  updateSearchTabUi();
+  runSearch();
+  elements.search.focus();
+}
+
+function updateSearchTabUi() {
+  elements.searchTabs.querySelectorAll("[data-search-tab]").forEach((button) => {
+    const active = button.dataset.searchTab === state.searchTab;
+    button.classList.toggle("is-active", active);
+    button.setAttribute("aria-selected", String(active));
+  });
+  elements.search.placeholder = state.searchTab === "organizations"
+    ? "Введите организацию: МФЦ, Росреестр, МВД, адрес"
+    : "Введите услугу: паспорт, права, ЕГРН, пособие";
+  renderQuickTags();
+}
+
+function renderQuickTags() {
+  elements.quickTags.innerHTML = quickTagsByTab[state.searchTab]
+    .map((tag) => `<button type="button" data-query="${escapeHtml(tag)}">${escapeHtml(tag)}</button>`)
+    .join("");
+}
+
+function getRegionMatches(query) {
+  const normalizedQuery = normalize(query);
+  return catalog.regions
+    .map((region) => ({ region, score: scoreRegion(region, normalizedQuery) }))
+    .filter((item) => item.score >= 0)
+    .sort((a, b) => b.score - a.score || byPopularity(a.region, b.region))
+    .slice(0, 10)
+    .map((item) => item.region);
+}
+
+function scoreRegion(region, query) {
+  if (!query) return region.popularity || 0;
+  const title = normalize(region.title);
+  const words = title.split(" ");
+  const aliases = (region.aliases || []).map(normalize);
+
+  if (title === query) return 100000 + (region.popularity || 0);
+  if (title.startsWith(query)) return 90000 + (region.popularity || 0);
+  if (words.some((word) => word.startsWith(query))) return 80000 + (region.popularity || 0);
+  if (aliases.some((alias) => alias.startsWith(query))) return 70000 + (region.popularity || 0);
+  if (title.includes(query)) return 60000 + (region.popularity || 0);
+  if (aliases.some((alias) => alias.includes(query))) return 50000 + (region.popularity || 0);
+  return -1;
+}
+
+function renderRegionDropdown(query) {
+  if (!state.catalogsReady) return;
+  state.regionMatches = getRegionMatches(query);
+  state.regionHighlightIndex = state.regionMatches.length ? 0 : -1;
+
+  if (!state.regionMatches.length) {
+    elements.regionDropdown.innerHTML = `<div class="combo-empty">Ничего не найдено</div>`;
+  } else {
+    elements.regionDropdown.innerHTML = state.regionMatches.map((region, index) => `
+      <button class="combo-option ${index === state.regionHighlightIndex ? "is-active" : ""}" type="button" data-region-id="${region.id}">
+        <strong>${escapeHtml(region.title)}</strong>
+        <small>${escapeHtml(getRegionMeta(region))}</small>
+      </button>
+    `).join("");
+  }
+
+  elements.regionDropdown.hidden = false;
+  elements.region.setAttribute("aria-expanded", "true");
+}
+
+function getRegionMeta(region) {
+  if (region.type === "city") return region.region;
+  if (["Москва", "Санкт-Петербург", "Севастополь"].includes(region.title)) return "город федерального значения";
+  return "регион";
+}
+
+function handleRegionKeydown(event) {
+  if (event.key === "ArrowDown") {
+    event.preventDefault();
+    if (elements.regionDropdown.hidden) renderRegionDropdown(elements.region.value);
+    moveRegionHighlight(1);
+  }
+  if (event.key === "ArrowUp") {
+    event.preventDefault();
+    if (elements.regionDropdown.hidden) renderRegionDropdown(elements.region.value);
+    moveRegionHighlight(-1);
+  }
+  if (event.key === "Enter" && !elements.regionDropdown.hidden) {
+    event.preventDefault();
+    const region = state.regionMatches[state.regionHighlightIndex];
+    if (region) selectRegion(region);
+  }
+  if (event.key === "Escape") closeRegionDropdown();
+}
+
+function moveRegionHighlight(delta) {
+  if (!state.regionMatches.length) return;
+  state.regionHighlightIndex = (state.regionHighlightIndex + delta + state.regionMatches.length) % state.regionMatches.length;
+  renderRegionHighlight();
+}
+
+function renderRegionHighlight() {
+  elements.regionDropdown.querySelectorAll(".combo-option").forEach((button, index) => {
+    button.classList.toggle("is-active", index === state.regionHighlightIndex);
+  });
+}
+
+function selectRegion(region) {
+  state.selectedRegion = region;
+  state.regionTouched = true;
+  state.pendingOrgId = null;
+  state.pendingServiceId = null;
+  elements.region.value = region.title;
+  closeRegionDropdown();
+  updateRegionHint();
+  dropUnavailableSelection();
+  runSearch();
+}
+
+function closeRegionDropdown() {
+  elements.regionDropdown.hidden = true;
+  elements.region.setAttribute("aria-expanded", "false");
+}
+
+function updateRegionHint() {
+  const needsChoice = elements.region.value.trim() && !state.selectedRegion;
+  elements.regionHint.textContent = needsChoice ? "Выберите регион из списка, чтобы выдача была точнее." : "";
+  elements.regionHint.hidden = !needsChoice;
+}
+
+function findRegionById(id) {
+  return catalog.regions.find((region) => region.id === id) || null;
+}
+
+function findRegionByValue(value) {
+  const normalized = normalize(value);
+  if (!normalized) return null;
+  return catalog.regions.find((region) => normalize(region.title) === normalized)
+    || catalog.regions.find((region) => normalize(region.city) === normalized)
+    || catalog.regions.find((region) => normalize(region.region) === normalized)
+    || null;
+}
+
+function findRegionByParts(city, region) {
+  const normalizedCity = normalize(localizeIpLocationPart(city));
+  const normalizedRegion = normalize(localizeIpLocationPart(region));
+
+  if (normalizedCity && normalizedRegion) {
+    const exactCity = catalog.regions.find((item) =>
+      item.city && normalize(item.city) === normalizedCity && normalize(item.region) === normalizedRegion
+    );
+    if (exactCity) return exactCity;
+  }
+
+  if (normalizedRegion) {
+    const exactRegion = catalog.regions.find((item) => item.type === "region" && normalize(item.region) === normalizedRegion);
+    if (exactRegion) return exactRegion;
+  }
+
+  if (normalizedCity) {
+    return catalog.regions.find((item) => item.city && normalize(item.city) === normalizedCity)
+      || catalog.regions.find((item) => item.type === "region" && normalize(item.region) === normalizedCity)
+      || null;
+  }
+
+  return null;
+}
+
+function localizeIpLocationPart(value) {
+  const key = normalize(value);
+  return IP_LOCATION_ALIASES[key] || value || "";
+}
+
+function isFederalOrganization(org) {
+  return org.regionScope === "federal" || org.region === "Федеральный уровень";
+}
+
+function canShowFederalOrganization() {
+  return elements.receiveType.value === "online";
+}
+
+function isOrgAvailableForRegion(org, selectedRegion) {
+  if (isFederalOrganization(org)) return canShowFederalOrganization();
+  if (!selectedRegion?.region) return true;
+  return normalize(org.region) === normalize(selectedRegion.region);
+}
+
+function getOrgRegionPriority(org, selectedRegion) {
+  if (!selectedRegion?.region) return 0;
+  if (selectedRegion.city && normalize(org.city) === normalize(selectedRegion.city)) return 3;
+  if (normalize(org.region) === normalize(selectedRegion.region)) return 2;
+  if (isFederalOrganization(org) && canShowFederalOrganization()) return 1;
+  return 0;
 }
 
 function getVisibleOrganizations(serviceId = null) {
-  // Фильтр соблюдает выбранный режим: МФЦ, ведомства или смешанная помощь без жёсткого ограничения.
   const mode = getSearchMode();
-  const location = getLocationContext();
-  return organizations
+  const selectedRegion = state.selectedRegion;
+
+  return catalog.organizations
     .filter((org) => {
       if (mode === "mfc" && org.type !== "mfc") return false;
       if (mode === "department" && org.type !== "department") return false;
       if (serviceId && !org.services.includes(serviceId)) return false;
+      if (!isOrgAvailableForRegion(org, selectedRegion)) return false;
       return true;
     })
-    .sort((a, b) => locationScoreForOrg(b, location) - locationScoreForOrg(a, location) || byPopularity(a, b));
+    .sort((a, b) => getOrgRegionPriority(b, selectedRegion) - getOrgRegionPriority(a, selectedRegion) || byPopularity(a, b));
 }
 
 function getVisibleServices(orgId = null) {
-  // Если организация уже выбрана, показываем только услуги, которые можно получить именно там.
-  const org = orgId ? organizations.find((item) => item.id === orgId) : null;
-  return services
+  const org = orgId ? getOrganization(orgId) : null;
+  return catalog.services
     .filter((service) => {
       if (org) return org.services.includes(service.id);
       return getVisibleOrganizations(service.id).length > 0;
@@ -943,287 +609,248 @@ function getVisibleServices(orgId = null) {
     .sort((a, b) => (b.popularity || 0) - (a.popularity || 0) || a.title.localeCompare(b.title, "ru"));
 }
 
-function buildPairs() {
-  // Строим пары "услуга + организация" для поисковой выдачи, чтобы отзыв сразу был привязан корректно.
-  const queryTokens = getMainSearchTokens();
-  const location = getLocationContext();
-  const mode = getSearchMode();
-  const receiveType = elements.receiveType.value;
-  const pairs = [];
-
-  services.forEach((service) => {
-    organizations.forEach((org) => {
-      if (!org.services.includes(service.id)) return;
-      if (mode === "mfc" && org.type !== "mfc") return;
-      if (mode === "department" && org.type !== "department") return;
-
-      const serviceScore = scoreText(queryTokens, [service.title, service.category, service.code, service.synonyms]);
-      const orgScore = scoreText(queryTokens, [org.name, org.agency, org.aliases]);
-      const regionScore = locationScoreForOrg(org, location);
-      let score = serviceScore + orgScore + regionScore;
-
-      // Небольшие веса помогают популярным и релевантным вариантам подняться выше без жёсткой сортировки.
-      if (mode === "mfc" && org.type === "mfc") score += 18;
-      if (mode === "department" && org.type === "department") score += 18;
-      if (mode === "mfc" && org.type === "department") score -= 8;
-      if (mode === "department" && org.type === "mfc") score -= 6;
-      if (receiveType === "online" && org.id === "gosuslugi-online") score += 16;
-      if (receiveType === "online" && org.type === "department") score += 6;
-      if (receiveType === "online" && org.type === "mfc") score -= 4;
-      if (service.category === org.agency) score += 4;
-
-      score += Math.round((service.popularity || 0) / 100) + Math.round((org.popularity || 0) / 100);
-
-      if (!queryTokens.length || score > 7) {
-        pairs.push({ service, org, score });
-      }
-    });
-  });
-
-  return pairs
-    .sort((a, b) => b.score - a.score || (b.org.popularity || 0) - (a.org.popularity || 0) || (b.service.popularity || 0) - (a.service.popularity || 0))
-    .slice(0, 10);
+function searchOrganizations(query) {
+  const tokens = tokenize(query);
+  return getVisibleOrganizations()
+    .map((org) => ({ org, score: tokens.length ? scoreOrganization(org, tokens) : 0 }))
+    .filter((item) => !tokens.length || item.score > 0)
+    .sort((a, b) => b.score - a.score || getOrgRegionPriority(b.org, state.selectedRegion) - getOrgRegionPriority(a.org, state.selectedRegion) || byPopularity(a.org, b.org))
+    .map((item) => item.org);
 }
 
-function renderBrowseTabs() {
-  return `
-    <div class="browse-tabs" role="tablist" aria-label="Способ выбора">
-      <button class="browse-tab ${state.browseMode === "organizations" ? "is-active" : ""}" type="button" data-browse-tab="organizations">Организации</button>
-      <button class="browse-tab ${state.browseMode === "services" ? "is-active" : ""}" type="button" data-browse-tab="services">Услуги</button>
-    </div>
-  `;
+function scoreOrganization(org, tokens) {
+  const serviceParts = org.services
+    .map(getService)
+    .filter(Boolean)
+    .flatMap((service) => [service.title, service.category, service.code, service.synonyms]);
+  return scoreText(tokens, [org.name, org.agency, org.address, org.region, org.city, org.aliases, serviceParts]);
 }
 
-function bindBrowseTabs() {
-  // Вкладки переключают только режим просмотра; выбранную пару они не сбрасывают.
-  elements.results.querySelectorAll("[data-browse-tab]").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.browseMode = button.dataset.browseTab;
-      state.browseOrgId = null;
-      state.browseServiceId = null;
-      runSearch();
-    });
-  });
+function searchServices(query) {
+  const tokens = tokenize(query);
+  return getVisibleServices()
+    .map((service) => ({ service, score: tokens.length ? scoreText(tokens, [service.title, service.category, service.code, service.synonyms]) : 0 }))
+    .filter((item) => !tokens.length || item.score > 0)
+    .sort((a, b) => b.score - a.score || (b.service.popularity || 0) - (a.service.popularity || 0) || a.service.title.localeCompare(b.service.title, "ru"))
+    .map((item) => item.service);
 }
 
-function renderOrganizationList() {
-  // Стартовый сценарий: пользователь сначала выбирает организацию, затем услугу.
-  const orgs = getVisibleOrganizations();
-  elements.results.innerHTML = `
-    ${renderBrowseTabs()}
-    <div class="results-head"><h3>${getOrganizationsTitle()}</h3><p>Сначала показаны самые популярные.</p></div>
-    <div class="browse-list">
-      ${orgs.map((org) => renderOrgRow(org, { pickMode: "browse" })).join("")}
-    </div>
-  `;
-  bindBrowseTabs();
-  elements.results.querySelectorAll("[data-pick-org]").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.browseOrgId = button.dataset.pickOrg;
-      state.browseServiceId = null;
-      runSearch();
-    });
-  });
+function renderCatalogLoading() {
+  elements.results.innerHTML = `<div class="empty-result">Загружаем справочник услуг и организаций...</div>`;
 }
 
-function renderServiceList() {
-  // Альтернативный сценарий: пользователь начинает с услуги, а организацию выбирает следующим шагом.
-  const items = getVisibleServices();
-  elements.results.innerHTML = `
-    ${renderBrowseTabs()}
-    <div class="results-head"><h3>${getServicesTitle()}</h3><p>Выберите услугу, затем организацию.</p></div>
-    <div class="browse-list">
-      ${items.map((service) => `
-        <div class="result-row result-row--org">
-          <span>
-            <strong>${escapeHtml(service.title)}</strong>
-            <small>${escapeHtml(service.category)} · код услуги: ${escapeHtml(service.code)}</small>
-            <span class="result-tags">
-              <span class="tag tag--green">${getOrganizationsForService(service.id).length} организаций</span>
-            </span>
-          </span>
-          <button class="btn btn--secondary result-pick" type="button" data-pick-service="${service.id}">Выбрать</button>
-        </div>
-      `).join("")}
-    </div>
-  `;
-  bindBrowseTabs();
-  elements.results.querySelectorAll("[data-pick-service]").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.browseServiceId = button.dataset.pickService;
-      state.browseOrgId = null;
-      runSearch();
-    });
-  });
-}
-
-function renderOrgServices() {
-  const org = organizations.find((item) => item.id === state.browseOrgId);
-  if (!org) {
-    state.browseOrgId = null;
-    renderOrganizationList();
-    return;
-  }
-
-  const orgServices = getVisibleServices(org.id);
-  elements.results.innerHTML = `
-    <div class="results-head results-head--stack">
-      <button class="text-btn" type="button" id="backToOrganizations">← Вернуться к организациям</button>
-      <div>
-        <h3>${escapeHtml(org.name)}</h3>
-        <p>Выберите услугу для отзыва.</p>
-      </div>
-    </div>
-    <div class="browse-list">
-      ${orgServices.map((service) => `
-        <button class="result-row" type="button" data-service-id="${service.id}" data-org-id="${org.id}">
-          <span>
-            <strong>${escapeHtml(service.title)}</strong>
-            <small>${escapeHtml(service.category)} · код услуги: ${escapeHtml(service.code)}</small>
-          </span>
-        </button>
-      `).join("")}
-    </div>
-  `;
-
-  $("#backToOrganizations")?.addEventListener("click", () => {
-    state.browseOrgId = null;
-    state.browseMode = "organizations";
-    runSearch();
-  });
-
-  bindSelectPairRows();
-}
-
-function renderServiceOrganizations() {
-  const service = services.find((item) => item.id === state.browseServiceId);
-  if (!service) {
-    state.browseServiceId = null;
-    renderServiceList();
-    return;
-  }
-
-  const orgs = getVisibleOrganizations(service.id);
-  elements.results.innerHTML = `
-    <div class="results-head results-head--stack">
-      <button class="text-btn" type="button" id="backToServices">← Вернуться к услугам</button>
-      <div>
-        <h3>${escapeHtml(service.title)}</h3>
-        <p>Выберите организацию, где получали услугу.</p>
-      </div>
-    </div>
-    <div class="browse-list">
-      ${orgs.map((org) => renderOrgRow(org, { serviceId: service.id, pickMode: "select" })).join("")}
-    </div>
-  `;
-
-  $("#backToServices")?.addEventListener("click", () => {
-    state.browseServiceId = null;
-    state.browseMode = "services";
-    runSearch();
-  });
-
-  bindSelectPairRows();
-}
-
-function renderOrgRow(org, { serviceId = null, pickMode = "browse" } = {}) {
-  const buttonAttr = pickMode === "select"
-    ? `data-service-id="${serviceId}" data-org-id="${org.id}"`
-    : `data-pick-org="${org.id}"`;
-  const location = [org.city, org.address].filter(Boolean).join(", ") || org.region;
-  return `
-    <div class="result-row result-row--org">
-      <span>
-        <strong>${escapeHtml(org.name)}</strong>
-        <small>${escapeHtml(location)}</small>
-        <span class="result-tags">
-          <span class="tag tag--green">${org.type === "mfc" ? "МФЦ" : "Ведомство"}</span>
-          <span class="tag">${escapeHtml(org.region)}</span>
-          <span class="tag">${org.reviews} отзывов</span>
-        </span>
-      </span>
-      <button class="btn btn--secondary result-pick" type="button" ${buttonAttr}>Выбрать</button>
-    </div>
-  `;
-}
-
-function getOrganizationsForService(serviceId) {
-  return getVisibleOrganizations(serviceId);
+function renderCatalogError() {
+  elements.results.innerHTML = `<div class="empty-result empty-result--error">Не удалось загрузить справочник. Запустите проект через локальный сервер: uv run python -m http.server 8000</div>`;
 }
 
 function runSearch() {
-  // Центральная точка выбора: либо показываем списки для просмотра, либо поисковые пары по введённому тексту.
+  if (!state.catalogsReady) return;
+
   if (state.selectedServiceId && state.selectedOrgId) {
     elements.results.innerHTML = "";
     return;
   }
 
-  const queryTokens = getMainSearchTokens();
-  if (!queryTokens.length) {
-    if (state.browseOrgId) {
-      renderOrgServices();
-    } else if (state.browseServiceId) {
-      renderServiceOrganizations();
-    } else if (state.browseMode === "services") {
-      renderServiceList();
-    } else {
-      renderOrganizationList();
-    }
+  if (state.pendingOrgId) {
+    renderOrgServices();
     return;
   }
 
-  state.browseOrgId = null;
-  state.browseServiceId = null;
-  const pairs = buildPairs();
-  if (!pairs.length) {
-    elements.results.innerHTML = `
-      <div class="empty-result">
-        Ничего не найдено. Попробуйте обычное название услуги: «паспорт», «права», «выписка ЕГРН», «пособие». Если нужного варианта нет, нажмите «Не нашёл в списке».
-      </div>`;
+  if (state.pendingServiceId) {
+    renderServiceOrganizations();
+    return;
+  }
+
+  if (state.searchTab === "organizations") {
+    renderOrganizationSearch();
+  } else {
+    renderServiceSearch();
+  }
+}
+
+function renderOrganizationSearch() {
+  const query = elements.search.value.trim();
+
+  if (!state.selectedRegion && !query) {
+    elements.results.innerHTML = `<div class="empty-result">Выберите регион, чтобы увидеть организации рядом с вами.</div>`;
+    return;
+  }
+
+  const orgs = searchOrganizations(query);
+  if (!orgs.length) {
+    elements.results.innerHTML = `<div class="empty-result">В выбранном регионе ничего не найдено. Попробуйте другое название или нажмите «Не нашёл в списке».</div>`;
     return;
   }
 
   elements.results.innerHTML = `
-    <div class="results-head"><h3>Результаты поиска</h3><p>Наиболее подходящие варианты показаны выше.</p></div>
+    <div class="results-head"><h3>Организации</h3><p>Выберите организацию, где получали услугу.</p></div>
     <div class="browse-list">
-      ${pairs.map(({ service, org }) => `
-        <button class="result-row" type="button" data-service-id="${service.id}" data-org-id="${org.id}">
-          <span>
-            <strong>${escapeHtml(service.title)}</strong>
-            <small>${escapeHtml(org.name)} · ${escapeHtml([org.city, org.address].filter(Boolean).join(", ") || org.region)}</small>
-            <span class="result-tags">
-              <span class="tag tag--green">${org.type === "mfc" ? "МФЦ" : "Ведомство"}</span>
-              <span class="tag">${escapeHtml(service.category)}</span>
-              <span class="tag">${escapeHtml(org.region)}</span>
-            </span>
-          </span>
-        </button>
-      `).join("")}
+      ${orgs.map((org) => renderOrgRow(org, { action: "pick-org" })).join("")}
     </div>
   `;
-
-  bindSelectPairRows();
 }
 
-function bindSelectPairRows() {
-  // Любой клик по строке выбора фиксирует сразу обе обязательные сущности: услугу и организацию.
-  elements.results.querySelectorAll("[data-service-id][data-org-id]").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.selectedServiceId = button.dataset.serviceId;
-      state.selectedOrgId = button.dataset.orgId;
-      state.browseOrgId = null;
-      state.browseServiceId = null;
-      elements.selectionError.hidden = true;
-      updateSelectedBox();
-      runSearch();
-      updateSteps();
-      showToast("Услуга и организация выбраны");
-    });
-  });
+function renderServiceSearch() {
+  const query = elements.search.value.trim();
+  const services = searchServices(query);
+  const note = !state.selectedRegion
+    ? `<div class="empty-result empty-result--soft">Можно искать услугу сразу, но регион поможет показать подходящие организации.</div>`
+    : "";
+
+  if (!services.length) {
+    elements.results.innerHTML = `${note}<div class="empty-result">Ничего не найдено. Попробуйте обычное название услуги: «паспорт», «права», «ЕГРН», «пособие».</div>`;
+    return;
+  }
+
+  elements.results.innerHTML = `
+    ${note}
+    <div class="results-head"><h3>Услуги</h3><p>Выберите услугу, затем организацию.</p></div>
+    <div class="browse-list">
+      ${services.map((service) => renderServiceRow(service, { action: "pick-service" })).join("")}
+    </div>
+  `;
+}
+
+function renderOrgServices() {
+  const org = getOrganization(state.pendingOrgId);
+  if (!org) {
+    state.pendingOrgId = null;
+    runSearch();
+    return;
+  }
+
+  const services = getVisibleServices(org.id);
+  elements.results.innerHTML = `
+    <div class="results-head results-head--stack">
+      <button class="text-btn" type="button" data-back="organizations">← Назад к организациям</button>
+      <div>
+        <h3>${escapeHtml(org.name)}</h3>
+        <p>Выберите услугу в этой организации.</p>
+      </div>
+    </div>
+    <div class="browse-list">
+      ${services.map((service) => renderServiceRow(service, { action: "select-service", orgId: org.id })).join("")}
+    </div>
+  `;
+}
+
+function renderServiceOrganizations() {
+  const service = getService(state.pendingServiceId);
+  if (!service) {
+    state.pendingServiceId = null;
+    runSearch();
+    return;
+  }
+
+  const orgs = getVisibleOrganizations(service.id);
+  const content = orgs.length
+    ? `<div class="browse-list">${orgs.map((org) => renderOrgRow(org, { action: "select-org", serviceId: service.id })).join("")}</div>`
+    : `<div class="empty-result">Эта услуга пока не связана с организациями выбранного региона.</div>`;
+
+  elements.results.innerHTML = `
+    <div class="results-head results-head--stack">
+      <button class="text-btn" type="button" data-back="services">← Назад к услугам</button>
+      <div>
+        <h3>${escapeHtml(service.title)}</h3>
+        <p>Выберите организацию, где получали услугу.</p>
+      </div>
+    </div>
+    ${content}
+  `;
+}
+
+function renderOrgRow(org, { action, serviceId = "" } = {}) {
+  const location = [org.city, org.address].filter(Boolean).join(", ") || org.region;
+  const onlineTag = isFederalOrganization(org) ? `<span class="tag tag--green">Онлайн</span>` : "";
+  return `
+    <button class="result-row result-row--org" type="button" data-action="${action}" data-org-id="${org.id}" data-service-id="${serviceId}">
+      <span>
+        <strong>${escapeHtml(org.name)}</strong>
+        <small>${escapeHtml(location)}</small>
+        <span class="result-tags">
+          <span class="tag tag--green">${org.type === "mfc" ? "МФЦ" : "Ведомство"}</span>
+          ${onlineTag}
+          <span class="tag">${escapeHtml(org.region)}</span>
+          <span class="tag">${org.reviews} отзывов</span>
+        </span>
+      </span>
+    </button>
+  `;
+}
+
+function renderServiceRow(service, { action, orgId = "" } = {}) {
+  return `
+    <button class="result-row" type="button" data-action="${action}" data-service-id="${service.id}" data-org-id="${orgId}">
+      <span>
+        <strong>${escapeHtml(service.title)}</strong>
+        <small>${escapeHtml(service.category)}${service.code ? ` · код услуги: ${escapeHtml(service.code)}` : ""}</small>
+      </span>
+    </button>
+  `;
+}
+
+function handleResultsClick(event) {
+  const backButton = event.target.closest("[data-back]");
+  if (backButton) {
+    if (backButton.dataset.back === "organizations") {
+      state.pendingOrgId = null;
+      state.searchTab = "organizations";
+    } else {
+      state.pendingServiceId = null;
+      state.searchTab = "services";
+    }
+    updateSearchTabUi();
+    runSearch();
+    return;
+  }
+
+  const button = event.target.closest("[data-action]");
+  if (!button) return;
+
+  if (button.dataset.action === "pick-org") {
+    state.pendingOrgId = button.dataset.orgId;
+    state.pendingServiceId = null;
+    runSearch();
+  }
+
+  if (button.dataset.action === "pick-service") {
+    state.pendingServiceId = button.dataset.serviceId;
+    state.pendingOrgId = null;
+    runSearch();
+  }
+
+  if (button.dataset.action === "select-service") {
+    selectPair(button.dataset.serviceId, button.dataset.orgId);
+  }
+
+  if (button.dataset.action === "select-org") {
+    selectPair(button.dataset.serviceId, button.dataset.orgId);
+  }
+}
+
+function selectPair(serviceId, orgId) {
+  state.selectedServiceId = serviceId;
+  state.selectedOrgId = orgId;
+  state.pendingOrgId = null;
+  state.pendingServiceId = null;
+  elements.selectionError.hidden = true;
+  updateSelectedBox();
+  runSearch();
+  updateSteps();
+  showToast("Услуга и организация выбраны");
+}
+
+function dropUnavailableSelection() {
+  if (!state.selectedOrgId) return;
+  const org = getOrganization(state.selectedOrgId);
+  if (!org || !isOrgAvailableForRegion(org, state.selectedRegion)) {
+    state.selectedServiceId = null;
+    state.selectedOrgId = null;
+    updateSelectedBox();
+  }
 }
 
 function updateSelectedBox() {
-  // Блок выбранной пары появляется только когда отзыв можно однозначно привязать к справочникам.
   const service = getSelectedService();
   const org = getSelectedOrg();
   const selected = Boolean(service && org);
@@ -1244,17 +871,155 @@ function updateSelectedBox() {
   elements.selectedBox.hidden = false;
 }
 
-function toggleHelp(id) {
-  state.openHelpId = state.openHelpId === id ? null : id;
-  $$(".rating-row").forEach((row) => {
-    const isOpen = row.dataset.questionId === state.openHelpId;
-    row.querySelector(".rating-help").hidden = !isOpen;
-    row.querySelector(".help-dot")?.setAttribute("aria-expanded", String(isOpen));
-  });
+function configureDateInput() {
+  const today = new Date();
+  state.dateMin = formatDate(addYears(today, -3));
+  state.dateMax = formatDate(today);
+  state.serviceDate = state.serviceDate || state.dateMax;
+  elements.serviceDate.min = state.dateMin;
+  elements.serviceDate.max = state.dateMax;
+  setServiceDate(state.serviceDate, { silent: true });
+}
+
+function setServiceDate(value, { silent = false } = {}) {
+  state.serviceDate = value;
+  elements.serviceDate.value = value;
+  elements.serviceDateText.textContent = formatDisplayDate(value);
+  if (!silent) {
+    elements.dateError.hidden = true;
+    updateSteps();
+  }
+}
+
+function toggleDatePicker() {
+  if (elements.datePicker.hidden) openDatePicker();
+  else closeDatePicker();
+}
+
+function openDatePicker() {
+  state.datePickerMonth = startOfMonth(parseIsoDate(state.serviceDate));
+  renderDatePicker();
+  elements.datePicker.hidden = false;
+  elements.serviceDateButton.setAttribute("aria-expanded", "true");
+}
+
+function closeDatePicker() {
+  elements.datePicker.hidden = true;
+  elements.serviceDateButton.setAttribute("aria-expanded", "false");
+}
+
+function renderDatePicker() {
+  const month = state.datePickerMonth || startOfMonth(parseIsoDate(state.serviceDate));
+  const monthLabel = new Intl.DateTimeFormat("ru-RU", { month: "long", year: "numeric" }).format(month);
+  const minMonth = startOfMonth(parseIsoDate(state.dateMin));
+  const maxMonth = startOfMonth(parseIsoDate(state.dateMax));
+  const canPrev = month > minMonth;
+  const canNext = month < maxMonth;
+
+  elements.datePicker.innerHTML = `
+    <div class="date-picker__head">
+      <button type="button" data-month="-1" ${canPrev ? "" : "disabled"} aria-label="Предыдущий месяц">‹</button>
+      <strong>${escapeHtml(monthLabel)}</strong>
+      <button type="button" data-month="1" ${canNext ? "" : "disabled"} aria-label="Следующий месяц">›</button>
+    </div>
+    <div class="date-picker__week" aria-hidden="true">
+      ${["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"].map((day) => `<span>${day}</span>`).join("")}
+    </div>
+    <div class="date-picker__grid">
+      ${renderDateDays(month)}
+    </div>
+  `;
+}
+
+function renderDateDays(month) {
+  const firstDay = startOfMonth(month);
+  const startOffset = (firstDay.getDay() + 6) % 7;
+  const daysInMonth = new Date(month.getFullYear(), month.getMonth() + 1, 0).getDate();
+  const cells = [];
+
+  for (let i = 0; i < startOffset; i++) cells.push(`<span class="date-picker__blank"></span>`);
+
+  for (let day = 1; day <= daysInMonth; day++) {
+    const date = new Date(month.getFullYear(), month.getMonth(), day);
+    const iso = formatDate(date);
+    const disabled = isDateDisabled(iso);
+    const selected = iso === state.serviceDate;
+    cells.push(`
+      <button type="button" data-date="${iso}" class="${selected ? "is-selected" : ""}" ${disabled ? "disabled" : ""}>
+        ${day}
+      </button>
+    `);
+  }
+
+  return cells.join("");
+}
+
+function handleDatePickerClick(event) {
+  const monthButton = event.target.closest("[data-month]");
+  if (monthButton) {
+    state.datePickerMonth = addMonths(state.datePickerMonth, Number(monthButton.dataset.month));
+    renderDatePicker();
+    return;
+  }
+
+  const dayButton = event.target.closest("[data-date]");
+  if (!dayButton || dayButton.disabled) return;
+  setServiceDate(dayButton.dataset.date);
+  closeDatePicker();
+}
+
+function isDateDisabled(value) {
+  return value > state.dateMax || value < state.dateMin;
+}
+
+function addYears(date, years) {
+  const copy = new Date(date);
+  copy.setFullYear(copy.getFullYear() + years);
+  return copy;
+}
+
+function addMonths(date, months) {
+  return new Date(date.getFullYear(), date.getMonth() + months, 1);
+}
+
+function startOfMonth(date) {
+  return new Date(date.getFullYear(), date.getMonth(), 1);
+}
+
+function parseIsoDate(value) {
+  return new Date(`${value}T00:00:00`);
+}
+
+function formatDate(date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
+}
+
+function formatDisplayDate(value) {
+  return new Intl.DateTimeFormat("ru-RU", { day: "numeric", month: "long", year: "numeric" }).format(parseIsoDate(value));
+}
+
+function validateServiceDate() {
+  const value = elements.serviceDate.value;
+  if (!value) return true;
+
+  if (value > state.dateMax) {
+    elements.dateError.textContent = "Нельзя выбрать дату в будущем.";
+    elements.dateError.hidden = false;
+    return false;
+  }
+  if (value < state.dateMin) {
+    elements.dateError.textContent = "Выберите дату не старше 3 лет.";
+    elements.dateError.hidden = false;
+    return false;
+  }
+  elements.dateError.hidden = true;
+  return true;
 }
 
 function renderRatings() {
-  // Рисуем все пять обязательных рейтингов из массива questions, чтобы не держать их вручную в HTML.
   elements.ratings.innerHTML = questions.map((question) => `
     <div class="rating-row" data-question-id="${question.id}">
       <div class="rating-question">
@@ -1288,7 +1053,6 @@ function previewStars(row, value) {
 }
 
 function renderRatingState() {
-  // Обновляем выбранные звёзды и атрибуты доступности для клавиатуры и программ чтения с экрана.
   $$(".rating-row").forEach((row) => {
     const rating = state.ratings[row.dataset.questionId] || 0;
     row.querySelectorAll(".star-btn").forEach((button) => {
@@ -1301,8 +1065,16 @@ function renderRatingState() {
   });
 }
 
+function toggleHelp(id) {
+  state.openHelpId = state.openHelpId === id ? null : id;
+  $$(".rating-row").forEach((row) => {
+    const isOpen = row.dataset.questionId === state.openHelpId;
+    row.querySelector(".rating-help").hidden = !isOpen;
+    row.querySelector(".help-dot")?.setAttribute("aria-expanded", String(isOpen));
+  });
+}
+
 function handleFiles(files) {
-  // В прототипе фото хранятся в памяти как строка с содержимым файла и не отправляются на сервер.
   elements.photoError.hidden = true;
   const images = files.filter((file) => file.type.startsWith("image/"));
   const tooBig = images.some((file) => file.size > 5 * 1024 * 1024);
@@ -1340,52 +1112,7 @@ function renderPhotos() {
   });
 }
 
-function configureDateInput() {
-  // Ограничиваем дату тем же правилом, что и валидация: не будущее и не старше 3 лет.
-  const today = new Date();
-  const min = addYears(today, -3);
-  elements.serviceDate.max = formatDate(today);
-  elements.serviceDate.min = formatDate(min);
-  if (!elements.serviceDate.value) elements.serviceDate.value = formatDate(today);
-}
-
-function addYears(date, years) {
-  const copy = new Date(date);
-  copy.setFullYear(copy.getFullYear() + years);
-  return copy;
-}
-
-function formatDate(date) {
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, "0");
-  const d = String(date.getDate()).padStart(2, "0");
-  return `${y}-${m}-${d}`;
-}
-
-function validateServiceDate() {
-  // Проверка дублирует min/max, потому что браузеры по-разному показывают ошибки поля даты.
-  const value = elements.serviceDate.value;
-  if (!value) return true;
-  const date = new Date(`${value}T00:00:00`);
-  const today = new Date(`${formatDate(new Date())}T00:00:00`);
-  const min = new Date(`${elements.serviceDate.min}T00:00:00`);
-
-  if (date > today) {
-    elements.dateError.textContent = "Нельзя выбрать дату в будущем.";
-    elements.dateError.hidden = false;
-    return false;
-  }
-  if (date < min) {
-    elements.dateError.textContent = "Выберите дату не старше 3 лет.";
-    elements.dateError.hidden = false;
-    return false;
-  }
-  elements.dateError.hidden = true;
-  return true;
-}
-
 function validateForm() {
-  // Перед отправкой проверяем только обязательное: выбранную пару, дату, все оценки и корректность ссылки.
   let valid = true;
   if (!state.selectedServiceId || !state.selectedOrgId) {
     elements.selectionError.hidden = false;
@@ -1394,7 +1121,7 @@ function validateForm() {
   }
 
   if (!validateServiceDate()) {
-    if (valid) elements.serviceDate.focus();
+    if (valid) elements.serviceDateButton.focus();
     valid = false;
   }
 
@@ -1415,7 +1142,6 @@ function validateForm() {
 }
 
 function submitForm(event) {
-  // Реальной отправки нет: для статического прототипа показываем собранные данные в диалоге и пишем их в консоль.
   event.preventDefault();
   if (!validateForm()) return;
 
@@ -1423,32 +1149,30 @@ function submitForm(event) {
   console.log("Отзыв отправлен", payload);
   elements.payload.textContent = JSON.stringify(payload, null, 2);
   elements.resultDialog.showModal();
-  localStorage.removeItem("vashkontrol-review-draft-practical");
+  localStorage.removeItem(DRAFT_KEY);
 }
 
 function saveDraft() {
-  // Черновик сохраняется локально в браузере, без передачи персональных данных наружу.
   const payload = buildPayload("draft");
-  localStorage.setItem("vashkontrol-review-draft-practical", JSON.stringify({ payload, statePhotos: state.photos }));
+  localStorage.setItem(DRAFT_KEY, JSON.stringify({ payload, statePhotos: state.photos }));
   showToast("Черновик сохранён в браузере");
 }
 
 function restoreDraft() {
-  // При восстановлении не возвращаем выбранную пару: пользователь должен заново подтвердить услугу и организацию.
   try {
-    const saved = JSON.parse(localStorage.getItem("vashkontrol-review-draft-practical") || "null");
+    const saved = JSON.parse(localStorage.getItem(DRAFT_KEY) || "null");
     if (!saved?.payload) return;
     state.selectedServiceId = null;
     state.selectedOrgId = null;
+    state.pendingOrgId = null;
+    state.pendingServiceId = null;
     state.ratings = { ...state.ratings, ...(saved.payload.ratings || {}) };
     state.photos = Array.isArray(saved.statePhotos) ? saved.statePhotos : [];
+    state.selectedRegion = findRegionById(saved.payload.region?.id) || findRegionByValue(saved.payload.regionText || saved.payload.region?.title || saved.payload.region || "");
+    if (state.selectedRegion) elements.region.value = state.selectedRegion.title;
     elements.comment.value = saved.payload.comment || "";
     elements.video.value = saved.payload.video || "";
-    if (saved.payload.region) {
-      elements.region.value = saved.payload.region;
-      state.regionTouched = true;
-    }
-    elements.serviceDate.value = saved.payload.serviceDate || elements.serviceDate.value;
+    setServiceDate(saved.payload.serviceDate || state.serviceDate, { silent: true });
     elements.stage.value = saved.payload.stage || "service_received";
     elements.receiveType.value = saved.payload.receiveType || "offline";
     elements.officialAnswer.checked = Boolean(saved.payload.officialAnswer);
@@ -1460,21 +1184,24 @@ function restoreDraft() {
 }
 
 function resetForm() {
-  // Полный сброс возвращает форму к начальному сценарию и очищает локальный черновик.
   state.selectedServiceId = null;
   state.selectedOrgId = null;
-  state.browseMode = "organizations";
-  state.browseOrgId = null;
-  state.browseServiceId = null;
+  state.pendingOrgId = null;
+  state.pendingServiceId = null;
+  state.searchTab = "organizations";
+  state.selectedRegion = null;
+  state.regionTouched = false;
   state.ratings = Object.fromEntries(questions.map((item) => [item.id, 0]));
   state.photos = [];
   elements.form.reset();
-  elements.region.value = DEFAULT_REGION;
-  state.regionTouched = false;
+  elements.region.value = DEFAULT_REGION_TITLE;
   elements.receiveType.value = "offline";
   configureDateInput();
   elements.stage.value = "service_received";
-  localStorage.removeItem("vashkontrol-review-draft-practical");
+  localStorage.removeItem(DRAFT_KEY);
+  renderQuickTags();
+  updateSearchTabUi();
+  updateRegionHint();
   renderPhotos();
   renderRatingState();
   updateSelectedBox();
@@ -1487,12 +1214,12 @@ function resetForm() {
 }
 
 function sendCatalogProblem() {
-  // Сообщение о справочнике пока имитируется через console.log, как и основная отправка формы.
   const text = $("#catalogProblemText").value.trim();
   console.log("Сообщение о проблеме со справочником", {
     text,
     search: elements.search.value,
-    region: elements.region.value,
+    region: state.selectedRegion,
+    regionText: elements.region.value,
     createdAt: new Date().toISOString()
   });
   elements.catalogDialog.close();
@@ -1501,7 +1228,6 @@ function sendCatalogProblem() {
 }
 
 function buildPayload(status) {
-  // Собираем структуру, которую позже можно будет отправлять на сервер без смены логики интерфейса.
   const service = getSelectedService();
   const org = getSelectedOrg();
   return {
@@ -1511,7 +1237,14 @@ function buildPayload(status) {
     createdAt: new Date().toISOString(),
     stage: elements.stage.value,
     receiveType: elements.receiveType.value,
-    region: elements.region.value,
+    region: state.selectedRegion ? {
+      id: state.selectedRegion.id,
+      type: state.selectedRegion.type,
+      title: state.selectedRegion.title,
+      region: state.selectedRegion.region,
+      city: state.selectedRegion.city
+    } : null,
+    regionText: elements.region.value.trim(),
     serviceDate: elements.serviceDate.value,
     service: service ? { id: service.id, title: service.title, code: service.code, category: service.category } : null,
     organization: org ? { id: org.id, type: org.type, name: org.name, agency: org.agency, region: org.region, city: org.city, address: org.address } : null,
@@ -1524,7 +1257,6 @@ function buildPayload(status) {
 }
 
 function updateSteps() {
-  // Индикатор шагов отражает прогресс, но не добавляет отдельные обязательные экраны.
   const selected = Boolean(state.selectedServiceId && state.selectedOrgId);
   const ratingsDone = Object.values(state.ratings).every(Boolean);
   const detailsTouched = Boolean(elements.comment.value.trim() || state.photos.length || elements.video.value.trim() || elements.officialAnswer.checked);
@@ -1541,12 +1273,20 @@ function setStep(index, status) {
   step.classList.toggle("is-active", status === "active");
 }
 
+function getService(id) {
+  return catalog.services.find((service) => service.id === id) || null;
+}
+
+function getOrganization(id) {
+  return catalog.organizations.find((org) => org.id === id) || null;
+}
+
 function getSelectedService() {
-  return services.find((service) => service.id === state.selectedServiceId) || null;
+  return getService(state.selectedServiceId);
 }
 
 function getSelectedOrg() {
-  return organizations.find((org) => org.id === state.selectedOrgId) || null;
+  return getOrganization(state.selectedOrgId);
 }
 
 function updateOfficialAnswerVisibility() {
@@ -1562,28 +1302,26 @@ async function tryDetectRegion({ silent } = {}) {
 
   const detectedByIp = await detectLocationByIp();
   if (detectedByIp && canAutofillRegion()) {
-    setDetectedLocation(detectedByIp, "ip", silent);
+    setDetectedRegion(detectedByIp, "ip", silent);
     return;
   }
 
   const detectedByBrowser = detectRegionByBrowserInfo();
-  const browserLocation = detectedByBrowser ? findLocationByValue(detectedByBrowser) : null;
-  if (browserLocation && canAutofillRegion()) setDetectedLocation(browserLocation, "browser", silent);
+  const browserRegion = detectedByBrowser ? findRegionByValue(detectedByBrowser) : null;
+  if (browserRegion && canAutofillRegion()) setDetectedRegion(browserRegion, "browser", silent);
 }
 
 function canAutofillRegion() {
-  const value = elements.region.value.trim();
-  return !state.regionTouched && (!value || normalize(value) === normalize(DEFAULT_REGION));
+  return !state.regionTouched && !state.selectedRegion && !elements.region.value.trim();
 }
 
-function setDetectedLocation(location, source, silent) {
-  elements.region.value = location.value;
-  if (elements.regionHint) {
-    elements.regionHint.textContent = source === "ip"
-      ? "Подставили по IP. Можно изменить вручную."
-      : "Подставили по данным браузера. Можно изменить вручную.";
-    elements.regionHint.hidden = false;
-  }
+function setDetectedRegion(region, source, silent) {
+  state.selectedRegion = region;
+  elements.region.value = region.title;
+  elements.regionHint.textContent = source === "ip"
+    ? "Подставили по IP. Можно изменить вручную."
+    : "Подставили по данным браузера. Можно изменить вручную.";
+  elements.regionHint.hidden = false;
   if (!silent) showToast("Регион подставлен автоматически");
   runSearch();
 }
@@ -1602,11 +1340,11 @@ async function detectLocationByIp() {
 
     const region = data.region || data.regionName || data.region_name || "";
     const city = data.city || "";
-    const match = findLocationByParts(city, region);
+    const match = findRegionByParts(city, region);
     if (match) return match;
 
     const detectedRegion = detectRegionByCoordinates(Number(data.latitude), Number(data.longitude));
-    return detectedRegion ? findLocationByValue(detectedRegion) : null;
+    return detectedRegion ? findRegionByValue(detectedRegion) : null;
   } catch (error) {
     return null;
   } finally {
@@ -1615,7 +1353,6 @@ async function detectLocationByIp() {
 }
 
 function detectRegionByBrowserInfo() {
-  // По часовому поясу можно сделать только грубую подсказку, если IP-сервис недоступен.
   const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
   const map = {
     "Asia/Yekaterinburg": "Оренбургская область",
@@ -1630,7 +1367,6 @@ function detectRegionByBrowserInfo() {
 }
 
 function detectRegionByCoordinates(lat, lon) {
-  // Запасной вариант для координат: простые рамки регионов без внешних сервисов и без точного геокодинга.
   const boxes = [
     { region: "Оренбургская область", minLat: 50.4, maxLat: 54.0, minLon: 50.7, maxLon: 61.7 },
     { region: "Москва", minLat: 55.1, maxLat: 56.1, minLon: 36.8, maxLon: 38.3 },
@@ -1643,7 +1379,6 @@ function detectRegionByCoordinates(lat, lon) {
 }
 
 function isValidUrl(value) {
-  // Принимаем только обычные http/https-ссылки на видео, сама платформа здесь не ограничивается.
   try {
     const url = new URL(value);
     return ["http:", "https:"].includes(url.protocol);
@@ -1653,7 +1388,6 @@ function isValidUrl(value) {
 }
 
 function showToast(message) {
-  // Неблокирующее уведомление: оно не прерывает заполнение формы и само исчезает.
   elements.toast.textContent = message;
   elements.toast.classList.add("is-visible");
   window.clearTimeout(showToast.timer);
@@ -1661,7 +1395,6 @@ function showToast(message) {
 }
 
 function escapeHtml(value) {
-  // Экранируем пользовательские и справочные строки перед вставкой в шаблонную HTML-разметку.
   return String(value)
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
