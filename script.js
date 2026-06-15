@@ -784,15 +784,38 @@ function canShowFederalOrganization() {
   return elements.receiveType.value === "online";
 }
 
+function getSelectedCityFilter(selectedRegion = state.selectedRegion) {
+  if (selectedRegion?.city) return selectedRegion.city;
+  if (!isCityFieldVisible() || !selectedRegion?.region) return "";
+
+  const cityText = elements.city.value.trim();
+  if (!cityText) return "";
+
+  const normalizedCity = normalize(cityText);
+  const normalizedRegion = normalize(selectedRegion.region);
+  const exactCity = catalog.regions.find((region) =>
+    region.type === "city"
+    && normalize(region.region) === normalizedRegion
+    && normalize(region.city || region.title) === normalizedCity
+  );
+  return exactCity?.city || exactCity?.title || "";
+}
+
 function isOrgAvailableForRegion(org, selectedRegion) {
   if (isFederalOrganization(org)) return canShowFederalOrganization();
   if (!selectedRegion?.region) return true;
-  return normalize(org.region) === normalize(selectedRegion.region);
+  if (normalize(org.region) !== normalize(selectedRegion.region)) return false;
+
+  const selectedCity = getSelectedCityFilter(selectedRegion);
+  if (selectedCity && normalize(org.city) !== normalize(selectedCity)) return false;
+
+  return true;
 }
 
 function getOrgRegionPriority(org, selectedRegion) {
   if (!selectedRegion?.region) return 0;
-  if (selectedRegion.city && normalize(org.city) === normalize(selectedRegion.city)) return 3;
+  const selectedCity = getSelectedCityFilter(selectedRegion);
+  if (selectedCity && normalize(org.city) === normalize(selectedCity)) return 3;
   if (normalize(org.region) === normalize(selectedRegion.region)) return 2;
   if (isFederalOrganization(org) && canShowFederalOrganization()) return 1;
   return 0;
@@ -897,7 +920,8 @@ function renderOrganizationSearch() {
 
   const orgs = searchOrganizations(query, selectedService?.id).slice(0, RESULTS_LIMIT);
   if (!orgs.length) {
-    elements.results.innerHTML = `<div class="empty-result">В выбранном регионе ничего не найдено. Попробуйте другое название или нажмите «Не нашёл в списке».</div>`;
+    const locationLabel = getSelectedCityFilter(state.selectedRegion) ? "городе" : "регионе";
+    elements.results.innerHTML = `<div class="empty-result">В выбранном ${locationLabel} ничего не найдено. Попробуйте другое название или нажмите «Не нашёл в списке».</div>`;
     return;
   }
 

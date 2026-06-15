@@ -43,6 +43,10 @@ assert.ok(!searchModes[2].attrs.includes("checked"), "fallback mode is not defau
 expectMatch("desktop city field exists", html, /id="cityInput"/);
 expectMatch("region hint is outside region label", html, /<\/label>\s*<label class="field field--city[\s\S]*?<\/label>\s*<div class="region-hint-cell">/);
 expectMatch("mobile city field hidden", css, /@media \(max-width: 900px\)[\s\S]*?\.field--city \{ display: none; \}/);
+expectMatch("city filter helper exists", js, /function getSelectedCityFilter\(selectedRegion = state\.selectedRegion\)/);
+expectMatch("city filter excludes organizations from other cities", js, /const selectedCity = getSelectedCityFilter\(selectedRegion\);[\s\S]*?if \(selectedCity && normalize\(org\.city\) !== normalize\(selectedCity\)\) return false;/);
+expectMatch("city filter affects organization priority", js, /const selectedCity = getSelectedCityFilter\(selectedRegion\);[\s\S]*?if \(selectedCity && normalize\(org\.city\) === normalize\(selectedCity\)\) return 3;/);
+expectMatch("empty organization result names selected city", js, /const locationLabel = getSelectedCityFilter\(state\.selectedRegion\) \? "городе" : "регионе";/);
 
 expectMatch("mobile base result rows stay compact", css, /@media \(max-width: 520px\)[\s\S]*?\.result-row\s*\{[\s\S]*?min-height:\s*64px;/);
 expectMatch("mobile org rows grow with wrapped tags", css, /@media \(max-width: 520px\)[\s\S]*?\.result-row--org\s*\{[\s\S]*?height:\s*max-content;[\s\S]*?min-height:\s*128px;[\s\S]*?padding:\s*14px 12px 12px;/);
