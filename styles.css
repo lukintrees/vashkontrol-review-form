@@ -756,11 +756,6 @@ h1 {
   overflow-wrap: anywhere;
 }
 .tag--green { background: var(--green-soft); color: var(--green-dark); }
-.result-row--missing {
-  border-style: dashed;
-  background: var(--green-soft-2);
-}
-.result-row--missing strong { color: var(--green-dark); }
 .result-score { display: none; }
 .empty-result {
   padding: 14px;
@@ -1183,6 +1178,11 @@ pre {
     height: max-content;
     min-height: 128px;
     padding: 14px 12px 12px;
+  }
+  .result-row--service {
+    height: max-content;
+    min-height: 92px;
+    padding: 14px 12px;
   }
   .result-row > span { gap: 10px; }
   .result-tags { gap: 7px; }
