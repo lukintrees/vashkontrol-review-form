@@ -53,6 +53,18 @@ expectMatch("mobile base result rows stay compact", css, /@media \(max-width: 52
 expectMatch("mobile org rows grow with wrapped tags", css, /@media \(max-width: 520px\)[\s\S]*?\.result-row--org\s*\{[\s\S]*?height:\s*max-content;[\s\S]*?min-height:\s*128px;[\s\S]*?padding:\s*14px 12px 12px;/);
 expectMatch("mobile review tag hidden", css, /@media \(max-width: 520px\)[\s\S]*?\.tag--reviews \{ display: none; \}/);
 expectMatch("mobile reviews become separate text row", css, /@media \(max-width: 520px\)[\s\S]*?\.result-reviews-inline\s*\{[\s\S]*?display:\s*block;/);
+expectMatch("mobile browse list has limited scroll area", css, /@media \(max-width: 520px\)[\s\S]*?\.browse-list\s*\{[\s\S]*?max-height:\s*min\(58vh, 430px\);/);
+expectMatch("result list allows vertical touch scrolling", css, /\.browse-list\s*\{[\s\S]*?touch-action:\s*pan-y;[\s\S]*?\}[\s\S]*?\.result-row\s*\{[\s\S]*?touch-action:\s*pan-y;/);
+
+expectMatch("touch move guard exists for result cards", js, /function handleResultPointerMove\(event\)/);
+expectMatch("touch move guard blocks accidental result click", js, /if \(state\.resultPointerMoved\) \{[\s\S]*?event\.preventDefault\(\);[\s\S]*?return;/);
+assert.ok(!/showToast\("Организация выбрана[\s\S]{0,180}elements\.search\.focus/.test(js), "choosing organization should not focus search");
+assert.ok(!/showToast\("Услуга выбрана[\s\S]{0,180}elements\.search\.focus/.test(js), "choosing service should not focus search");
+assert.ok(!/\$\(("#|')changeSelection[\s\S]{0,500}elements\.search\.focus/.test(js), "change selection should not focus search");
+
+expectMatch("missing service option id exists", js, /const MISSING_SERVICE_ID = "service-not-in-catalog";/);
+expectMatch("missing service can be selected from service list", js, /data-action="\$\{action\}" data-service-id="\$\{MISSING_SERVICE_ID\}"/);
+expectMatch("missing service can move forward with organization", js, /button\.dataset\.action === "select-missing-service"[\s\S]*?selectPair\(MISSING_SERVICE_ID/);
 
 [1, 2, 3, 4, 5].forEach((rating) => {
   expectMatch(`star color for rating ${rating}`, css, new RegExp(`data-rating-value="${rating}"[\\s\\S]*?color:`));

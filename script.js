@@ -2,6 +2,7 @@ const DEFAULT_REGION_TITLE = "";
 const DRAFT_KEY = "vashkontrol-review-draft-practical";
 const COLOR_THEME_KEY = "vashkontrol-color-theme";
 const RESULTS_LIMIT = 5;
+const MISSING_SERVICE_ID = "service-not-in-catalog";
 
 const catalog = {
   regions: [],
@@ -34,6 +35,13 @@ const questionHints = {
   employee: "Оцените вежливость, понятность объяснений и готовность помочь.",
   info: "Оцените, легко ли было найти понятную информацию о порядке получения услуги.",
   comfort: "Оцените чистоту, удобство ожидания, навигацию и общие условия в помещении."
+};
+
+const missingService = {
+  id: MISSING_SERVICE_ID,
+  title: "Услуга отсутствует в списке",
+  category: "Справочник нужно уточнить",
+  code: ""
 };
 
 const quickTagsByTab = {
@@ -70,6 +78,9 @@ const state = {
   datePickerMonth: null,
   searchScrollX: 0,
   searchScrollY: 0,
+  resultPointerStartX: 0,
+  resultPointerStartY: 0,
+  resultPointerMoved: false,
   catalogsReady: false
 };
 
@@ -336,6 +347,8 @@ function bindEvents() {
     runSearch();
   }));
 
+  elements.results.addEventListener("pointerdown", handleResultPointerDown);
+  elements.results.addEventListener("pointermove", handleResultPointerMove, { passive: true });
   elements.results.addEventListener("click", handleResultsClick);
 
   $("#changeSelection").addEventListener("click", () => {
@@ -350,7 +363,6 @@ function bindEvents() {
     updateSelectedBox();
     runSearch();
     updateSteps();
-    elements.search.focus();
   });
 
   elements.ratings.addEventListener("click", (event) => {
@@ -945,7 +957,13 @@ function renderServiceSearch() {
     : "";
 
   if (!services.length) {
-    elements.results.innerHTML = `${note}<div class="empty-result">Ничего не найдено. Попробуйте обычное название услуги: «паспорт», «права», «ЕГРН», «пособие».</div>`;
+    elements.results.innerHTML = `
+      ${note}
+      <div class="empty-result">Ничего не найдено. Попробуйте обычное название услуги: «паспорт», «права», «ЕГРН», «пособие».</div>
+      <div class="browse-list">
+        ${renderMissingServiceRow({ action: selectedOrg ? "select-missing-service" : "pick-missing-service", orgId: selectedOrg?.id || "" })}
+      </div>
+    `;
     return;
   }
 
@@ -957,6 +975,7 @@ function renderServiceSearch() {
     </div>
     <div class="browse-list">
       ${services.map((service) => renderServiceRow(service, { action: selectedOrg ? "select-service" : "pick-service", orgId: selectedOrg?.id || "" })).join("")}
+      ${renderMissingServiceRow({ action: selectedOrg ? "select-missing-service" : "pick-missing-service", orgId: selectedOrg?.id || "" })}
     </div>
   `;
 }
@@ -980,6 +999,7 @@ function renderOrgServices() {
     </div>
     <div class="browse-list">
       ${services.map((service) => renderServiceRow(service, { action: "select-service", orgId: org.id })).join("")}
+      ${renderMissingServiceRow({ action: "select-missing-service", orgId: org.id })}
     </div>
   `;
 }
@@ -1040,6 +1060,32 @@ function renderServiceRow(service, { action, orgId = "" } = {}) {
   `;
 }
 
+function renderMissingServiceRow({ action, orgId = "" } = {}) {
+  return `
+    <button class="result-row result-row--service result-row--missing" type="button" data-action="${action}" data-service-id="${MISSING_SERVICE_ID}" data-org-id="${orgId}">
+      <span>
+        <strong>${missingService.title}</strong>
+        <small>Можно продолжить отзыв. Сообщение поможет уточнить справочник.</small>
+      </span>
+    </button>
+  `;
+}
+
+function handleResultPointerDown(event) {
+  const row = event.target.closest("[data-action]");
+  if (event.pointerType !== "touch" || !row) return;
+  state.resultPointerStartX = event.clientX;
+  state.resultPointerStartY = event.clientY;
+  state.resultPointerMoved = false;
+}
+
+function handleResultPointerMove(event) {
+  if (event.pointerType !== "touch") return;
+  const dx = Math.abs(event.clientX - state.resultPointerStartX);
+  const dy = Math.abs(event.clientY - state.resultPointerStartY);
+  if (dx > 10 || dy > 10) state.resultPointerMoved = true;
+}
+
 function handleResultsClick(event) {
   const backButton = event.target.closest("[data-back]");
   if (backButton) {
@@ -1057,6 +1103,11 @@ function handleResultsClick(event) {
 
   const button = event.target.closest("[data-action]");
   if (!button) return;
+  if (state.resultPointerMoved) {
+    event.preventDefault();
+    state.resultPointerMoved = false;
+    return;
+  }
 
   if (button.dataset.action === "pick-org") {
     state.selectedOrgId = button.dataset.orgId;
@@ -1071,7 +1122,6 @@ function handleResultsClick(event) {
     runSearch();
     updateSteps();
     showToast("Организация выбрана. Теперь выберите услугу");
-    elements.search.focus();
   }
 
   if (button.dataset.action === "pick-service") {
@@ -1087,11 +1137,29 @@ function handleResultsClick(event) {
     runSearch();
     updateSteps();
     showToast("Услуга выбрана. Теперь выберите организацию");
-    elements.search.focus();
+  }
+
+  if (button.dataset.action === "pick-missing-service") {
+    state.selectedServiceId = MISSING_SERVICE_ID;
+    state.selectedOrgId = null;
+    state.pendingServiceId = null;
+    state.pendingOrgId = null;
+    state.searchTab = "organizations";
+    elements.search.value = "";
+    elements.selectionError.hidden = true;
+    updateSearchTabUi();
+    updateSelectedBox();
+    runSearch();
+    updateSteps();
+    showToast("Услуга отмечена как отсутствующая. Теперь выберите организацию");
   }
 
   if (button.dataset.action === "select-service") {
     selectPair(button.dataset.serviceId, button.dataset.orgId || state.selectedOrgId);
+  }
+
+  if (button.dataset.action === "select-missing-service") {
+    selectPair(MISSING_SERVICE_ID, button.dataset.orgId || state.selectedOrgId);
   }
 
   if (button.dataset.action === "select-org") {
@@ -1138,7 +1206,7 @@ function updateSelectedBox() {
 
   elements.selectedServiceName.textContent = service ? service.title : "Выберите услугу во вкладке «Услуги»";
   elements.selectedServiceMeta.textContent = service
-    ? `${service.category} · код услуги: ${service.code}`
+    ? [service.category, service.code ? `код услуги: ${service.code}` : ""].filter(Boolean).join(" · ")
     : "Организация уже выбрана";
   elements.selectedOrgName.textContent = org ? org.name : "Выберите организацию во вкладке «Организации»";
   elements.selectedOrgMeta.textContent = org
@@ -1583,6 +1651,7 @@ function setStep(index, status) {
 }
 
 function getService(id) {
+  if (id === MISSING_SERVICE_ID) return missingService;
   return catalog.services.find((service) => service.id === id) || null;
 }
 
