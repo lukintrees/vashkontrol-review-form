@@ -2,6 +2,8 @@ const DEFAULT_REGION_TITLE = "";
 const DRAFT_KEY = "vashkontrol-review-draft-practical";
 const COLOR_THEME_KEY = "vashkontrol-color-theme";
 const RESULTS_LIMIT = 5;
+const CUSTOM_SERVICE_ID = "service-not-in-catalog";
+const CUSTOM_ORG_ID = "organization-not-in-catalog";
 
 const catalog = {
   regions: [],
@@ -54,6 +56,8 @@ const state = {
   selectedRegion: null,
   selectedServiceId: null,
   selectedOrgId: null,
+  customService: null,
+  customOrg: null,
   pendingOrgId: null,
   pendingServiceId: null,
   ratings: Object.fromEntries(questions.map((item) => [item.id, 0])),
@@ -70,6 +74,9 @@ const state = {
   datePickerMonth: null,
   searchScrollX: 0,
   searchScrollY: 0,
+  resultPointerStartX: 0,
+  resultPointerStartY: 0,
+  resultPointerMoved: false,
   catalogsReady: false
 };
 
@@ -336,6 +343,8 @@ function bindEvents() {
     runSearch();
   }));
 
+  elements.results.addEventListener("pointerdown", handleResultPointerDown);
+  elements.results.addEventListener("pointermove", handleResultPointerMove, { passive: true });
   elements.results.addEventListener("click", handleResultsClick);
 
   $("#changeSelection").addEventListener("click", () => {
@@ -350,7 +359,6 @@ function bindEvents() {
     updateSelectedBox();
     runSearch();
     updateSteps();
-    elements.search.focus();
   });
 
   elements.ratings.addEventListener("click", (event) => {
@@ -412,7 +420,7 @@ function bindEvents() {
   $("#editAgain").addEventListener("click", () => elements.resultDialog.close());
   $("#resetForm").addEventListener("click", resetForm);
 
-  $("#reportCatalogProblem").addEventListener("click", () => elements.catalogDialog.showModal());
+  $("#reportCatalogProblem").addEventListener("click", openCatalogDialog);
   $("#closeCatalogDialog").addEventListener("click", () => elements.catalogDialog.close());
   $("#sendCatalogProblem").addEventListener("click", sendCatalogProblem);
 }
@@ -945,7 +953,10 @@ function renderServiceSearch() {
     : "";
 
   if (!services.length) {
-    elements.results.innerHTML = `${note}<div class="empty-result">Ничего не найдено. Попробуйте обычное название услуги: «паспорт», «права», «ЕГРН», «пособие».</div>`;
+    elements.results.innerHTML = `
+      ${note}
+      <div class="empty-result">Ничего не найдено. Попробуйте обычное название услуги: «паспорт», «права», «ЕГРН», «пособие».</div>
+    `;
     return;
   }
 
@@ -1040,6 +1051,21 @@ function renderServiceRow(service, { action, orgId = "" } = {}) {
   `;
 }
 
+function handleResultPointerDown(event) {
+  const row = event.target.closest("[data-action]");
+  if (event.pointerType !== "touch" || !row) return;
+  state.resultPointerStartX = event.clientX;
+  state.resultPointerStartY = event.clientY;
+  state.resultPointerMoved = false;
+}
+
+function handleResultPointerMove(event) {
+  if (event.pointerType !== "touch") return;
+  const dx = Math.abs(event.clientX - state.resultPointerStartX);
+  const dy = Math.abs(event.clientY - state.resultPointerStartY);
+  if (dx > 10 || dy > 10) state.resultPointerMoved = true;
+}
+
 function handleResultsClick(event) {
   const backButton = event.target.closest("[data-back]");
   if (backButton) {
@@ -1057,6 +1083,11 @@ function handleResultsClick(event) {
 
   const button = event.target.closest("[data-action]");
   if (!button) return;
+  if (state.resultPointerMoved) {
+    event.preventDefault();
+    state.resultPointerMoved = false;
+    return;
+  }
 
   if (button.dataset.action === "pick-org") {
     state.selectedOrgId = button.dataset.orgId;
@@ -1071,7 +1102,6 @@ function handleResultsClick(event) {
     runSearch();
     updateSteps();
     showToast("Организация выбрана. Теперь выберите услугу");
-    elements.search.focus();
   }
 
   if (button.dataset.action === "pick-service") {
@@ -1087,7 +1117,6 @@ function handleResultsClick(event) {
     runSearch();
     updateSteps();
     showToast("Услуга выбрана. Теперь выберите организацию");
-    elements.search.focus();
   }
 
   if (button.dataset.action === "select-service") {
@@ -1138,11 +1167,11 @@ function updateSelectedBox() {
 
   elements.selectedServiceName.textContent = service ? service.title : "Выберите услугу во вкладке «Услуги»";
   elements.selectedServiceMeta.textContent = service
-    ? `${service.category} · код услуги: ${service.code}`
+    ? [service.category, service.code ? `код услуги: ${service.code}` : ""].filter(Boolean).join(" · ")
     : "Организация уже выбрана";
   elements.selectedOrgName.textContent = org ? org.name : "Выберите организацию во вкладке «Организации»";
   elements.selectedOrgMeta.textContent = org
-    ? `${org.type === "mfc" ? "МФЦ" : org.agency} · ${[org.city, org.address].filter(Boolean).join(", ") || org.region}`
+    ? [org.type === "mfc" ? "МФЦ" : org.agency, [org.city, org.address].filter(Boolean).join(", ") || org.region].filter(Boolean).join(" · ")
     : "Услуга уже выбрана";
   elements.selectedBox.querySelector(".selected-box__item--service")?.classList.toggle("is-missing", !service);
   elements.selectedBox.querySelector(".selected-box__item--org")?.classList.toggle("is-missing", !org);
@@ -1471,6 +1500,8 @@ function restoreDraft() {
     if (!saved?.payload) return;
     state.selectedServiceId = null;
     state.selectedOrgId = null;
+    state.customService = null;
+    state.customOrg = null;
     state.pendingOrgId = null;
     state.pendingServiceId = null;
     state.ratings = { ...state.ratings, ...(saved.payload.ratings || {}) };
@@ -1493,6 +1524,8 @@ function restoreDraft() {
 function resetForm() {
   state.selectedServiceId = null;
   state.selectedOrgId = null;
+  state.customService = null;
+  state.customOrg = null;
   state.pendingOrgId = null;
   state.pendingServiceId = null;
   state.searchTab = "organizations";
@@ -1520,19 +1553,88 @@ function resetForm() {
   showToast("Форма очищена");
 }
 
+function openCatalogDialog() {
+  const textarea = $("#catalogProblemText");
+  const searchText = elements.search.value.trim();
+  if (!textarea.value.trim() && searchText) textarea.value = searchText;
+  elements.catalogDialog.showModal();
+}
+
 function sendCatalogProblem() {
-  const text = $("#catalogProblemText").value.trim();
+  const textarea = $("#catalogProblemText");
+  const text = textarea.value.trim() || elements.search.value.trim();
+  if (!text) {
+    showToast("Напишите, что искали");
+    textarea.focus();
+    return;
+  }
+
   console.log("Сообщение о проблеме со справочником", {
     text,
     search: elements.search.value,
+    searchTab: state.searchTab,
     region: state.selectedRegion,
     regionText: elements.region.value,
     cityText: elements.city.value,
     createdAt: new Date().toISOString()
   });
+  applyCatalogProblemSelection(text);
   elements.catalogDialog.close();
-  $("#catalogProblemText").value = "";
-  showToast("Сообщение отправлено");
+  textarea.value = "";
+}
+
+function applyCatalogProblemSelection(text) {
+  if (state.searchTab === "services") {
+    selectCustomService(text);
+    return;
+  }
+  selectCustomOrganization(text);
+}
+
+function selectCustomService(title) {
+  state.customService = {
+    id: CUSTOM_SERVICE_ID,
+    title,
+    category: "Нет в справочнике",
+    code: "",
+    custom: true
+  };
+  state.selectedServiceId = CUSTOM_SERVICE_ID;
+  state.pendingServiceId = null;
+  state.pendingOrgId = null;
+  elements.search.value = "";
+  elements.selectionError.hidden = true;
+  if (!state.selectedOrgId) state.searchTab = "organizations";
+  updateSearchTabUi();
+  updateSelectedBox();
+  runSearch();
+  updateSteps();
+  showToast(state.selectedOrgId ? "Услуга из сообщения выбрана" : "Услуга из сообщения выбрана. Теперь выберите организацию");
+}
+
+function selectCustomOrganization(name) {
+  state.customOrg = {
+    id: CUSTOM_ORG_ID,
+    type: "custom",
+    name,
+    agency: "Нет в справочнике",
+    region: state.selectedRegion?.region || elements.region.value.trim(),
+    city: state.selectedRegion?.city || elements.city.value.trim(),
+    address: "",
+    services: [],
+    custom: true
+  };
+  state.selectedOrgId = CUSTOM_ORG_ID;
+  state.pendingServiceId = null;
+  state.pendingOrgId = null;
+  elements.search.value = "";
+  elements.selectionError.hidden = true;
+  if (!state.selectedServiceId) state.searchTab = "services";
+  updateSearchTabUi();
+  updateSelectedBox();
+  runSearch();
+  updateSteps();
+  showToast(state.selectedServiceId ? "Организация из сообщения выбрана" : "Организация из сообщения выбрана. Теперь выберите услугу");
 }
 
 function buildPayload(status) {
@@ -1555,8 +1657,8 @@ function buildPayload(status) {
     regionText: elements.region.value.trim(),
     cityText: elements.city.value.trim(),
     serviceDate: elements.serviceDate.value,
-    service: service ? { id: service.id, title: service.title, code: service.code, category: service.category } : null,
-    organization: org ? { id: org.id, type: org.type, name: org.name, agency: org.agency, region: org.region, city: org.city, address: org.address } : null,
+    service: service ? { id: service.id, title: service.title, code: service.code, category: service.category, custom: Boolean(service.custom) } : null,
+    organization: org ? { id: org.id, type: org.type, name: org.name, agency: org.agency, region: org.region, city: org.city, address: org.address, custom: Boolean(org.custom) } : null,
     ratings: { ...state.ratings },
     comment: elements.comment.value.trim(),
     photos: state.photos.map((photo) => ({ name: photo.name, size: photo.size })),
@@ -1583,10 +1685,12 @@ function setStep(index, status) {
 }
 
 function getService(id) {
+  if (id === CUSTOM_SERVICE_ID) return state.customService;
   return catalog.services.find((service) => service.id === id) || null;
 }
 
 function getOrganization(id) {
+  if (id === CUSTOM_ORG_ID) return state.customOrg;
   return catalog.organizations.find((org) => org.id === id) || null;
 }
 

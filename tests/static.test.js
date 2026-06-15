@@ -51,8 +51,27 @@ expectMatch("empty organization result names selected city", js, /const location
 
 expectMatch("mobile base result rows stay compact", css, /@media \(max-width: 520px\)[\s\S]*?\.result-row\s*\{[\s\S]*?min-height:\s*64px;/);
 expectMatch("mobile org rows grow with wrapped tags", css, /@media \(max-width: 520px\)[\s\S]*?\.result-row--org\s*\{[\s\S]*?height:\s*max-content;[\s\S]*?min-height:\s*128px;[\s\S]*?padding:\s*14px 12px 12px;/);
+expectMatch("mobile service rows grow with wrapped text", css, /@media \(max-width: 520px\)[\s\S]*?\.result-row--service\s*\{[\s\S]*?height:\s*max-content;[\s\S]*?min-height:\s*92px;[\s\S]*?padding:\s*14px 12px;/);
 expectMatch("mobile review tag hidden", css, /@media \(max-width: 520px\)[\s\S]*?\.tag--reviews \{ display: none; \}/);
 expectMatch("mobile reviews become separate text row", css, /@media \(max-width: 520px\)[\s\S]*?\.result-reviews-inline\s*\{[\s\S]*?display:\s*block;/);
+expectMatch("mobile browse list has limited scroll area", css, /@media \(max-width: 520px\)[\s\S]*?\.browse-list\s*\{[\s\S]*?max-height:\s*min\(58vh, 430px\);/);
+expectMatch("result list allows vertical touch scrolling", css, /\.browse-list\s*\{[\s\S]*?touch-action:\s*pan-y;[\s\S]*?\}[\s\S]*?\.result-row\s*\{[\s\S]*?touch-action:\s*pan-y;/);
+
+expectMatch("touch move guard exists for result cards", js, /function handleResultPointerMove\(event\)/);
+expectMatch("touch move guard blocks accidental result click", js, /if \(state\.resultPointerMoved\) \{[\s\S]*?event\.preventDefault\(\);[\s\S]*?return;/);
+assert.ok(!/showToast\("Организация выбрана[\s\S]{0,180}elements\.search\.focus/.test(js), "choosing organization should not focus search");
+assert.ok(!/showToast\("Услуга выбрана[\s\S]{0,180}elements\.search\.focus/.test(js), "choosing service should not focus search");
+assert.ok(!/\$\(("#|')changeSelection[\s\S]{0,500}elements\.search\.focus/.test(js), "change selection should not focus search");
+
+expectMatch("custom service option id exists", js, /const CUSTOM_SERVICE_ID = "service-not-in-catalog";/);
+expectMatch("custom organization option id exists", js, /const CUSTOM_ORG_ID = "organization-not-in-catalog";/);
+assert.ok(!js.includes("renderMissingServiceRow"), "missing service should not be shown as list row");
+assert.ok(!css.includes("result-row--missing"), "missing service row styles should not exist");
+expectMatch("catalog problem text becomes selection", js, /function applyCatalogProblemSelection\(text\)/);
+expectMatch("not found in services creates custom service", js, /function selectCustomService\(title\)[\s\S]*?state\.selectedServiceId = CUSTOM_SERVICE_ID;/);
+expectMatch("not found in organizations creates custom org", js, /function selectCustomOrganization\(name\)[\s\S]*?state\.selectedOrgId = CUSTOM_ORG_ID;/);
+expectMatch("custom service payload flag exists", js, /custom: Boolean\(service\.custom\)/);
+expectMatch("custom organization payload flag exists", js, /custom: Boolean\(org\.custom\)/);
 
 [1, 2, 3, 4, 5].forEach((rating) => {
   expectMatch(`star color for rating ${rating}`, css, new RegExp(`data-rating-value="${rating}"[\\s\\S]*?color:`));
