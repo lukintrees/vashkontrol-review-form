@@ -1016,12 +1016,12 @@ function renderOrgRow(org, { action, serviceId = "" } = {}) {
     <button class="result-row result-row--org" type="button" data-action="${action}" data-org-id="${org.id}" data-service-id="${serviceId}">
       <span>
         <strong>${escapeHtml(org.name)}</strong>
-        <small>${escapeHtml(location)}</small>
+        <small>${escapeHtml(location)}<span class="result-reviews-inline"> · ${org.reviews} отзывов</span></small>
         <span class="result-tags">
           <span class="tag tag--green">${org.type === "mfc" ? "МФЦ" : "Ведомство"}</span>
           ${onlineTag}
           <span class="tag">${escapeHtml(org.region)}</span>
-          <span class="tag">${org.reviews} отзывов</span>
+          <span class="tag tag--reviews">${org.reviews} отзывов</span>
         </span>
       </span>
     </button>
