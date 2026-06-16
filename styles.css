@@ -148,6 +148,26 @@ a { color: var(--green-dark); }
   background: var(--green-soft);
   color: var(--green-dark);
 }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0 auto;
+}
+.nav-links a {
+  padding: 8px 14px;
+  border-radius: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.nav-links a:hover { color: var(--green-dark); background: var(--green-soft); }
+.nav-links a.is-current {
+  color: var(--green-dark);
+  background: var(--green-soft);
+}
 .menu-btn {
   display: none;
   width: 44px;
@@ -1084,6 +1104,24 @@ pre {
 }
 .dialog__buttons { display: flex; justify-content: flex-end; gap: 10px; margin-top: 14px; }
 .dialog-status { color: var(--muted); line-height: 1.45; }
+.dialog__badge {
+  margin: 12px 0;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: var(--green-soft);
+  border: 1px solid #dde7d3;
+  color: var(--green-dark);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.45;
+}
+.dialog-links {
+  margin: 14px 0 0;
+  text-align: center;
+  font-size: 13px;
+}
+.dialog-links a { color: var(--muted); }
+.dialog-links a:hover { color: var(--green-dark); }
 .toast {
   position: fixed;
   left: 50%;
@@ -1117,6 +1155,7 @@ pre {
     padding: 0 8px;
     font-size: 11px;
   }
+  .nav-links a { padding: 6px 10px; font-size: 13px; }
   .brand__name { font-size: 22px; }
   .intro { grid-template-columns: 1fr; gap: 18px; }
   .steps { max-width: none; }
@@ -1148,6 +1187,8 @@ pre {
   .page { padding-top: 18px; }
   h1 { font-size: 27px; }
   .topbar__inner { gap: 8px; }
+  .nav-links { gap: 4px; }
+  .nav-links a { padding: 6px 8px; font-size: 12px; }
   .brand__icon { width: 38px; height: 38px; margin-right: 8px; }
   .brand__name { font-size: 19px; }
   .theme-switcher { grid-template-columns: 1fr; padding: 2px; }

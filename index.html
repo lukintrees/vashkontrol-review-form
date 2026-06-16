@@ -25,6 +25,12 @@
         <span><b>Вы вошли через Госуслуги</b><small>Личность подтверждена</small></span>
       </div>
 
+      <nav class="nav-links">
+        <a href="index.html" class="is-current">Форма отзыва</a>
+        <a href="ratings.html">Рейтинг</a>
+        <a href="profile.html">Профиль</a>
+      </nav>
+
       <div class="topbar__tools">
         <div class="theme-switcher" aria-label="Цветовая тема">
           <button class="is-active" type="button" data-theme-option="classic" aria-pressed="true">Классическая</button>
@@ -252,11 +258,13 @@
       <h2>Отзыв отправлен</h2>
       <p>Спасибо. Отзыв принят и отправлен на модерацию.</p>
       <p class="dialog-status">Дальше вы сможете посмотреть статус отзыва на сайте. Если подключены уведомления, сообщение также придёт в мессенджер MAX.</p>
+      <div class="dialog__badge" id="dialogBadge" hidden></div>
       <pre id="payload" hidden></pre>
       <div class="dialog__buttons">
         <button class="btn btn--secondary" type="button" id="editAgain">Вернуться к форме</button>
         <button class="btn btn--primary" type="button" id="resetForm">Очистить форму</button>
       </div>
+      <p class="dialog-links"><a href="profile.html">Профиль и достижения</a> · <a href="ratings.html">Рейтинг организаций</a></p>
     </div>
   </dialog>
 

@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <meta name="darkreader-lock" />
+  <title>Ваш Контроль — рейтинг</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="theme-gosuslugi.css" />
+  <link rel="stylesheet" href="ratings.css" />
+</head>
+<body class="theme-classic">
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="index.html" aria-label="Ваш Контроль">
+        <span class="brand__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 4 40 10v12c0 10.6-6.5 17.8-16 22C14.5 39.8 8 32.6 8 22V10L24 4Z"/><path d="m17 24 5 5 10-12"/></svg>
+        </span>
+        <span class="brand__name">Ваш <b>Контроль</b></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Форма отзыва</a>
+        <a href="ratings.html" class="is-current">Рейтинг</a>
+        <a href="profile.html">Профиль</a>
+      </nav>
+
+      <div class="topbar__tools">
+        <div class="theme-switcher" aria-label="Цветовая тема">
+          <button class="is-active" type="button" data-theme-option="classic" aria-pressed="true">Классическая</button>
+          <button type="button" data-theme-option="official" aria-pressed="false">Официальная</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page ratings-page">
+    <div class="ratings-head">
+      <h1>Рейтинг МФЦ и ведомств</h1>
+      <p>Оценки основаны на отзывах пользователей по 5 параметрам: время ожидания, вежливость сотрудников, комфортность условий и другие.</p>
+    </div>
+
+    <div class="ratings-controls">
+      <div class="segmented" id="typeFilter">
+        <button class="segmented-btn is-active" type="button" data-type="all">Все</button>
+        <button class="segmented-btn" type="button" data-type="mfc">МФЦ</button>
+        <button class="segmented-btn" type="button" data-type="department">Ведомства</button>
+      </div>
+
+      <label class="field field--region region-combobox" id="ratingsRegionField">
+        <span>Регион</span>
+        <div class="combo">
+          <input id="ratingsRegionInput" autocomplete="off" placeholder="Все регионы" role="combobox" aria-expanded="false" />
+          <button id="clearRatingsRegion" type="button" aria-label="Очистить регион">×</button>
+        </div>
+        <div id="ratingsRegionDropdown" class="combo-dropdown" hidden></div>
+      </label>
+
+      <label class="field">
+        <span>Сортировка</span>
+        <select id="sortOrder">
+          <option value="rating-desc">По рейтингу (высокий)</option>
+          <option value="rating-asc">По рейтингу (низкий)</option>
+          <option value="reviews-desc">По числу отзывов</option>
+          <option value="name">По названию</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="ratings-summary" id="ratingsSummary">
+      <span id="ratingsCount">Загрузка...</span>
+    </div>
+
+    <div class="ratings-list" id="ratingsList" aria-live="polite"></div>
+  </main>
+
+  <script src="ratings.js"></script>
+  <script src="theme.js"></script>
+</body>
+</html>

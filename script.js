@@ -1,6 +1,8 @@
 const DEFAULT_REGION_TITLE = "";
 const DRAFT_KEY = "vashkontrol-review-draft-practical";
 const COLOR_THEME_KEY = "vashkontrol-color-theme";
+const REVIEWS_KEY = "vashkontrol-review-count";
+const HISTORY_KEY = "vashkontrol-review-history";
 const RESULTS_LIMIT = 5;
 const CUSTOM_SERVICE_ID = "service-not-in-catalog";
 const CUSTOM_ORG_ID = "organization-not-in-catalog";
@@ -1486,6 +1488,65 @@ function submitForm(event) {
   elements.payload.textContent = JSON.stringify(payload, null, 2);
   elements.resultDialog.showModal();
   localStorage.removeItem(DRAFT_KEY);
+
+  incrementReviewCount();
+  saveReviewToHistory(payload);
+  updateDialogBadge();
+}
+
+function incrementReviewCount() {
+  const count = Number(localStorage.getItem(REVIEWS_KEY)) || 0;
+  localStorage.setItem(REVIEWS_KEY, String(count + 1));
+}
+
+function saveReviewToHistory(payload) {
+  let history = [];
+  try { history = JSON.parse(localStorage.getItem(HISTORY_KEY)) || []; }
+  catch (e) { history = []; }
+
+  const ratings = payload.ratings || {};
+  const values = Object.values(ratings).filter(Boolean);
+  const avg = values.length ? (values.reduce((a, b) => a + b, 0) / values.length) : 0;
+
+  history.push({
+    date: payload.createdAt,
+    orgName: payload.organization?.name || "",
+    serviceName: payload.service?.title || "",
+    regionTitle: payload.region?.title || payload.regionText || "",
+    avgRating: avg,
+    ratings: ratings,
+    comment: payload.comment || ""
+  });
+
+  localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+}
+
+function updateDialogBadge() {
+  const count = Number(localStorage.getItem(REVIEWS_KEY)) || 0;
+  const badgeEl = document.getElementById("dialogBadge");
+  if (!badgeEl) return;
+
+  const levels = [
+    { min: 0,  title: "Новичок" },
+    { min: 1,  title: "Начинающий" },
+    { min: 3,  title: "Активный" },
+    { min: 10, title: "Эксперт" },
+    { min: 25, title: "Лидер мнений" },
+    { min: 50, title: "Народный контролёр" }
+  ];
+
+  let current = levels[0];
+  for (let i = levels.length - 1; i >= 0; i--) {
+    if (count >= levels[i].min) { current = levels[i]; break; }
+  }
+
+  const next = levels.find((l) => count < l.min);
+
+  let text = "Всего отправлено: " + count + " · Уровень: «" + current.title + "»";
+  if (next) text += " · До следующего уровня: " + (next.min - count) + " отзывов";
+
+  badgeEl.textContent = text;
+  badgeEl.hidden = false;
 }
 
 function saveDraft() {

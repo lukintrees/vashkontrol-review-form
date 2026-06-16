@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light" />
+  <meta name="darkreader-lock" />
+  <title>Ваш Контроль — профиль</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="theme-gosuslugi.css" />
+  <link rel="stylesheet" href="profile.css" />
+</head>
+<body class="theme-classic">
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="index.html" aria-label="Ваш Контроль">
+        <span class="brand__icon" aria-hidden="true">
+          <svg viewBox="0 0 48 48"><path d="M24 4 40 10v12c0 10.6-6.5 17.8-16 22C14.5 39.8 8 32.6 8 22V10L24 4Z"/><path d="m17 24 5 5 10-12"/></svg>
+        </span>
+        <span class="brand__name">Ваш <b>Контроль</b></span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="index.html">Форма отзыва</a>
+        <a href="ratings.html">Рейтинг</a>
+        <a href="profile.html" class="is-current">Профиль</a>
+      </nav>
+
+      <div class="topbar__tools">
+        <div class="theme-switcher" aria-label="Цветовая тема">
+          <button class="is-active" type="button" data-theme-option="classic" aria-pressed="true">Классическая</button>
+          <button type="button" data-theme-option="official" aria-pressed="false">Официальная</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page profile-page">
+    <div class="profile-head">
+      <div class="profile-avatar">
+        <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="20" fill="currentColor"/><circle cx="24" cy="20" r="7" fill="#fff"/><path d="M10 38a14 14 0 0 1 28 0" fill="#fff"/></svg>
+      </div>
+      <div>
+        <h1>Профиль</h1>
+        <p class="profile-subtitle">Общественный контроль качества государственных услуг</p>
+      </div>
+    </div>
+
+    <section class="rank-section card" aria-labelledby="rankTitle">
+      <div class="card__head">
+        <div>
+          <h2 id="rankTitle">Звание</h2>
+          <p>Определяется общим вкладом в оценку качества услуг</p>
+        </div>
+      </div>
+      <div class="rank-main" id="rankMain">
+        <div class="rank-icon" id="rankIcon"></div>
+        <div class="rank-info">
+          <span class="rank-level" id="rankLevel">—</span>
+          <span class="rank-title" id="rankTitleText">—</span>
+          <span class="rank-desc" id="rankDesc"></span>
+          <span class="rank-top" id="rankTop"></span>
+        </div>
+      </div>
+      <div class="rank-progress" id="rankProgress">
+        <div class="rank-progress__bar">
+          <div class="rank-progress__fill" id="rankProgressFill"></div>
+        </div>
+        <span class="rank-progress__label" id="rankProgressLabel"></span>
+      </div>
+    </section>
+
+    <section class="achievements-section card" aria-labelledby="achievementsTitle">
+      <div class="card__head">
+        <div>
+          <h2 id="achievementsTitle">Достижения</h2>
+          <p>Особые знаки за конкретные действия в системе</p>
+        </div>
+      </div>
+      <div class="achievements-grid" id="achievementsGrid"></div>
+    </section>
+
+    <section class="stats-section card" aria-labelledby="statsTitle">
+      <div class="card__head">
+        <div>
+          <h2 id="statsTitle">Статистика</h2>
+        </div>
+      </div>
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <span class="stat-value" id="statReviews">0</span>
+          <span class="stat-label">Отзывов</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="statOrgs">0</span>
+          <span class="stat-label">Организаций</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="statRegions">0</span>
+          <span class="stat-label">Регионов</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="statAvgRating">—</span>
+          <span class="stat-label">Средний балл</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="statOfficialAnswers">0</span>
+          <span class="stat-label">Офиц. ответов</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="statPhotos">0</span>
+          <span class="stat-label">С фото</span>
+        </div>
+      </div>
+      <p class="stats-context">На платформе <strong>2,09 млн</strong> отзывов от <strong>1,2 млн</strong> пользователей. Ваше участие помогает улучшать качество госуслуг.</p>
+    </section>
+
+    <section class="reviews-section card" aria-labelledby="historyTitle">
+      <div class="card__head">
+        <div>
+          <h2 id="historyTitle">История отзывов</h2>
+        </div>
+      </div>
+      <div id="reviewHistory" class="review-history">
+        <div class="empty-result">Отзывов пока нет. Отправьте первый отзыв через форму.</div>
+      </div>
+    </section>
+  </main>
+
+  <script src="profile.js"></script>
+  <script src="theme.js"></script>
+</body>
+</html>
